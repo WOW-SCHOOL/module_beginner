@@ -1,7 +1,8 @@
-# Audio rule
+# Audio rule — locked
 
-1. Primary voice: Google TTS, en-GB, short chunks.
-2. If Google TTS is blocked inside an iframe/browser, automatically fall back to the best available British English system voice.
-3. Never show “Audio unavailable” after a Google-only failure while a browser voice exists.
-4. Keep audio text split into short phrases/sentences.
-5. Cache-bust app.js/styles.css whenever audio code changes.
+Audio implementation is copied from the working WOW SCHOOL Beginner Unit 4A module.
+
+- British English web TTS via the same four Google Translate TTS endpoints.
+- `meta referrer=no-referrer`, `audio.referrerPolicy=no-referrer`, `playsinline` and `webkit-playsinline`.
+- Long texts are split into short chunks before playback.
+- Do not replace this implementation with browser `speechSynthesis`, a different voice engine, or local audio unless explicitly requested.
