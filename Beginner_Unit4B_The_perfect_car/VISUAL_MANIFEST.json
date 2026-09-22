@@ -1,0 +1,79 @@
+{
+  "module": "English File Beginner · Unit 4B · The perfect car",
+  "status": "final_images_added",
+  "blocks": 8,
+  "visual_rules": [
+    "object-fit contain everywhere; no cropping",
+    "bottom progress is always visible",
+    "Block 5 uses a portrait selfie / 9:16 image beside text",
+    "vary locations and camera angles; avoid repeated showroom photos"
+  ],
+  "planned_visuals": [
+    {
+      "file": "preview-unit4b.jpg",
+      "block": "Preview",
+      "size": "1600x900",
+      "ratio": "16:9",
+      "purpose": "WOW SCHOOL cover with baked-in text"
+    },
+    {
+      "file": "block1-listening.jpg",
+      "block": 1,
+      "size": "1440x1080",
+      "ratio": "4:3",
+      "purpose": "car showroom listening scene"
+    },
+    {
+      "file": "block2-vocabulary.jpg",
+      "block": 2,
+      "size": "1440x1080",
+      "ratio": "4:3",
+      "purpose": "colours and adjective context"
+    },
+    {
+      "file": "block3-sort.jpg",
+      "block": 3,
+      "size": "1440x1080",
+      "ratio": "4:3",
+      "purpose": "garage sorting / adjective categories"
+    },
+    {
+      "file": "block4-grammar.jpg",
+      "block": 4,
+      "size": "1440x1080",
+      "ratio": "4:3",
+      "purpose": "adjective position / sentence builder"
+    },
+    {
+      "file": "block5-reading.jpg",
+      "block": 5,
+      "size": "1080x1920",
+      "ratio": "9:16",
+      "purpose": "portrait selfie reading visual"
+    },
+    {
+      "file": "block6-pronunciation.jpg",
+      "block": 6,
+      "size": "1440x1080",
+      "ratio": "4:3",
+      "purpose": "pronunciation / linking practice"
+    },
+    {
+      "file": "block7-listening.jpg",
+      "block": 7,
+      "size": "1440x1080",
+      "ratio": "4:3",
+      "purpose": "second listening mission"
+    }
+  ],
+  "image_mapping": {
+    "preview-unit4b.jpg": "WOW SCHOOL preview cover",
+    "block1-listening.jpg": "cafe conversation with electric car outside",
+    "block2-vocabulary.jpg": "learners comparing car colours/styles on tablet",
+    "block3-sort.jpg": "garage/design table with car cards and colour/material samples",
+    "block4-grammar.jpg": "six contrasting cars for adjective sentence building",
+    "block5-reading.jpg": "vertical 9:16 selfie with grey car",
+    "block6-pronunciation.jpg": "two learners speaking/listening at cafe table",
+    "block7-listening.jpg": "showroom comparison scene with salesperson"
+  }
+}
