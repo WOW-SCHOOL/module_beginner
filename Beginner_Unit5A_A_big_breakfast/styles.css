@@ -325,25 +325,23 @@ img{display:block;max-width:100%}
 @media (max-width:900px){.sortColumns{grid-template-columns:1fr}.driveLayout{grid-template-columns:1fr}.readingVisual.portrait{grid-template-columns:38% 62%}}
 
 
-/* ===== Unit 5A Block 8 — open-card pair matching ===== */
-.pairFullCard{height:540px;background:#fff;border:1px solid #dbe6f5;border-radius:28px;padding:20px 22px 16px;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:14px;box-shadow:0 16px 34px rgba(43,70,122,.07);overflow:hidden}
-.pairHead{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
-.pairHead .prompt{font-size:31px;margin-top:5px}
-.pairInstruction{margin-top:5px;font-size:14px;line-height:1.32;color:var(--muted);font-weight:760;max-width:1080px}
-.pairLegend{display:flex;gap:8px;flex:0 0 auto;padding-top:4px}
-.pairLegend span{padding:8px 12px;border-radius:999px;font-size:12px;font-weight:950;white-space:nowrap}
-.legendEn{background:#eaf4ff;color:#236ecb;border:1px solid #a9d1ff}
-.legendRu{background:#f5efff;color:#8050c7;border:1px solid #d5bcff}
-.pairGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(4,minmax(0,1fr));gap:10px;min-height:0}
-.pairTile{position:relative;min-width:0;min-height:0;border-radius:18px;padding:16px 13px 12px;border:1px solid transparent;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;transition:border-color .14s,box-shadow .14s,background .14s;box-shadow:0 5px 13px rgba(43,70,122,.07);overflow:hidden}
-.pairTile strong{font-size:16px;line-height:1.12;font-weight:950;color:#17336b;overflow-wrap:anywhere}
-.pairTile .pairLang{position:absolute;left:9px;top:7px;font-size:8px;letter-spacing:.12em;font-weight:950;opacity:.62}
-.pairEn{background:linear-gradient(155deg,#f5f9ff,#e7f3ff);border-color:#b9d9fb}
-.pairRu{background:linear-gradient(155deg,#fbf7ff,#f2e9ff);border-color:#d7c3fb}
-.pairTile:hover:not(:disabled){border-color:#579eef;box-shadow:0 0 0 3px rgba(84,163,247,.14),0 7px 16px rgba(43,70,122,.08)}
-.pairTile.active{border-color:#2f8cf2;box-shadow:0 0 0 4px rgba(47,140,242,.18),0 8px 18px rgba(43,70,122,.10)}
-.pairTile.done{background:linear-gradient(155deg,#ecfff4,#dff9ea);border-color:#52cd8d;box-shadow:none;cursor:default}
-.pairTile.done strong{color:#148749}
-.pairStatus{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px}
-.pairStatus .feedbackBox{margin:0;min-height:46px;padding:11px 15px;display:flex;align-items:center}
-.pairStatus .internalProgress{min-width:330px;flex-wrap:nowrap}
+/* ===== Unit 5A · Block 8 only: open-card Breakfast Match ===== */
+.pairOnlyCard{height:100%;min-height:0;background:#fff;border:1px solid #dbe6f5;border-radius:28px;padding:18px;display:flex;flex-direction:column;box-shadow:0 16px 34px rgba(48,72,129,.08)}
+.pairOnlyIntro{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex:0 0 auto}
+.pairOnlyIntro .prompt{font-size:30px;line-height:1.05;margin-top:5px}
+.pairOnlyIntro .subprompt{font-size:14px;line-height:1.35;margin-top:7px;color:var(--muted);font-weight:780;max-width:980px}
+.pairLegend{display:flex;gap:8px;flex:0 0 auto;padding-top:5px}
+.pairLegend span{padding:8px 13px;border-radius:999px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:950;border:1px solid #dbe6f5}
+.legendEn{background:#eef7ff;color:#2b79cf}.legendRu{background:#f7efff;color:#8356c8}
+.pairOpenGrid{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(6,1fr);gap:9px;margin-top:14px}
+.pairOpenCard{min-width:0;min-height:0;border-radius:16px;border:1px solid #dbe6f5;padding:8px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 5px 12px rgba(43,70,122,.06);transition:border-color .14s,box-shadow .14s,background .14s}
+.pairOpenCard.en{background:linear-gradient(160deg,#f6fbff,#eaf5ff);color:#16346d}
+.pairOpenCard.ru{background:linear-gradient(160deg,#fff8ff,#f6efff);color:#5f3a94}
+.pairOpenCard:hover:not(:disabled){border-color:#78b5f3;box-shadow:0 0 0 3px rgba(84,163,247,.12),0 6px 14px rgba(43,70,122,.08)}
+.pairOpenCard.active{border-color:#4c98ef;box-shadow:0 0 0 3px rgba(84,163,247,.22),0 8px 16px rgba(43,70,122,.10)}
+.pairOpenCard.done{border-color:#50ce8a;background:linear-gradient(160deg,#edfff4,#ddfae9);color:#148749;cursor:default}
+.pairOpenCard small{display:block;font-size:8px;letter-spacing:.11em;font-weight:950;opacity:.62;margin-bottom:4px}
+.pairOpenCard strong{display:block;font-size:15px;line-height:1.08;font-weight:950;overflow-wrap:anywhere}
+.pairOnlyStatus{flex:0 0 auto;margin-top:10px}
+.pairOnlyStatus .feedbackBox{min-height:38px;padding:8px 13px}
+.pairOnlyStatus .internalProgress{margin-top:7px}

@@ -120,8 +120,10 @@ const data={
   {en:'at home',ru:'дома'},
   {en:'at work',ru:'на работе'},
   {en:"I'm not hungry.",ru:'Я не голоден / Я не голодна.'},
+  {en:'coffee',ru:'кофе'},
   {en:'eggs',ru:'яйца'},
-  {en:'coffee',ru:'кофе'}
+  {en:'yoghurt',ru:'йогурт'},
+  {en:'sandwich',ru:'сэндвич'}
  ]
 };
 
@@ -232,44 +234,51 @@ function listen2(){
 
 function pair(){
  const sec='pair';
- if(!state.pairState)state.pairState={seed:1,left:null,right:null,solved:{},message:'Выбери две карточки: English + Russian.'};
+ if(!state.pairState)state.pairState={seed:1,left:null,right:null,solved:{},message:'Выбери две карточки.'};
  const ps=state.pairState;
  const total=data.pair.length;
  const solvedMap=ps.solved||{};
  const solvedCount=Object.keys(solvedMap).filter(k=>solvedMap[k]).length;
  const shuffleList=(arr,seed)=>{const out=arr.slice();for(let i=out.length-1;i>0;i--){const j=(seed*11+i*7)%(i+1);[out[i],out[j]]=[out[j],out[i]]}return out};
  const cards=shuffleList(data.pair.flatMap((p,i)=>[
-   {id:i,side:'left',text:p.en,lang:'EN'},
-   {id:i,side:'right',text:p.ru,lang:'RU'}
+  {pair:i,lang:'en',text:p.en},
+  {pair:i,lang:'ru',text:p.ru}
  ]),ps.seed*19+5);
- const cardsHtml=cards.map(card=>{
-   const done=!!solvedMap[card.id];
-   const active=card.side==='left'?ps.left===card.id:ps.right===card.id;
-   return `<button class="pairTile ${card.side==='left'?'pairEn':'pairRu'} ${done?'done':''} ${active?'active':''}" data-side="${card.side}" data-id="${card.id}" ${done?'disabled':''}><span class="pairLang">${card.lang}</span><strong>${esc(card.text)}</strong></button>`;
+ const selected=[];
+ if(ps.left!==null)selected.push(`en:${ps.left}`);
+ if(ps.right!==null)selected.push(`ru:${ps.right}`);
+ const cardsHtml=cards.map((card,idx)=>{
+  const done=!!solvedMap[card.pair];
+  const active=selected.includes(`${card.lang}:${card.pair}`);
+  return `<button class="pairOpenCard ${card.lang} ${done?'done':''} ${active?'active':''}" data-lang="${card.lang}" data-pair="${card.pair}" ${done?'disabled':''}><small>${card.lang==='en'?'ENGLISH':'RUSSIAN'}</small><strong>${esc(card.text)}</strong></button>`;
  }).join('');
- const status=solvedCount===total?'Все пары найдены! Отличная работа.':(ps.message||'Выбери две карточки: English + Russian.');
- app.innerHTML=shell(`${title(8,'Breakfast Match','English ↔ Russian · find the pairs')}<div class="pairFullCard"><div class="pairHead"><div><div class="kicker">BREAKFAST MATCH</div><div class="prompt">Find all ${total} pairs.</div><div class="pairInstruction">Все карточки открыты. <b>English</b> выделен синим, <b>Russian</b> — фиолетовым. Нажми одну английскую и одну русскую карточку. Правильная пара останется зелёной.</div></div><div class="pairLegend"><span class="legendEn">EN · English</span><span class="legendRu">RU · Russian</span></div></div><div class="pairGrid">${cardsHtml}</div><div class="pairStatus"><div id="fb">${feedback(solvedCount===total?'good':'neutral',status)}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solvedMap[i]?'done':i===solvedCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${solvedCount} из ${total}</div></div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('pairAudio','Все фразы')}<button class="smallBtn" id="reshuffle" style="margin-left:14px">Перемешать</button></div><button class="nextBtn" id="next" ${solvedCount===total?'':'disabled'}>Результаты →</button></div>`);
+ app.innerHTML=shell(`${title(8,'Breakfast Match','English ↔ Russian · open cards')}<div class="pairOnlyCard"><div class="pairOnlyIntro"><div><div class="kicker">BREAKFAST MATCH</div><div class="prompt">Find all ${total} pairs.</div><div class="subprompt">Все карточки открыты. English — голубые, Russian — сиреневые. Выбери английское слово или фразу и его русский перевод.</div></div><div class="pairLegend"><span class="legendEn">English</span><span class="legendRu">Russian</span></div></div><div class="pairOpenGrid">${cardsHtml}</div><div class="pairOnlyStatus"><div id="fb">${solvedCount===total?feedback('good','Отлично! Все пары найдены.'):feedback('neutral',ps.message||'Выбери две карточки.')}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solvedMap[i]?'done':i===solvedCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${solvedCount} из ${total}</div></div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('pairAudio','Все фразы')}<button class="smallBtn" id="reshuffle" style="margin-left:14px">Перемешать</button></div><button class="nextBtn" id="next" ${solvedCount===total?'':'disabled'}>Результаты →</button></div>`);
  document.getElementById('pairAudio').onclick=function(){playSequence(data.pair.map(x=>x.en),this,'▶ Все фразы')};
- document.getElementById('reshuffle').onclick=()=>{ps.seed=(ps.seed||1)+1;ps.left=null;ps.right=null;ps.message='Карточки перемешаны. Выбери новую пару.';save();pair()};
- function choose(side,id){
-   if(solvedMap[id])return;
-   if(side==='left')ps.left=(ps.left===id?null:id);else ps.right=(ps.right===id?null:id);
-   if(ps.left!==null&&ps.right!==null){
-     if(ps.left===ps.right){
-       recordAttempt(sec,ps.left,true);
-       solvedMap[ps.left]=true;
-       ps.message='Верно! Пара найдена.';
-     }else{
-       recordAttempt(sec,ps.left,false);
-       ps.message='Это не пара. Попробуй ещё раз.';
-     }
-     ps.left=null;ps.right=null;
+ document.getElementById('reshuffle').onclick=()=>{ps.seed=(ps.seed||1)+1;ps.left=null;ps.right=null;ps.message='Карточки перемешаны.';save();pair()};
+ function choose(lang,id){
+  if(solvedMap[id])return;
+  if(lang==='en'){
+   ps.left=(ps.left===id?null:id);
+  }else{
+   ps.right=(ps.right===id?null:id);
+  }
+  if(ps.left!==null&&ps.right!==null){
+   if(ps.left===ps.right){
+    recordAttempt(sec,ps.left,true);
+    solvedMap[ps.left]=true;
+    ps.message='Верно! Пара найдена.';
    }else{
-     ps.message=side==='left'?'Теперь выбери перевод на русском.':'Теперь выбери английский вариант.';
+    recordAttempt(sec,ps.left,false);
+    ps.message='Это не пара. Попробуй ещё раз.';
    }
-   save();pair();
+   ps.left=null;
+   ps.right=null;
+  }else{
+   ps.message=lang==='en'?'Теперь выбери перевод на русском.':'Теперь выбери английскую карточку.';
+  }
+  save();pair();
  }
- document.querySelectorAll('[data-side]').forEach(btn=>btn.onclick=()=>choose(btn.dataset.side,+btn.dataset.id));
+ document.querySelectorAll('.pairOpenCard').forEach(btn=>btn.onclick=()=>choose(btn.dataset.lang,+btn.dataset.pair));
  document.getElementById('next').onclick=()=>{state.screen=9;save();render()};
 }
 
