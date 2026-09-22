@@ -1,0 +1,45 @@
+{
+  "unit": "Beginner Unit 5A — A big breakfast?",
+  "images": [
+    {
+      "file": "preview-unit5a.jpg",
+      "purpose": "share preview / hero image",
+      "final_visual": "Final branded cover provided by user"
+    },
+    {
+      "file": "block1-listening.jpg",
+      "purpose": "Block 1 Breakfast Basics",
+      "final_visual": "Conversation at breakfast table — supports short dialogue"
+    },
+    {
+      "file": "block2-vocabulary.jpg",
+      "purpose": "Block 2 Food & Drink",
+      "final_visual": "Close breakfast spread — clear food & drink vocabulary"
+    },
+    {
+      "file": "block3-sort.jpg",
+      "purpose": "Block 3 Breakfast Sort",
+      "final_visual": "Large varied breakfast spread — supports category sorting"
+    },
+    {
+      "file": "block4-grammar.jpg",
+      "purpose": "Block 4 Sentence Builder",
+      "final_visual": "Two adults discussing breakfast with notebook — sentence building"
+    },
+    {
+      "file": "block5-reading.jpg",
+      "purpose": "Block 5 Reading Mission",
+      "final_visual": "Portrait breakfast lifestyle scene — ideal beside reading text"
+    },
+    {
+      "file": "block6-pronunciation.jpg",
+      "purpose": "Block 6 Pronunciation",
+      "final_visual": "Two adults speaking/listening in café — pronunciation practice"
+    },
+    {
+      "file": "block7-listening.jpg",
+      "purpose": "Block 7 Listening Mission",
+      "final_visual": "Split home/café breakfast scenes — supports two listening dialogues"
+    }
+  ]
+}

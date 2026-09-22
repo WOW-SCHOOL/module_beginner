@@ -1,0 +1,77 @@
+{
+  "module": "English File Beginner · Revise & Check 3&4",
+  "status": "ready_for_visual_generation",
+  "repository_folder": "Beginner_Revise_and_Check_3_4",
+  "global_rules": [
+    "All images must display fully inside their containers with object-fit: contain.",
+    "Never crop faces, hands, objects, cars, family members, or important contextual details.",
+    "Keep a 10–12% safe area around important subjects.",
+    "Block 5 uses a portrait/selfie 9:16 image with text beside it.",
+    "Visuals must vary by location, camera angle, people, and action; do not make the set look like one photo session."
+  ],
+  "planned_visuals": [
+    {
+      "file": "preview-revise34.jpg",
+      "block": "Preview",
+      "ratio": "16:9",
+      "recommended_size": "1600x900",
+      "purpose": "WOW SCHOOL cover with baked-in text"
+    },
+    {
+      "file": "block1-quick-review.jpg",
+      "block": 1,
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "purpose": "small things and souvenirs review"
+    },
+    {
+      "file": "block2-grammar.jpg",
+      "block": 2,
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "purpose": "grammar review context: objects, family, car"
+    },
+    {
+      "file": "block3-sort.jpg",
+      "block": 3,
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "purpose": "sorting / category review"
+    },
+    {
+      "file": "block4-builder.jpg",
+      "block": 4,
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "purpose": "sentence builder / phrase assembly"
+    },
+    {
+      "file": "block5-reading.jpg",
+      "block": 5,
+      "ratio": "9:16",
+      "recommended_size": "1080x1920",
+      "purpose": "portrait selfie for reading"
+    },
+    {
+      "file": "block6-pronunciation.jpg",
+      "block": 6,
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "purpose": "pronunciation practice"
+    },
+    {
+      "file": "block7-interviews.jpg",
+      "block": 7,
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "purpose": "short real-life street interview listening"
+    },
+    {
+      "file": "block8-error-hunter.jpg",
+      "block": 8,
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "purpose": "new experimental Error Hunter block"
+    }
+  ]
+}
