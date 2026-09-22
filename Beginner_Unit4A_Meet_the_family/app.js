@@ -171,12 +171,13 @@ function match(){
  }
  const first=state.matchSelection;
  const cardHTML=state.matchRightOrder.map(code=>{
-   const side=code[0],i=Number(code.slice(1)),done=solved('match',i),revealed=done||code===first||code===matchSecond;
-   const wrong=matchBusy&&!done&&(code===first||code===matchSecond);
+   const side=code[0],i=Number(code.slice(1)),done=solved('match',i);
+   const selected=code===first||code===matchSecond;
+   const wrong=matchBusy&&!done&&selected;
    const value=side==='e'?data.match[i].left:data.match[i].right;
-   return `<button class="memoryCard ${done?'solved':''} ${revealed?'revealed':''} ${wrong?'wrong':''}" data-card="${code}" ${done||matchBusy?'disabled':''} aria-label="${revealed?esc(value):'Закрытая карточка'}"><span class="memoryInner"><span class="memoryBack"><span class="memoryIcon">👨‍👩‍👧‍👦</span><small>MEET THE FAMILY</small></span><span class="memoryFront ${side==='e'?'en':'ru'}"><small>${side==='e'?'ENGLISH':'РУССКИЙ'}</small><strong>${esc(value)}</strong></span></span></button>`;
+   return `<button class="memoryCard revealed ${done?'solved':''} ${selected?'selected':''} ${wrong?'wrong':''}" data-card="${code}" ${done||matchBusy?'disabled':''} aria-label="${esc(value)}"><span class="memoryInner"><span class="memoryBack"><span class="memoryIcon">👨‍👩‍👧‍👦</span><small>MEET THE FAMILY</small></span><span class="memoryFront ${side==='e'?'en':'ru'}"><small>${side==='e'?'ENGLISH':'РУССКИЙ'}</small><strong>${esc(value)}</strong></span></span></button>`;
  }).join('');
- app.innerHTML=shell(`${title(4,'Family Memory','Найди английское слово и его русский перевод')}<div class="blockBody"><div class="visualCard">${visualSlot('block4-match.jpg','🧠','Family Memory','Flip two cards and find all English–Russian family pairs','Family matching scene')}</div><div class="questionCard memoryQuestion"><div class="kicker">MEMORY MATCH</div><div class="prompt">Find all 8 pairs.</div><div class="matchIntro">Открой две карточки. Если английское слово и русский перевод совпадают, пара останется открытой.</div><div class="memoryBoard">${cardHTML}</div><div class="statusWrap"><div id="fb">${solvedCount===total?feedback('good','Все 8 пар найдены! Отлично 🎉'):first?feedback('neutral','Теперь открой вторую карточку.'):feedback('neutral','Открой первую карточку.')}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solved('match',i)?'done':i===solvedCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${solvedCount} из ${total}</div></div></div></div></div><div class="footerActions"><div class="leftActions"></div><button class="nextBtn" id="next" ${solvedCount===total?'':'disabled'}>Следующий блок →</button></div>`);
+ app.innerHTML=shell(`${title(4,'Family Match','Найди английское слово и его русский перевод')}<div class="blockBody"><div class="visualCard">${visualSlot('block4-match.jpg','🔗','Family Match','Find all matching English–Russian family pairs','Family matching scene')}</div><div class="questionCard memoryQuestion"><div class="kicker">MATCH THE PAIRS</div><div class="prompt">Find all 8 pairs.</div><div class="matchIntro">Все карточки открыты. Выбери английское слово и соответствующий русский перевод.</div><div class="memoryBoard">${cardHTML}</div><div class="statusWrap"><div id="fb">${solvedCount===total?feedback('good','Все 8 пар найдены! Отлично 🎉'):first?feedback('neutral','Теперь выбери вторую карточку.'):feedback('neutral','Выбери первую карточку.')}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solved('match',i)?'done':i===solvedCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${solvedCount} из ${total}</div></div></div></div></div><div class="footerActions"><div class="leftActions"></div><button class="nextBtn" id="next" ${solvedCount===total?'':'disabled'}>Следующий блок →</button></div>`);
  document.querySelectorAll('[data-card]').forEach(b=>b.onclick=()=>{
    if(matchBusy)return;
    const code=b.dataset.card,side=code[0],i=Number(code.slice(1));
@@ -191,7 +192,7 @@ function match(){
      state.matchSelection=null;matchSecond=null;matchBusy=false;save();match();
    }else{
      recordAttempt('match',firstIdx,false);save();match();
-     setTimeout(()=>{state.matchSelection=null;matchSecond=null;matchBusy=false;save();match()},700);
+     setTimeout(()=>{state.matchSelection=null;matchSecond=null;matchBusy=false;save();match()},500);
    }
  });
  document.getElementById('next').onclick=()=>{state.screen=5;save();render()};

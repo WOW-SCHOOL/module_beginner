@@ -270,3 +270,6 @@ img{display:block;max-width:100%}
 .memoryQuestion .statusWrap{margin-top:9px;padding-top:7px}
 .memoryQuestion .feedbackBox{min-height:38px;padding:9px 14px}
 .memoryQuestion .internalProgress{margin-top:7px}
+
+/* Block 4 — face-up matching: all cards remain visible; selection is highlighted. */
+.memoryCard.selected:not(.solved) .memoryFront{border-color:#5d9df3;box-shadow:0 0 0 3px rgba(84,163,247,.18),0 5px 12px rgba(43,70,122,.08)}
