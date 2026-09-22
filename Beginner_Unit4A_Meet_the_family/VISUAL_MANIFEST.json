@@ -1,0 +1,76 @@
+{
+  "module": "English File Beginner · Unit 4A · Meet the family",
+  "status": "ready_for_visual_generation",
+  "global_rules": [
+    "The bottom internal progress (task counter + dots) must always remain visible inside the question card.",
+    "If the text is longer, the answer area may scroll, but the progress and next button must stay visible.",
+    "All images must be fully visible inside their containers: object-fit contain; no cropping, stretching, overlap, hidden faces, hands, or important objects.",
+    "If needed, use smaller image scale and allow text to sit beside the image rather than forcing text under the image."
+  ],
+  "planned_visuals": [
+    {
+      "file": "preview-unit4a.jpg",
+      "block": "Preview",
+      "purpose": "Main cover with baked-in WOW SCHOOL text overlay",
+      "ratio": "16:9",
+      "recommended_size": "1600x900",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block1-vocabulary.jpg",
+      "block": 1,
+      "purpose": "Family vocabulary context",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block2-pronunciation.jpg",
+      "block": 2,
+      "purpose": "Pronunciation practice context",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block3-grammar.jpg",
+      "block": 3,
+      "purpose": "Possessive adjectives and possessive s context",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block4-match.jpg",
+      "block": 4,
+      "purpose": "Family match game context",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block5-reading.jpg",
+      "block": 5,
+      "purpose": "Babysitter reading scene",
+      "ratio": "16:9 wide",
+      "recommended_size": "1600x900",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block6-listening.jpg",
+      "block": 6,
+      "purpose": "Birthday card listening scene",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block7-review.jpg",
+      "block": 7,
+      "purpose": "Family snapshot review scene",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    }
+  ]
+}
