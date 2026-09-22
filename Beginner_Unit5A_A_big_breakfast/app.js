@@ -119,7 +119,9 @@ const data={
   {en:'fruit',ru:'фрукты'},
   {en:'at home',ru:'дома'},
   {en:'at work',ru:'на работе'},
-  {en:"I'm not hungry.",ru:'Я не голоден / Я не голодна.'}
+  {en:"I'm not hungry.",ru:'Я не голоден / Я не голодна.'},
+  {en:'eggs',ru:'яйца'},
+  {en:'coffee',ru:'кофе'}
  ]
 };
 
@@ -230,17 +232,43 @@ function listen2(){
 
 function pair(){
  const sec='pair';
- if(!state.pairState)state.pairState={seed:1,left:null,right:null,solved:{},message:'Выбери пару.'};
- const ps=state.pairState; const total=data.pair.length; const solvedMap=ps.solved||{}; const solvedCount=Object.keys(solvedMap).length;
- const shuffleList=(arr,seed)=>{const out=arr.slice(); for(let i=out.length-1;i>0;i--){const j=(seed*7+i*5)%(i+1); [out[i],out[j]]=[out[j],out[i]]} return out};
- const leftItems=shuffleList(data.pair.map((p,i)=>({id:i,text:p.en})),ps.seed*11+1);
- const rightItems=shuffleList(data.pair.map((p,i)=>({id:i,text:p.ru})),ps.seed*17+3);
- const leftHtml=leftItems.map(item=>{const done=!!solvedMap[item.id],active=ps.left===item.id; const style=done?'':'style="background:linear-gradient(180deg,#f6f9ff,#eef6ff)"'; return `<button class="matchItem ${done?'done locked':''} ${active?'active':''}" ${style} data-side="left" data-id="${item.id}" ${done?'disabled':''}>${esc(item.text)}</button>`}).join('');
- const rightHtml=rightItems.map(item=>{const done=!!solvedMap[item.id],active=ps.right===item.id; const style=done?'':'style="background:linear-gradient(180deg,#fff9fb,#fff1f8)"'; return `<button class="matchItem ${done?'done locked':''} ${active?'active':''}" ${style} data-side="right" data-id="${item.id}" ${done?'disabled':''}>${esc(item.text)}</button>`}).join('');
- app.innerHTML=shell(`${title(8,'Breakfast Match','English ↔ Russian · visible pair matching')}<div class="blockBody"><div class="visualCard"><div class="matchCard"><div class="kicker">NEW EXPERIMENTAL BLOCK</div><div class="prompt">Find the correct pairs.</div><div class="matchIntro">Карточки открыты сразу. English выделен одним цветом, Russian — другим. Найди пары и при желании нажми «Перемешать».</div><div class="matchLayout"><div class="matchCol"><div class="matchColTitle">English</div><div class="matchList">${leftHtml}</div></div><div class="matchCol"><div class="matchColTitle">Russian</div><div class="matchList">${rightHtml}</div></div></div><div class="statusWrap matchNote"><div id="fb">${solvedCount===total?feedback('good','Все пары найдены!'):feedback('neutral',ps.message||'Выбери пару.')}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solvedMap[i]?'done':i===solvedCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${solvedCount} из ${total}</div></div></div></div></div><div class="questionCard memoryQuestion"><div class="kicker">Breakfast Match</div><div class="prompt">Match the words and phrases.</div><div class="subprompt">Сначала выбери English-карточку, затем Russian-карточку. После правильной пары карточки блокируются.</div><div class="answers" style="overflow:visible"><div class="feedbackBox neutral">Пары: breakfast, orange juice, green tea, toast, fruit, at home, at work, I’m not hungry.</div></div><div class="statusWrap"><div>${miniProgress(sec,solvedCount,total)}</div></div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('pairAudio','Все фразы')}<button class="smallBtn" id="reshuffle" style="margin-left:14px">Перемешать</button></div><button class="nextBtn" id="next" ${solvedCount===total?'':'disabled'}>Результаты →</button></div>`);
+ if(!state.pairState)state.pairState={seed:1,left:null,right:null,solved:{},message:'Выбери две карточки: English + Russian.'};
+ const ps=state.pairState;
+ const total=data.pair.length;
+ const solvedMap=ps.solved||{};
+ const solvedCount=Object.keys(solvedMap).filter(k=>solvedMap[k]).length;
+ const shuffleList=(arr,seed)=>{const out=arr.slice();for(let i=out.length-1;i>0;i--){const j=(seed*11+i*7)%(i+1);[out[i],out[j]]=[out[j],out[i]]}return out};
+ const cards=shuffleList(data.pair.flatMap((p,i)=>[
+   {id:i,side:'left',text:p.en,lang:'EN'},
+   {id:i,side:'right',text:p.ru,lang:'RU'}
+ ]),ps.seed*19+5);
+ const cardsHtml=cards.map(card=>{
+   const done=!!solvedMap[card.id];
+   const active=card.side==='left'?ps.left===card.id:ps.right===card.id;
+   return `<button class="pairTile ${card.side==='left'?'pairEn':'pairRu'} ${done?'done':''} ${active?'active':''}" data-side="${card.side}" data-id="${card.id}" ${done?'disabled':''}><span class="pairLang">${card.lang}</span><strong>${esc(card.text)}</strong></button>`;
+ }).join('');
+ const status=solvedCount===total?'Все пары найдены! Отличная работа.':(ps.message||'Выбери две карточки: English + Russian.');
+ app.innerHTML=shell(`${title(8,'Breakfast Match','English ↔ Russian · find the pairs')}<div class="pairFullCard"><div class="pairHead"><div><div class="kicker">BREAKFAST MATCH</div><div class="prompt">Find all ${total} pairs.</div><div class="pairInstruction">Все карточки открыты. <b>English</b> выделен синим, <b>Russian</b> — фиолетовым. Нажми одну английскую и одну русскую карточку. Правильная пара останется зелёной.</div></div><div class="pairLegend"><span class="legendEn">EN · English</span><span class="legendRu">RU · Russian</span></div></div><div class="pairGrid">${cardsHtml}</div><div class="pairStatus"><div id="fb">${feedback(solvedCount===total?'good':'neutral',status)}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solvedMap[i]?'done':i===solvedCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${solvedCount} из ${total}</div></div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('pairAudio','Все фразы')}<button class="smallBtn" id="reshuffle" style="margin-left:14px">Перемешать</button></div><button class="nextBtn" id="next" ${solvedCount===total?'':'disabled'}>Результаты →</button></div>`);
  document.getElementById('pairAudio').onclick=function(){playSequence(data.pair.map(x=>x.en),this,'▶ Все фразы')};
- document.getElementById('reshuffle').onclick=()=>{ps.seed=(ps.seed||1)+1; ps.left=null; ps.right=null; ps.message='Карточки перемешаны.'; save(); pair()};
- function choose(side,id){ if(solvedMap[id]) return; if(side==='left'){ps.left=(ps.left===id?null:id)} else {ps.right=(ps.right===id?null:id)}; if(ps.left!==null && ps.right!==null){ if(ps.left===ps.right){ recordAttempt(sec,ps.left,true); solvedMap[ps.left]=true; ps.message='Верно! Пара найдена.'; ps.left=null; ps.right=null; } else { recordAttempt(sec,ps.left,false); ps.message='Это не пара. Попробуй ещё раз.'; ps.left=null; ps.right=null; } } save(); pair(); }
+ document.getElementById('reshuffle').onclick=()=>{ps.seed=(ps.seed||1)+1;ps.left=null;ps.right=null;ps.message='Карточки перемешаны. Выбери новую пару.';save();pair()};
+ function choose(side,id){
+   if(solvedMap[id])return;
+   if(side==='left')ps.left=(ps.left===id?null:id);else ps.right=(ps.right===id?null:id);
+   if(ps.left!==null&&ps.right!==null){
+     if(ps.left===ps.right){
+       recordAttempt(sec,ps.left,true);
+       solvedMap[ps.left]=true;
+       ps.message='Верно! Пара найдена.';
+     }else{
+       recordAttempt(sec,ps.left,false);
+       ps.message='Это не пара. Попробуй ещё раз.';
+     }
+     ps.left=null;ps.right=null;
+   }else{
+     ps.message=side==='left'?'Теперь выбери перевод на русском.':'Теперь выбери английский вариант.';
+   }
+   save();pair();
+ }
  document.querySelectorAll('[data-side]').forEach(btn=>btn.onclick=()=>choose(btn.dataset.side,+btn.dataset.id));
  document.getElementById('next').onclick=()=>{state.screen=9;save();render()};
 }
