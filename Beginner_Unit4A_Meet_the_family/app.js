@@ -160,19 +160,39 @@ function start(){
 function vocab(){const sec='vocab',idx=state.idx[sec]||0,item=data.vocab[idx];commonQuestionScreen(sec,1,'Family Vocabulary','people · family members · core words',visualSlot('block1-vocabulary.jpg','👨‍👩‍👧‍👦','Family Vocabulary','man · woman · boy · girl · parents · father · mother · brother · sister · wife','Family vocabulary context'),item,data.vocab.length,null,()=>{state.screen=2;save();render()})}
 function pron(){const sec='pron',idx=state.idx[sec]||0,item=data.pron[idx];commonQuestionScreen(sec,2,'Sounds & Pronunciation','/ʌ/ · /æ/ · /ə/ and family words',visualSlot('block2-pronunciation.jpg','🗣️','Sounds & Pronunciation','Listen carefully and notice the key family sounds','Pronunciation practice'),item,data.pron.length,item.audio||null,()=>{state.screen=3;save();render()},'Слушай внимательно или выбирай слово / звук по правилу.')}
 function grammar(){const sec='grammar',idx=state.idx[sec]||0,item=data.grammar[idx];commonQuestionScreen(sec,3,'Possessive Grammar','my / your / his / her / its / our / their + possessive ’s',visualSlot('block3-grammar.jpg','🧩','Possessive Grammar','Talk about family members and who things belong to','Possessive adjectives context'),item,data.grammar.length,null,()=>{state.screen=4;save();render()})}
+let matchSecond=null,matchBusy=false;
 function match(){
  const total=data.match.length;
  const solvedCount=data.match.filter((_,i)=>solved('match',i)).length;
- if(!state.matchRightOrder || state.matchRightOrder.length!==total){state.matchRightOrder=data.match.map((_,i)=>i).sort(()=>Math.random()-.5);save()}
- app.innerHTML=shell(`${title(4,'Family Match','Новый интерактивный блок: найди правильные пары')}<div class="blockBody"><div class="visualCard">${visualSlot('block4-match.jpg','🔗','Family Match','Connect the English family word with the correct Russian meaning','Family matching scene')}</div><div class="questionCard"><div class="kicker">${LABELS.match}</div><div class="prompt">Match the family words.</div><div class="matchIntro">Нажми слово слева, потом правильный перевод справа. Если ошибёшься, можно попробовать ещё раз.</div><div class="matchLayout"><div class="matchCol"><div class="matchColTitle">English</div><div class="matchList" id="leftList">${data.match.map((p,i)=>`<button class="matchItem ${solved('match',i)?'done locked':''} ${state.matchSelection===i?'active':''}" data-left="${i}">${esc(p.left)}</button>`).join('')}</div></div><div class="matchCol"><div class="matchColTitle">Русский</div><div class="matchList" id="rightList">${state.matchRightOrder.map(i=>`<button class="matchItem ${solved('match',i)?'done locked':''}" data-right="${i}">${esc(data.match[i].right)}</button>`).join('')}</div></div></div><div class="statusWrap"><div id="fb">${solvedCount===total?feedback('good','Все пары собраны! Отлично.'):state.matchSelection===null?feedback('neutral','Выбери слово слева.'):feedback('neutral','Теперь выбери перевод справа.')}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solved('match',i)?'done':i===solvedCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${solvedCount} из ${total}</div></div></div></div></div><div class="footerActions"><div class="leftActions"></div><button class="nextBtn" id="next" ${solvedCount===total?'':'disabled'}>Следующий блок →</button></div>`);
- document.querySelectorAll('[data-left]').forEach(b=>b.onclick=()=>{
-   const i=+b.dataset.left;if(solved('match',i))return;state.matchSelection=i;save();match();
- });
- document.querySelectorAll('[data-right]').forEach(b=>b.onclick=()=>{
-   const i=+b.dataset.right;if(solved('match',i) || state.matchSelection===null)return;
-   const active=state.matchSelection;
-   if(active===i){recordAttempt('match',i,true);state.matchSelection=null;save();match();if(data.match.every((_,ix)=>solved('match',ix)))document.getElementById('next').disabled=false}
-   else {recordAttempt('match',active,false);const fb=document.getElementById('fb');fb.innerHTML=feedback('bad','Не совпало. Попробуй ещё раз.');state.matchSelection=null;save();setTimeout(()=>match(),350)}
+ const validDeck=Array.isArray(state.matchRightOrder)&&state.matchRightOrder.length===total*2&&state.matchRightOrder.every(x=>typeof x==='string'&&/^[er]\d+$/.test(x));
+ if(!validDeck){
+   state.matchRightOrder=data.match.flatMap((_,i)=>[`e${i}`,`r${i}`]).sort(()=>Math.random()-.5);
+   state.matchSelection=null;matchSecond=null;matchBusy=false;save();
+ }
+ const first=state.matchSelection;
+ const cardHTML=state.matchRightOrder.map(code=>{
+   const side=code[0],i=Number(code.slice(1)),done=solved('match',i),revealed=done||code===first||code===matchSecond;
+   const wrong=matchBusy&&!done&&(code===first||code===matchSecond);
+   const value=side==='e'?data.match[i].left:data.match[i].right;
+   return `<button class="memoryCard ${done?'solved':''} ${revealed?'revealed':''} ${wrong?'wrong':''}" data-card="${code}" ${done||matchBusy?'disabled':''} aria-label="${revealed?esc(value):'Закрытая карточка'}"><span class="memoryInner"><span class="memoryBack"><span class="memoryIcon">👨‍👩‍👧‍👦</span><small>MEET THE FAMILY</small></span><span class="memoryFront ${side==='e'?'en':'ru'}"><small>${side==='e'?'ENGLISH':'РУССКИЙ'}</small><strong>${esc(value)}</strong></span></span></button>`;
+ }).join('');
+ app.innerHTML=shell(`${title(4,'Family Memory','Найди английское слово и его русский перевод')}<div class="blockBody"><div class="visualCard">${visualSlot('block4-match.jpg','🧠','Family Memory','Flip two cards and find all English–Russian family pairs','Family matching scene')}</div><div class="questionCard memoryQuestion"><div class="kicker">MEMORY MATCH</div><div class="prompt">Find all 8 pairs.</div><div class="matchIntro">Открой две карточки. Если английское слово и русский перевод совпадают, пара останется открытой.</div><div class="memoryBoard">${cardHTML}</div><div class="statusWrap"><div id="fb">${solvedCount===total?feedback('good','Все 8 пар найдены! Отлично 🎉'):first?feedback('neutral','Теперь открой вторую карточку.'):feedback('neutral','Открой первую карточку.')}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solved('match',i)?'done':i===solvedCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${solvedCount} из ${total}</div></div></div></div></div><div class="footerActions"><div class="leftActions"></div><button class="nextBtn" id="next" ${solvedCount===total?'':'disabled'}>Следующий блок →</button></div>`);
+ document.querySelectorAll('[data-card]').forEach(b=>b.onclick=()=>{
+   if(matchBusy)return;
+   const code=b.dataset.card,side=code[0],i=Number(code.slice(1));
+   if(solved('match',i))return;
+   if(!state.matchSelection){state.matchSelection=code;save();match();return;}
+   if(state.matchSelection===code){state.matchSelection=null;save();match();return;}
+   const firstCode=state.matchSelection,firstSide=firstCode[0],firstIdx=Number(firstCode.slice(1));
+   matchSecond=code;matchBusy=true;
+   const ok=firstIdx===i&&firstSide!==side;
+   if(ok){
+     recordAttempt('match',i,true);
+     state.matchSelection=null;matchSecond=null;matchBusy=false;save();match();
+   }else{
+     recordAttempt('match',firstIdx,false);save();match();
+     setTimeout(()=>{state.matchSelection=null;matchSecond=null;matchBusy=false;save();match()},700);
+   }
  });
  document.getElementById('next').onclick=()=>{state.screen=5;save();render()};
 }
