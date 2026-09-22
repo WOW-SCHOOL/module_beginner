@@ -1,0 +1,72 @@
+{
+  "module": "English File Beginner · Unit 3B · Souvenirs",
+  "status": "visuals_integrated",
+  "global_rule": "All images must be fully visible inside the visual container: object-fit contain; no cropping, stretching, overlap, hidden faces, hands, objects, or text under images.",
+  "planned_visuals": [
+    {
+      "file": "preview-unit3b.jpg",
+      "block": "Preview",
+      "purpose": "Main module cover",
+      "ratio": "16:9",
+      "recommended_size": "1600x900",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block1-vocabulary.jpg",
+      "block": 1,
+      "purpose": "Souvenir vocabulary context",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block2-grammar.jpg",
+      "block": 2,
+      "purpose": "Near/far and singular/plural context",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block3-prices.jpg",
+      "block": 3,
+      "purpose": "Price listening context",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block4-shop-talk.jpg",
+      "block": 4,
+      "purpose": "Souvenir shop functional English",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block5-reading.jpg",
+      "block": 5,
+      "purpose": "Reading scene",
+      "ratio": "2:1 wide",
+      "recommended_size": "1600x800",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block6-pronunciation.jpg",
+      "block": 6,
+      "purpose": "Pronunciation and rhythm context",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    },
+    {
+      "file": "block7-listening.jpg",
+      "block": 7,
+      "purpose": "Listening at a souvenir stall",
+      "ratio": "4:3",
+      "recommended_size": "1440x1080",
+      "fit_mode": "contain"
+    }
+  ],
+  "note": "User-selected generated images are included and mapped to Preview and Blocks 1–7. All module containers keep object-fit: contain."
+}
