@@ -5,7 +5,7 @@ addEventListener('resize',fit);fit();
 const app=document.getElementById('app');
 const STORAGE='wow_pe2_orange_juice_v1';
 const ORDER=['prices','sounds','menu','rob','jenny','memory','phrases'];
-const LABELS={prices:'Prices',sounds:'Pronunciation',menu:'Menu',rob:'Rob',jenny:'Jenny & Amy',memory:'Memory',phrases:'Useful phrases'};
+const LABELS={prices:'Prices',sounds:'Pronunciation',menu:'Menu',rob:'Rob',jenny:'Jenny & Amy',memory:'Find the Pair',phrases:'Useful phrases'};
 
 const data={
   prices:[
@@ -131,11 +131,118 @@ function jenny(){const paras=[
   'Amy: Can I have a cheese sandwich, a cappuccino, and a brownie, please?'
 ];const left=`<div class="dialogueMediaRow"><div class="sceneImageCard dialoguePhoto"><img src="assets/images/block5-jenny.png" alt="Jenny and Amy at a New York deli"></div><div class="scriptCard compactScript"><h4>Jenny & Amy in the deli</h4>${paras.map(x=>`<p>${esc(x)}</p>`).join('')}</div></div>`;simpleQuiz('jenny',5,'Jenny & Amy','a short deli dialogue',left,paras,6)}
 
-function memory(){if(!Array.isArray(state.memoryOrder)||state.memoryOrder.length!==data.memory.length*2){state.memoryOrder=shuffle(data.memory.flatMap((p,i)=>[{pair:i,text:p.a},{pair:i,text:p.b}]));state.memoryOpen=[];state.memoryMoves=0;save()}const all=data.memory.every((_,i)=>state.answers.memory[i]?.solved);app.innerHTML=shell(`${title(6,'Memory Match','English phrase ↔ Russian meaning')}<div class="leftPanel memoryPanel"><div class="smallMuted">Новая механика, которую можно переносить и на следующие модули: <b>найди пару</b> в формате English ↔ Russian, word ↔ picture, question ↔ answer.</div><div class="memoryWrap">${state.memoryOrder.map((c,idx)=>{const matched=state.answers.memory[c.pair]?.solved,open=state.memoryOpen.includes(idx);return `<button class="memoryCard ${matched?'matched':open?'open':'covered'}" data-mem="${idx}" ${matched?'disabled':''}>${esc(c.text)}</button>`}).join('')}</div><div class="memoryMeta"><span>Найдено пар: ${Object.values(state.answers.memory||{}).filter(x=>x.solved).length}/${data.memory.length}</span><span>Ходов: ${state.memoryMoves||0}</span></div><div class="footerActions"><div class="leftActions"><button class="ghostBtn" id="reshuffle">Перемешать</button></div><button class="nextBtn" id="next" ${all?'':'disabled'}>Следующий блок →</button></div></div>`);document.querySelectorAll('[data-mem]').forEach(b=>b.onclick=()=>{const idx=+b.dataset.mem;if(state.memoryOpen.includes(idx)||state.memoryOpen.length>=2)return;state.memoryOpen.push(idx);save();render();if(state.memoryOpen.length===2){const [a,bidx]=state.memoryOpen;const ca=state.memoryOrder[a],cb=state.memoryOrder[bidx];state.memoryMoves=(state.memoryMoves||0)+1;if(ca.pair===cb.pair){state.answers.memory[ca.pair]={solved:true,firstCorrect:true};state.memoryOpen=[];save();setTimeout(render,250)}else{save();setTimeout(()=>{state.memoryOpen=[];save();render()},650)}}});document.getElementById('reshuffle').onclick=()=>{state.memoryOrder=shuffle(data.memory.flatMap((p,i)=>[{pair:i,text:p.a},{pair:i,text:p.b}]));state.memoryOpen=[];state.answers.memory={};state.memoryMoves=0;save();render()};document.getElementById('next').onclick=()=>{state.screen=7;save();render()}}
+function memory(){
+  const needsOrder=!Array.isArray(state.memoryOrder)||state.memoryOrder.length!==data.memory.length*2||state.memoryOrder.some(c=>!c.lang);
+  if(needsOrder){
+    state.memoryOrder=shuffle(data.memory.flatMap((p,i)=>[
+      {pair:i,text:p.a,lang:'en'},
+      {pair:i,text:p.b,lang:'ru'}
+    ]));
+    state.memoryOpen=[];
+    state.memoryMoves=0;
+    state.memoryWrong=false;
+    save();
+  }
+  const solvedCount=Object.values(state.answers.memory||{}).filter(x=>x.solved).length;
+  const all=data.memory.every((_,i)=>state.answers.memory[i]?.solved);
+  const selected=Array.isArray(state.memoryOpen)?state.memoryOpen:[];
+  const feedback=state.memoryWrong?'Не пара. Попробуй ещё раз.':selected.length===1?'Теперь выбери карточку на другом языке.':'Выбери английскую и русскую карточки с одинаковым значением.';
+  app.innerHTML=shell(`${title(6,'Find the Pair','English phrase ↔ Russian meaning')}<div class="leftPanel memoryPanel pairPanel"><div class="pairIntro"><div><b>Найди пару</b><span>Все карточки открыты. Английские фразы — синие, русские — фиолетовые. Нажми одну карточку каждого цвета.</span></div><div class="pairLegend"><span class="legendEn">English</span><span class="legendRu">Русский</span></div></div><div class="memoryWrap pairWrap">${state.memoryOrder.map((c,idx)=>{const matched=state.answers.memory[c.pair]?.solved;const isSelected=selected.includes(idx);const wrong=state.memoryWrong&&isSelected;return `<button class="memoryCard pairCard ${c.lang==='en'?'englishCard':'russianCard'} ${matched?'matched':isSelected?'selected':''} ${wrong?'wrong':''}" data-mem="${idx}" ${matched?'disabled':''}>${esc(c.text)}</button>`}).join('')}</div><div class="pairStatus ${state.memoryWrong?'badStatus':''}">${feedback}</div><div class="memoryMeta"><span>Найдено пар: ${solvedCount}/${data.memory.length}</span><span>Попыток: ${state.memoryMoves||0}</span></div><div class="footerActions"><div class="leftActions"><button class="ghostBtn" id="reshuffle">Перемешать</button></div><button class="nextBtn" id="next" ${all?'':'disabled'}>Следующий блок →</button></div></div>`);
+
+  document.querySelectorAll('[data-mem]').forEach(btn=>btn.onclick=()=>{
+    const idx=+btn.dataset.mem;
+    const card=state.memoryOrder[idx];
+    if(state.answers.memory[card.pair]?.solved)return;
+    if(state.memoryWrong)return;
+
+    let open=Array.isArray(state.memoryOpen)?[...state.memoryOpen]:[];
+    if(open.includes(idx)){
+      state.memoryOpen=[];
+      save();
+      render();
+      return;
+    }
+
+    if(open.length===0){
+      state.memoryOpen=[idx];
+      save();
+      render();
+      return;
+    }
+
+    const firstIdx=open[0];
+    const first=state.memoryOrder[firstIdx];
+    if(first.lang===card.lang){
+      state.memoryOpen=[idx];
+      save();
+      render();
+      return;
+    }
+
+    state.memoryMoves=(state.memoryMoves||0)+1;
+    state.memoryOpen=[firstIdx,idx];
+    if(first.pair===card.pair){
+      state.answers.memory[card.pair]={solved:true,firstCorrect:true};
+      state.memoryOpen=[];
+      state.memoryWrong=false;
+      save();
+      render();
+    }else{
+      state.memoryWrong=true;
+      save();
+      render();
+      setTimeout(()=>{
+        state.memoryOpen=[];
+        state.memoryWrong=false;
+        save();
+        render();
+      },700);
+    }
+  });
+
+  document.getElementById('reshuffle').onclick=()=>{
+    state.memoryOrder=shuffle(data.memory.flatMap((p,i)=>[
+      {pair:i,text:p.a,lang:'en'},
+      {pair:i,text:p.b,lang:'ru'}
+    ]));
+    state.memoryOpen=[];
+    state.memoryWrong=false;
+    state.memoryMoves=0;
+    save();
+    render();
+  };
+  document.getElementById('next').onclick=()=>{state.screen=7;save();render()};
+}
 
 function phrases(){const left=`<div class="phrasePanel"><h4 style="margin:0 0 10px">Useful phrases</h4><div class="priceList"><div class="priceRow"><span>Can I have …, please?</span><span>order politely</span></div><div class="priceRow"><span>Anything else?</span><span>offer more</span></div><div class="priceRow"><span>How much is it?</span><span>ask the price</span></div><div class="priceRow"><span>Here you are.</span><span>give money / an item</span></div><div class="priceRow"><span>Here’s your change.</span><span>return money</span></div><div class="priceRow"><span>Have a nice day.</span><span>finish politely</span></div></div></div>`;simpleQuiz('phrases',7,'Useful Phrases','natural phrases for cafés, pubs, and delis',left,['Can I have an orange juice, please?','Anything else?','How much is it?','Here you are.','Here\'s your change.','Have a nice day.'],8)}
 
-function results(){app.innerHTML=shell(`${title(8,'Results','Episode 2 completed')}<div class="placeholderVisual"><h3>Great job!</h3><p>You finished Practical English Episode 2. Below you can see your block-by-block results. You can restart the module or practise a specific block again by refreshing the page and using your saved progress.</p><div class="resultGrid">${ORDER.map(s=>`<div class="resultCard"><strong>${esc(LABELS[s])}</strong><div class="n">${score(s)}/${MAX[s]}</div></div>`).join('')}</div><div class="heroBtns"><button class="btn primary" id="restart">Пройти ещё раз</button><button class="btn secondary" id="home">На старт</button></div></div>`);document.getElementById('restart').onclick=()=>{state=fresh();state.screen=1;save();render()};document.getElementById('home').onclick=()=>{state.screen=0;save();render()}}
+function results(){
+ const keys=ORDER;
+ const totalMax=keys.reduce((n,k)=>n+MAX[k],0);
+ const total=keys.reduce((n,k)=>n+score(k),0);
+ const pct=totalMax?Math.round(total/totalMax*100):0;
+ const sorted=[...keys].sort((a,b)=>(score(b)/MAX[b])-(score(a)/MAX[a]));
+ const best=sorted[0],weak=sorted.at(-1);
+ const weakPerfect=score(weak)===MAX[weak];
+ app.innerHTML=shell(`
+   <div class="resultTitlebar">
+     <div class="resultTitlewrap"><h1>Your <span>Results</span></h1><p>Beginner · Practical English · Episode 2 · Can I have an orange juice, please?</p></div>
+     <div class="resultProgressBox"><strong>Готово</strong><div class="resultTrack"><i></i></div></div>
+   </div>
+   <div class="resultsClassic">
+     <div class="resultRing" style="--pct:${pct}"><strong>${pct}%</strong><span>с первого раза</span></div>
+     <div class="resultDetails">
+       <div class="resultListClassic">${keys.map(k=>{const p=Math.round(score(k)/MAX[k]*100);return `<div class="resultRowClassic"><label>${esc(LABELS[k])}</label><div class="resultBarClassic"><i style="width:${p}%"></i></div><b>${score(k)}/${MAX[k]}</b></div>`}).join('')}</div>
+       <div class="resultCoach">
+         <div><strong>Сильнее всего</strong><p>${esc(LABELS[best])} — лучший результат с первой попытки.</p></div>
+         <div><strong>${weakPerfect?'Отличная работа':'Что повторить'}</strong><p>${weakPerfect?'Все блоки выполнены уверенно. Можно переходить дальше.':`${esc(LABELS[weak])} — этот блок стоит пройти ещё раз.`}</p></div>
+       </div>
+       <div class="resultButtons"><button class="btn primary" id="restart">Пройти ещё раз</button><button class="btn secondary" id="home">На главную</button></div>
+     </div>
+   </div>`);
+ document.getElementById('restart').onclick=()=>{state=fresh();state.screen=1;save();render()};
+ document.getElementById('home').onclick=()=>{state.screen=0;save();render()};
+}
 
 function render(){stopAudio();({0:start,1:prices,2:sounds,3:menu,4:rob,5:jenny,6:memory,7:phrases,8:results}[state.screen]||start)()}
 render();

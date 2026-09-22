@@ -81,3 +81,50 @@
 .sceneImageCard img,.heroPreviewImage{object-fit:contain}
 
 .memoryPanel{flex:1;height:auto;min-height:0;overflow:hidden}
+
+
+/* Block 6 — Find the Pair: face-up bilingual matching for Beginner */
+.pairPanel{gap:8px}
+.pairIntro{display:flex;justify-content:space-between;align-items:center;gap:18px;flex:0 0 auto;background:#f8fbff;border:2px solid #e1ebf7;border-radius:18px;padding:10px 14px;color:var(--muted);font-size:13px;font-weight:800}
+.pairIntro b{display:block;color:var(--navy);font-size:17px;margin-bottom:2px}.pairIntro span{display:block}
+.pairLegend{display:flex;gap:8px;flex:0 0 auto}.pairLegend span{padding:7px 11px;border-radius:12px;color:#fff;font-size:12px;font-weight:950;white-space:nowrap}
+.legendEn{background:linear-gradient(135deg,#2d8df7,#3577ee)}.legendRu{background:linear-gradient(135deg,#8455ef,#a25be8)}
+.pairWrap{grid-template-columns:repeat(4,1fr);gap:9px;align-content:center;flex:1;min-height:0}
+.memoryCard.pairCard{height:88px;color:#fff;border:2px solid transparent;box-shadow:0 8px 18px rgba(45,75,145,.10);font-size:16px;line-height:1.14;padding:10px 12px}
+.memoryCard.pairCard.englishCard{background:linear-gradient(145deg,#2d8df7,#3f72eb)}
+.memoryCard.pairCard.russianCard{background:linear-gradient(145deg,#8455ef,#a259e8)}
+.memoryCard.pairCard.selected{outline:4px solid rgba(20,55,110,.20);transform:translateY(-2px);box-shadow:0 10px 22px rgba(45,75,145,.18)}
+.memoryCard.pairCard.wrong{background:#fff1f3;color:#b9344e;border-color:#ef9daf;outline:none}
+.memoryCard.pairCard.matched{background:#eafff1;color:#148749;border-color:#63d397;box-shadow:none}
+.pairStatus{flex:0 0 auto;min-height:34px;display:flex;align-items:center;padding:7px 12px;border-radius:13px;background:#f8fbff;border:2px solid #e2ebf7;color:var(--muted);font-size:12.5px;font-weight:900}
+.pairStatus.badStatus{background:#fff1f3;border-color:#f0a8b8;color:#bd4053}
+.pairPanel .memoryMeta{margin-top:0}
+
+
+/* Final results — keep the established WOW SCHOOL result-screen pattern from the universal Beginner template */
+.resultTitlebar{height:76px;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex:0 0 auto}
+.resultTitlewrap h1{margin:0;font-size:43px;line-height:1;letter-spacing:-1.7px;color:var(--navy)}
+.resultTitlewrap h1 span{color:var(--blue)}
+.resultTitlewrap p{margin:8px 0 0;font-size:17px;color:var(--muted);font-weight:800}
+.resultProgressBox{width:245px;padding:12px 16px;border-radius:21px;background:rgba(255,255,255,.92);border:2px solid #e1ebf7;box-shadow:0 10px 22px rgba(55,78,129,.08);font-weight:950}
+.resultProgressBox strong{font-size:16px}
+.resultTrack{height:9px;border-radius:999px;background:#e6edf7;margin-top:8px;overflow:hidden}
+.resultTrack i{display:block;width:100%;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--blue))}
+.resultsClassic{display:grid;grid-template-columns:360px 1fr;gap:34px;align-items:center;flex:1;min-height:0;padding:6px 12px 4px}
+.resultRing{width:300px;height:300px;margin:auto;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--good) calc(var(--pct)*1%),#e8eef8 0);position:relative;box-shadow:0 22px 42px rgba(41,91,148,.13)}
+.resultRing:after{content:"";position:absolute;width:238px;height:238px;border-radius:50%;background:linear-gradient(145deg,#fff,#f5f9ff);box-shadow:inset 0 4px 16px rgba(65,93,142,.08)}
+.resultRing strong{z-index:2;font-size:66px;letter-spacing:-3px;color:var(--navy)}
+.resultRing span{position:absolute;z-index:2;margin-top:92px;color:var(--muted);font-weight:850;font-size:16px}
+.resultDetails{min-width:0}
+.resultListClassic{display:grid;gap:9px}
+.resultRowClassic{display:grid;grid-template-columns:190px 1fr 62px;gap:12px;align-items:center}
+.resultRowClassic label{font-size:16px;font-weight:950;color:var(--navy)}
+.resultBarClassic{height:11px;border-radius:999px;background:#e8eef8;overflow:hidden}
+.resultBarClassic i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#2db7ff,#7959f7)}
+.resultRowClassic b{text-align:right;font-size:16px;color:var(--navy)}
+.resultCoach{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.resultCoach>div{border-radius:18px;background:#fff;border:2px solid #e3ebf7;padding:13px 15px}
+.resultCoach strong{display:block;font-size:15px;margin-bottom:5px;color:var(--navy)}
+.resultCoach p{font-size:13px;line-height:1.3;color:var(--muted);font-weight:750;margin:0}
+.resultButtons{display:flex;gap:12px;margin-top:14px}
+.resultButtons .btn{min-height:52px;padding:0 24px;font-size:17px}
