@@ -31,3 +31,66 @@
 .pronPhotoFrame img{width:100%;height:100%;object-fit:cover;object-position:center 48%;border-radius:22px}
 .pronPhotoLabel{position:absolute;left:16px;bottom:13px;padding:8px 12px;border-radius:14px;background:rgba(255,255,255,.93);color:#17366f;font-size:13px;font-weight:950;letter-spacing:.04em}
 .bins{min-height:0}.bin{min-height:225px}
+
+/* Precision layout fix: keep answer feedback + per-question progress always visible. */
+.questionCard{
+  padding:18px 26px 16px;
+  display:grid;
+  grid-template-rows:auto auto auto minmax(0,1fr) auto;
+  align-content:stretch;
+  min-height:0;
+  overflow:hidden;
+}
+.questionCard .prompt{
+  font-size:30px;
+  line-height:1.08;
+  margin-top:7px;
+}
+.questionCard .subprompt{
+  font-size:15px;
+  line-height:1.3;
+  margin-top:6px;
+}
+.questionCard .answers{
+  min-height:0;
+  margin-top:12px;
+  gap:8px;
+  align-content:start;
+}
+.questionCard .answer{
+  min-height:46px;
+  height:46px;
+  padding:0 16px;
+  font-size:17px;
+}
+.questionCard .statusWrap{
+  margin-top:0;
+  padding-top:10px;
+  min-height:0;
+}
+.questionCard .feedbackBox{
+  min-height:40px;
+  padding:8px 12px;
+  font-size:13px;
+}
+.questionCard .internalProgress{
+  margin-top:8px;
+  gap:12px;
+  flex-wrap:nowrap;
+}
+.questionCard .miniDots{
+  gap:6px;
+  flex-wrap:nowrap;
+  min-width:0;
+}
+.questionCard .miniDot{
+  width:8px;
+  height:8px;
+  flex:0 0 auto;
+}
+.questionCard .miniDot.current{width:24px}
+.questionCard .counter{
+  flex:0 0 auto;
+  white-space:nowrap;
+  font-size:12px;
+}
