@@ -1,4 +1,7 @@
 
+const BASE_W=1600,BASE_H=900;
+function fit(){const scale=Math.min(innerWidth/BASE_W,innerHeight/BASE_H);document.getElementById('fit').style.transform=`translate(-50%,-50%) scale(${scale})`}
+addEventListener('resize',fit);fit();
 const app=document.getElementById('app');
 const STORAGE='wow_pe2_orange_juice_v1';
 const ORDER=['prices','sounds','menu','rob','jenny','memory','phrases'];
@@ -96,8 +99,15 @@ function topBrand(){return `<div class="brandTop"><div class="brandMark"><div cl
 function shell(inner){return `${topBrand()}<div class="screenCard">${inner}</div>`}
 function title(n,title,sub){return `<div class="kicker">INTERACTIVE LESSON MODULE · BEGINNER · PRACTICAL ENGLISH</div><h2 class="screenTitle"><span class="num">${n}.</span>${title}</h2><p class="screenSub">Beginner · Practical English · Episode 2 · ${sub}</p>`}
 function audioBtn(id,label='Прослушать'){return `<button class="audioBtn" id="${id}">▶ ${label}</button><span class="audioMeta">British English · короткие аудиофрагменты</span>`}
-let utter=[];function stopAudio(){utter.forEach(u=>speechSynthesis.cancel());utter=[]}
-function speak(parts,button,base='Прослушать'){stopAudio();button.classList.add('busy');button.textContent='■ Стоп';let i=0;function next(){if(i>=parts.length){button.classList.remove('busy');button.textContent='▶ '+base;return}const u=new SpeechSynthesisUtterance(parts[i]);u.lang='en-GB';u.rate=.95;u.onend=()=>{i++;setTimeout(next,120)};utter=[u];speechSynthesis.speak(u)}next()}
+let currentAudio=null,playToken=0;
+const ttsAudio=document.createElement('audio');ttsAudio.preload='auto';ttsAudio.setAttribute('playsinline','');ttsAudio.referrerPolicy='no-referrer';ttsAudio.style.display='none';document.body.appendChild(ttsAudio);
+function providerUrls(text){const q=encodeURIComponent(text.replace(/\s+/g,' ').trim());return [`https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en-GB&q=${q}`,`https://translate.google.com/translate_tts?ie=UTF-8&client=gtx&tl=en-GB&q=${q}`,`https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=en-GB&q=${q}`]}
+function splitTTS(text,max=115){const clean=text.replace(/\s+/g,' ').trim();if(clean.length<=max)return [clean];const out=[];let rest=clean;while(rest.length){if(rest.length<=max){out.push(rest);break}let cut=rest.lastIndexOf(' ',max);if(cut<50)cut=max;out.push(rest.slice(0,cut).trim());rest=rest.slice(cut).trim()}return out.filter(Boolean)}
+function stopAudio(){playToken++;try{ttsAudio.pause();ttsAudio.removeAttribute('src');ttsAudio.load()}catch(e){}currentAudio=null}
+function playUrl(url,token){return new Promise((resolve,reject)=>{if(token!==playToken)return reject(new Error('cancelled'));const a=ttsAudio;currentAudio=a;let done=false;const clean=()=>{a.onended=a.onerror=a.onabort=null;clearTimeout(timer)};const timer=setTimeout(()=>{if(done)return;done=true;clean();reject(new Error('timeout'))},22000);a.onended=()=>{if(done)return;done=true;clean();resolve()};a.onerror=()=>{if(done)return;done=true;clean();reject(new Error('audio'))};a.onabort=()=>{if(done)return;done=true;clean();reject(new Error('aborted'))};a.src=url;a.currentTime=0;a.load();const p=a.play();if(p&&p.catch)p.catch(e=>{if(done)return;done=true;clean();reject(e)})})}
+async function playChunk(text,token){let last;for(const url of providerUrls(text)){if(token!==playToken)throw new Error('cancelled');try{await playUrl(url,token);return}catch(e){last=e}}throw last||new Error('audio')}
+async function playSequence(texts,btn,idle='▶ Прослушать'){stopAudio();const token=++playToken;btn?.classList.add('busy');if(btn)btn.textContent='■ Стоп';try{for(const raw of texts){for(const c of splitTTS(raw)){if(token!==playToken)return;await playChunk(c,token)}}if(token===playToken){btn?.classList.remove('busy');btn.textContent=idle}}catch(e){if(token===playToken){btn?.classList.remove('busy');btn?.classList.add('error');btn.textContent='Аудио недоступно';setTimeout(()=>{btn?.classList.remove('error');btn.textContent=idle},2200)}}}
+function speak(parts,button,base='Прослушать'){return playSequence(parts,button,'▶ '+base)}
 function footerProgress(sec, idx, total){return `<div class="qaFooter"><div><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="${state.answers[sec][i]?.firstCorrect?'done':i===idx?'current':''}"></i>`).join('')}</div></div><div class="miniCount">Задание ${idx+1} из ${total}</div></div>`}
 function feedbackFor(sec,idx){const a=state.answers[sec][idx];if(!a)return `<div class="feedback empty">Ответ не выбран</div>`;return a.lastCorrect?`<div class="feedback good">Верно!</div>`:`<div class="feedback bad">Пока нет. Попробуй ещё раз.</div>`}
 function rightTop(sec,n){const total=MAX[sec];return `<div class="rightTop"><div></div><div class="blockProgress">Beginner · Practical English · Блок ${n}/7<div class="progressBar"><i style="width:${(n/7)*100}%"></i></div></div></div>`}
