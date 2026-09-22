@@ -37,7 +37,8 @@
       "block": "3 Pronunciation Lab",
       "purpose": "listening / pronunciation atmosphere",
       "fit_mode": "cover-rounded-banner",
-      "generated_or_existing": "generated-and-inserted"
+      "generated_or_existing": "generated-and-inserted",
+      "usage": "not used in UI — pronunciation block intentionally interaction-first"
     },
     {
       "filename": "assets/images/block4-bag.png",
@@ -61,5 +62,7 @@
       "generated_or_existing": "generated-and-inserted"
     }
   ],
-  "planned_visuals": []
+  "planned_visuals": [],
+  "pronunciation_visual_rule": "Do not insert a decorative photo in pronunciation/sorting blocks unless the image directly teaches the sound distinction. Prefer full interaction area + compact instructional header.",
+  "memory_card_rule": "Memory/pair cards must use large high-contrast text (about 22–24 px at 1600×900) and remain legible in covered/open/matched states."
 }
