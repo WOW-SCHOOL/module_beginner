@@ -1,0 +1,28 @@
+{
+  "cover": {
+    "size": "1600x900",
+    "purpose": "module preview / start screen",
+    "status": "inserted"
+  },
+  "block1": {
+    "size": "1200x900",
+    "purpose": "prices / money / café objects",
+    "status": "inserted"
+  },
+  "block3": {
+    "size": "1200x900",
+    "purpose": "menu / café / ordering scene",
+    "status": "inserted"
+  },
+  "block4": {
+    "size": "1200x900",
+    "purpose": "Rob ordering lunch in a pub",
+    "status": "inserted"
+  },
+  "block5": {
+    "size": "1200x900",
+    "purpose": "Jenny and Amy buying lunch in a deli",
+    "status": "inserted"
+  },
+  "image_display_rule": "Use rounded containers and object-fit: contain. Never crop important subjects; reduce image size or place beside text when necessary. Pronunciation blocks stay image-free unless the visual directly supports the phonetic task."
+}
