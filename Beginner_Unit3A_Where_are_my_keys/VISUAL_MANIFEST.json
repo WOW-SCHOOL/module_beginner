@@ -1,0 +1,65 @@
+{
+  "unit": "Beginner · Unit 3A · Where are my keys?",
+  "repository_target": "WOW-SCHOOL/module_beginner",
+  "folder": "Beginner_Unit3A_Where_are_my_keys",
+  "stage": "final module with generated visuals inserted",
+  "visuals": [
+    {
+      "filename": "preview.png",
+      "block": "Link preview / social card",
+      "purpose": "Unit 3A cover scene",
+      "fit_mode": "16:9",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/cover-home.png",
+      "block": "Start screen",
+      "purpose": "home entryway / searching for keys",
+      "fit_mode": "contain-rounded",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block1-small-things.png",
+      "block": "1 Small Things",
+      "purpose": "everyday small objects flat-lay",
+      "fit_mode": "contain-rounded",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block2-grammar-singular-plural.png",
+      "block": "2 Grammar",
+      "purpose": "visual singular vs plural",
+      "fit_mode": "contain-rounded",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block3-pronunciation.png",
+      "block": "3 Pronunciation Lab",
+      "purpose": "listening / pronunciation atmosphere",
+      "fit_mode": "cover-rounded-banner",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block4-bag.png",
+      "block": "4 What’s in your bag?",
+      "purpose": "bag contents in context",
+      "fit_mode": "contain-rounded",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block5-reading-keys.png",
+      "block": "5 Reading",
+      "purpose": "missing keys reading scene",
+      "fit_mode": "cover-rounded",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block7-listening-hotel.png",
+      "block": "7 Listening",
+      "purpose": "hotel reception dialogue context",
+      "fit_mode": "contain-rounded",
+      "generated_or_existing": "generated-and-inserted"
+    }
+  ],
+  "planned_visuals": []
+}
