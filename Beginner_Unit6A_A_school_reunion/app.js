@@ -113,12 +113,12 @@ const data={
   ]
  },
  passport:[
-  {name:'Maya',clue:'She helps sick people.',audio:'Maya helps sick people.',job:'nurse',place:'in a hospital',jobs:['nurse','journalist','teacher','waitress'],places:['in a hospital','in an office','in a school','in a restaurant'],hint:'sick people → hospital'},
-  {name:'Leo',clue:'He writes for a newspaper.',audio:'Leo writes for a newspaper.',job:'journalist',place:'in an office',jobs:['journalist','taxi driver','shop assistant','factory worker'],places:['in an office','in the street','in a shop','in a factory'],hint:'newspaper → journalist'},
-  {name:'Nina',clue:'She teaches children.',audio:'Nina teaches children.',job:'teacher',place:'in a school',jobs:['teacher','doctor','receptionist','waitress'],places:['in a school','in a hospital','in a hotel','in a restaurant'],hint:'teaches children → school'},
-  {name:'Dan',clue:'He serves food to customers.',audio:'Dan serves food to customers.',job:'waiter',place:'in a restaurant',jobs:['waiter','nurse','journalist','taxi driver'],places:['in a restaurant','in a hospital','in an office','in the street'],hint:'serves food → restaurant'},
-  {name:'Emma',clue:'She helps customers buy clothes.',audio:'Emma helps customers buy clothes.',job:'shop assistant',place:'in a shop',jobs:['shop assistant','teacher','receptionist','doctor'],places:['in a shop','in a school','in a hotel','in a hospital'],hint:'customers + clothes → shop'},
-  {name:'Sam',clue:'He makes cars.',audio:'Sam makes cars.',job:'factory worker',place:'in a factory',jobs:['factory worker','policeman','student','waiter'],places:['in a factory','in the street','at university','in a restaurant'],hint:'makes cars → factory'}
+  {name:'Maya',clue:'She helps sick people.',audio:'Maya helps sick people.',job:'nurse',place:'in a hospital',jobs:['journalist','nurse','waitress','teacher'],places:['in a school','in a restaurant','in a hospital','in an office'],hint:'sick people → hospital'},
+  {name:'Leo',clue:'He writes for a newspaper.',audio:'Leo writes for a newspaper.',job:'journalist',place:'in an office',jobs:['taxi driver','shop assistant','factory worker','journalist'],places:['in the street','in an office','in a factory','in a shop'],hint:'newspaper → journalist'},
+  {name:'Nina',clue:'She teaches children.',audio:'Nina teaches children.',job:'teacher',place:'in a school',jobs:['doctor','waitress','teacher','receptionist'],places:['in a restaurant','in a hospital','in a hotel','in a school'],hint:'teaches children → school'},
+  {name:'Dan',clue:'He serves food to customers.',audio:'Dan serves food to customers.',job:'waiter',place:'in a restaurant',jobs:['nurse','waiter','taxi driver','journalist'],places:['in a hospital','in the street','in a restaurant','in an office'],hint:'serves food → restaurant'},
+  {name:'Emma',clue:'She helps customers buy clothes.',audio:'Emma helps customers buy clothes.',job:'shop assistant',place:'in a shop',jobs:['teacher','doctor','receptionist','shop assistant'],places:['in a school','in a shop','in a hospital','in a hotel'],hint:'customers + clothes → shop'},
+  {name:'Sam',clue:'He makes cars.',audio:'Sam makes cars.',job:'factory worker',place:'in a factory',jobs:['student','policeman','factory worker','waiter'],places:['in the street','in a restaurant','at university','in a factory'],hint:'makes cars → factory'}
  ]
 };
 
