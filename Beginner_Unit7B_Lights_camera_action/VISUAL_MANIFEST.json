@@ -1,0 +1,17 @@
+{
+  "module": "Beginner_Unit7B_Lights_camera_action",
+  "base_canvas": "1600x900",
+  "display_rule": "object-fit: contain; never crop important content",
+  "safe_area": "10-12%",
+  "images": [
+    {"file":"preview-unit7b.jpg","size":"1600x900","ratio":"16:9","purpose":"OpenGraph + module preview cover","text_allowed":true},
+    {"file":"block1-genres.jpg","size":"1440x1080","ratio":"4:3","purpose":"Movie genres warm-up","text_allowed":false},
+    {"file":"block2-director.jpg","size":"1440x1080","ratio":"4:3","purpose":"Director Says imperatives","text_allowed":false},
+    {"file":"block3-pronouns.jpg","size":"1440x1080","ratio":"4:3","purpose":"Object pronouns close-up","text_allowed":false},
+    {"file":"block4-builder.jpg","size":"1440x1080","ratio":"4:3","purpose":"Sentence Builder / film script rehearsal","text_allowed":false},
+    {"file":"block5-reading.jpg","size":"1080x1920","ratio":"9:16","purpose":"Script Reading portrait visual","text_allowed":false},
+    {"file":"block6-rhythm.jpg","size":"1440x1080","ratio":"4:3","purpose":"Pronunciation / sentence rhythm","text_allowed":false},
+    {"file":"block7-studio.jpg","size":"1440x1080","ratio":"4:3","purpose":"Studio Talk dialogue","text_allowed":false},
+    {"file":"block8-action.jpg","size":"1440x1080","ratio":"4:3","purpose":"Signature film-set Action Challenge","text_allowed":false}
+  ]
+}

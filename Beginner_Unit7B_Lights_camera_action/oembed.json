@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "type": "rich",
+  "provider_name": "WOW SCHOOL",
+  "provider_url": "https://wow-school.ru",
+  "title": "WOW SCHOOL · Beginner · Unit 7B · Lights, camera, action!",
+  "html": "<iframe src=\"https://wow-school.github.io/module_beginner/Beginner_Unit7B_Lights_camera_action/?v=1\" width=\"1600\" height=\"900\" frameborder=\"0\" scrolling=\"no\" allow=\"autoplay; fullscreen\" allowfullscreen></iframe>",
+  "width": 1600,
+  "height": 900
+}
