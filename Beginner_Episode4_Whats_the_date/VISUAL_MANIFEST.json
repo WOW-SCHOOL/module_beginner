@@ -1,0 +1,17 @@
+{
+  "module": "Beginner_Episode4_Whats_the_date",
+  "base_canvas": "1600x900",
+  "display_rule": "object-fit: contain; never crop important content",
+  "safe_area": "10-12%",
+  "images": [
+    {"file":"preview-episode4.jpg","size":"1600x900","ratio":"16:9","purpose":"OpenGraph + module preview cover","text_allowed":true},
+    {"file":"block1-month-flip.jpg","size":"1440x1080","ratio":"4:3","purpose":"Month Flip","text_allowed":false},
+    {"file":"block2-ordinal-lift.jpg","size":"1440x1080","ratio":"4:3","purpose":"Ordinal Lift","text_allowed":false},
+    {"file":"block3-date-match.jpg","size":"1440x1080","ratio":"4:3","purpose":"Date Match","text_allowed":false},
+    {"file":"block4-calendar-tap.jpg","size":"1440x1080","ratio":"4:3","purpose":"Calendar Tap","text_allowed":false},
+    {"file":"block5-builder.jpg","size":"1440x1080","ratio":"4:3","purpose":"Sentence Builder","text_allowed":false},
+    {"file":"block6-phone.jpg","size":"1080x1920","ratio":"9:16","purpose":"Phone English portrait visual","text_allowed":false},
+    {"file":"block7-date-stamp.jpg","size":"1440x1080","ratio":"4:3","purpose":"Date Stamp","text_allowed":false},
+    {"file":"block8-save-date.jpg","size":"1440x1080","ratio":"4:3","purpose":"Signature Save the Date interaction","text_allowed":false}
+  ]
+}
