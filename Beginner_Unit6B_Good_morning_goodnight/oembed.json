@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "type": "rich",
+  "provider_name": "WOW SCHOOL",
+  "provider_url": "https://wow-school.ru",
+  "title": "WOW SCHOOL · Beginner · Unit 6B · Good morning, goodnight",
+  "html": "<iframe src='https://wow-school.github.io/module_beginner/Beginner_Unit6B_Good_morning_goodnight/' width='1600' height='900' frameborder='0' allowfullscreen></iframe>",
+  "width": 1600,
+  "height": 900
+}

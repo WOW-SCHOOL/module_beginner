@@ -1,0 +1,16 @@
+{
+  "unit": "Beginner Unit 6B",
+  "title": "Good morning, goodnight",
+  "preview": "assets/images/preview-unit6b.jpg",
+  "images": [
+    "assets/images/block1-warmup.jpg",
+    "assets/images/block2-listening.jpg",
+    "assets/images/block3-sort.jpg",
+    "assets/images/block4-grammar.jpg",
+    "assets/images/block5-reading.jpg",
+    "assets/images/block6-pronunciation.jpg",
+    "assets/images/block7-listening.jpg",
+    "assets/images/block8-experimental.jpg"
+  ],
+  "notes": "Current archive contains working placeholder visuals. Final generation prompts are in IMAGE_PROMPTS.md."
+}
