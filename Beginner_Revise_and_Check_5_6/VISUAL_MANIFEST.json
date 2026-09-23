@@ -1,0 +1,17 @@
+{
+  "module": "Beginner Revise & Check 5&6",
+  "base_canvas": "1600x900",
+  "display_rule": "object-fit: contain",
+  "safe_area": "10-12%",
+  "images": [
+    {"file":"preview-revise56.jpg","size":"1600x900","ratio":"16:9","role":"course preview with baked-in text"},
+    {"file":"block1-grammar.jpg","size":"1440x1080","ratio":"4:3","role":"grammar revision scene"},
+    {"file":"block2-food.jpg","size":"1440x1080","ratio":"4:3","role":"food and drink revision"},
+    {"file":"block3-routine.jpg","size":"1440x1080","ratio":"4:3","role":"daily routine / planning"},
+    {"file":"block4-pronunciation.jpg","size":"1440x1080","ratio":"4:3","role":"pronunciation practice"},
+    {"file":"block5-reading.jpg","size":"900x1600","ratio":"9:16","role":"portrait visual beside reading text"},
+    {"file":"block6-builder.jpg","size":"1440x1080","ratio":"4:3","role":"sentence building cards"},
+    {"file":"block7-listening.jpg","size":"1440x1080","ratio":"4:3","role":"short breakfast conversation"},
+    {"file":"block8-snapshot.jpg","size":"1440x1080","ratio":"4:3","role":"lifestyle clue / profile scene"}
+  ]
+}

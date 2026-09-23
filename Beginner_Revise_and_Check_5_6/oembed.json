@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "type":"rich",
+  "provider_name":"WOW SCHOOL",
+  "provider_url":"https://wow-school.ru",
+  "title":"WOW SCHOOL · Beginner · Revise & Check 5&6",
+  "html":"<iframe src=\"https://wow-school.github.io/module_beginner/Beginner_Revise_and_Check_5_6/\" width=\"1600\" height=\"900\" style=\"border:0;width:100%;aspect-ratio:16/9\" allow=\"autoplay\" loading=\"lazy\"></iframe>",
+  "width":1600,
+  "height":900,
+  "thumbnail_url":"https://wow-school.github.io/module_beginner/Beginner_Revise_and_Check_5_6/assets/images/preview-revise56.jpg?v=1",
+  "thumbnail_width":1600,
+  "thumbnail_height":900
+}
