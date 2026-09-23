@@ -1,0 +1,15 @@
+{
+  "module": "Beginner_Unit6A_A_school_reunion",
+  "preview": {"file": "preview-unit6a.jpg", "size": "1600x900", "ratio": "16:9"},
+  "blocks": [
+    {"block": 1, "file": "block1-jobs.jpg", "size": "1440x1080", "ratio": "4:3", "role": "jobs and school reunion context"},
+    {"block": 2, "file": "block2-match.jpg", "size": "1440x1080", "ratio": "4:3", "role": "former classmates comparing jobs / profiles"},
+    {"block": 3, "file": "block3-grammar.jpg", "size": "1440x1080", "ratio": "4:3", "role": "conversation about classmates and current jobs"},
+    {"block": 4, "file": "block4-pronunciation.jpg", "size": "1440x1080", "ratio": "4:3", "role": "speaking / pronunciation practice"},
+    {"block": 5, "file": "block5-reading.jpg", "size": "1080x1440", "ratio": "3:4 portrait", "role": "English at work; portrait/selfie visual for reading layout"},
+    {"block": 6, "file": "block6-sentence-builder.jpg", "size": "1440x1080", "ratio": "4:3", "role": "sentence cards / study table"},
+    {"block": 7, "file": "block7-listening.jpg", "size": "1440x1080", "ratio": "4:3", "role": "school reunion dialogue"},
+    {"block": 8, "file": "block8-reunion-passport.jpg", "size": "1440x1080", "ratio": "4:3", "role": "reunion profile cards / job clues"}
+  ],
+  "display_rule": "object-fit: contain; no cropping of faces, hands, people or key objects"
+}
