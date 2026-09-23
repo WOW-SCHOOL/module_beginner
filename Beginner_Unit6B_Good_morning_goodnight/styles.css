@@ -431,3 +431,90 @@ img{display:block;max-width:100%}
 .heroFeatures{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 10px}
 .heroFeatures span{padding:8px 12px;border-radius:999px;background:#edf5ff;color:#27528f;font-weight:800;font-size:14px}
 @media (max-width:1200px){.fixOptions{grid-template-columns:1fr 1fr}}
+
+/* ===== Unit 6B final student-facing + layout safety pass ===== */
+.content{padding:28px 34px 24px}
+.titlebar{height:72px;gap:20px}
+.titlewrap h1{font-size:39px;line-height:1.02}
+.titlewrap p{margin-top:7px;font-size:16px;line-height:1.2}
+.progressBox{width:235px;padding:11px 15px;border-radius:20px}
+.blockBody{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:24px;margin-top:10px;min-height:0}
+.visualCard,.questionCard{min-width:0;min-height:0}
+.visualCard{padding:14px;display:block}
+.questionCard{padding:22px 24px 18px;display:flex!important;flex-direction:column;overflow:hidden}
+.kicker{font-size:13px}
+.prompt{font-size:28px;line-height:1.08;margin-top:7px;overflow-wrap:anywhere}
+.subprompt{font-size:14px;line-height:1.28;margin-top:6px}
+.answers{display:grid;gap:8px;margin-top:12px;flex:1 1 auto;min-height:0;overflow:auto;align-content:start;padding-right:3px}
+.answer{min-height:48px;font-size:16px;line-height:1.18;padding:10px 16px}
+.statusWrap{margin-top:auto;padding-top:10px;flex:0 0 auto;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.94) 22%,#fff 100%)}
+.feedbackBox{min-height:42px;padding:8px 12px;font-size:13px;line-height:1.2}
+.internalProgress{margin-top:9px}
+.footerActions{height:58px;margin-top:10px}
+.audioBtn,.nextBtn,.ghostBtn{height:50px;font-size:16px;padding:0 20px;border-radius:17px}
+.nextBtn{min-width:225px}
+.audioMeta{font-size:11px}
+
+/* Helper panels live with the visual, not inside the answer area */
+.visualWithHelpers{height:100%;min-height:0;display:flex;flex-direction:column;gap:10px}
+.visualMain{flex:1 1 auto;min-height:0;overflow:hidden;border-radius:22px}
+.visualMain>.visualSlot,.visualMain>.readingSlot,.visualMain>.sceneFrame,.visualMain>.grammarVisual{height:100%!important;min-height:0}
+.visualHelpers{flex:0 0 auto;display:grid;gap:8px;min-height:0}
+.visualHelpers .helperDetails{border-radius:14px;background:linear-gradient(180deg,#f7fbff,#f3f8ff);border-color:#d7e5f6}
+.visualHelpers .helperDetails:nth-child(2){background:linear-gradient(180deg,#fff8ef,#fff4e6);border-color:#f0dfc8}
+.visualHelpers .helperDetails summary{padding:9px 12px;font-size:13px;line-height:1.15;color:#24518c}
+.visualHelpers .helperDetails:nth-child(2) summary{color:#946125}
+.visualHelpers .helperDetails summary::before{width:19px;height:19px;flex-basis:19px;font-size:14px}
+.visualHelpers .helperBody{padding:0 12px 10px;font-size:12.5px;line-height:1.35;max-height:118px;overflow:auto}
+.visualHelpers .transcriptBox p{margin-bottom:6px}
+.visualHelpers .hintList li{margin-bottom:5px}
+.helpersStack{display:none!important}
+
+/* Start screen: ready for students, no developer copy */
+.hero{grid-template-columns:minmax(0,1fr) minmax(0,.94fr);gap:28px;height:100%;align-items:center}
+.hero h1{font-size:80px;line-height:.93;margin:12px 0 14px;letter-spacing:-3px}
+.hero .lede{font-size:20px;line-height:1.38;max-width:760px;margin:0;color:#526b96;font-weight:760}
+.studentHelp{margin:15px 0 0;max-width:760px;padding:13px 16px;border-radius:18px;background:linear-gradient(90deg,#eef8ff,#f5f1ff);border:1px solid #dce8f8;color:#355a8d;font-size:15px;line-height:1.35;font-weight:750}
+.heroFeatures{margin:15px 0 12px;gap:8px}
+.heroFeatures span{font-size:13px;padding:8px 11px}
+.heroBtns{margin-top:14px}
+.heroVisual{height:500px;min-height:0}
+.devNote{display:none!important}
+
+/* Day Sort — hard no-overlap rules */
+.questionCard .sortWrap{flex:1 1 auto;min-height:0;margin-top:8px;height:auto}
+.sortBank{flex:0 0 auto;min-height:0;max-height:128px;overflow:auto;gap:7px;padding:8px}
+.sortChip{padding:8px 11px;font-size:14px;line-height:1.12;border-radius:14px;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.sortColumns{flex:1 1 auto;min-height:0;gap:9px;margin-top:9px}
+.sortCol{padding:10px;overflow:auto}
+.sortCol h3{font-size:12px;margin-bottom:6px}
+.sortPlaced{font-size:13px;line-height:1.15;font-weight:850;color:#17366d;margin:0 0 5px;overflow-wrap:anywhere}
+
+/* Builder — fit every sentence without collision */
+.builderWrap{flex:1 1 auto;min-height:0;margin-top:9px}
+.builderCue{padding:10px 13px;font-size:13px;line-height:1.3}
+.builderResult{min-height:58px;max-height:100px;overflow:auto;margin:9px 0;padding:9px;gap:6px}
+.tokenBank{gap:7px;padding:2px;max-height:118px;overflow:auto}
+.token{padding:8px 10px;font-size:14px;line-height:1.12;border-radius:13px}
+.builderActions{padding-top:7px;gap:8px}
+.smallBtn{padding:9px 13px;font-size:13px;border-radius:13px}
+
+/* Reading — image and text always stay within their own columns */
+.readingVisual.portrait{grid-template-columns:minmax(0,.38fr) minmax(0,.62fr);gap:12px;overflow:hidden}
+.readingVisual.portrait .readText{font-size:13.5px;line-height:1.3;padding:12px 13px;overflow:auto}
+.readingVisual.portrait .readingArtFrame{overflow:hidden}
+
+/* Error block — no clipped replacement choices */
+.errorQuestion .prompt{font-size:27px}
+.errorWork{gap:10px;margin-top:8px;overflow:hidden}
+.errorSentence{padding:12px;gap:8px;min-height:92px;align-content:flex-start;overflow:auto}
+.errorWord{padding:9px 12px;font-size:15px;line-height:1.1;max-width:100%;overflow-wrap:anywhere}
+.replacementArea{min-height:104px;max-height:152px;padding:12px;overflow:auto}
+.replaceLabel,.replaceHint{font-size:13px;line-height:1.25}
+.fixOptions{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.fixChoice{min-width:0;padding:10px 8px;font-size:14px;line-height:1.15;overflow-wrap:anywhere}
+
+/* universal text safety: nothing may overlap or be cut horizontally */
+.questionCard *,.visualCard *,.footerActions *{min-width:0}
+.prompt,.subprompt,.answer,.feedbackBox,.counter,.builderCue,.token,.sortChip,.sortPlaced,.errorWord,.fixChoice,.replaceHint,.replaceLabel{overflow-wrap:anywhere;word-break:normal}
+button{max-width:100%}

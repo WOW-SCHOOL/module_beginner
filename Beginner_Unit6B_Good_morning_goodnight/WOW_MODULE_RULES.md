@@ -19,3 +19,12 @@ These rules are mandatory for all future Beginner modules.
 - Right-side task panels must keep all answer text readable at the fixed 1600×900 module size.
 - Replacement choices in Error Hunter must always show the full replacement word/phrase.
 - Before release, visually inspect every block and the longest-content state of each interactive mechanic.
+
+## Student-facing product rule (added after Unit 6B review)
+- Every visible sentence must address the student, not the developer, teacher, or module author.
+- Never expose internal notes such as “experimental block”, developer shortcuts, implementation notes, archive filenames, or QA comments in the student UI.
+- Hints/transcripts belong beside the visual or in a non-obstructive footer area when possible, not in the already crowded answer panel.
+- The right answer panel is reserved for the task, answer choices, feedback, and progress.
+- Hard layout rule: no text, buttons, images, feedback, helper panels, or controls may overlap or escape their containers at 1600×900.
+- If content becomes tight, reduce font/padding/gaps before allowing collision. Long labels wrap; they are never clipped horizontally.
+- Before packaging, review the longest content state for every block, including opened hints/transcripts and the last/longest exercise.

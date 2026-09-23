@@ -1,1 +1,10 @@
-<iframe src="https://wow-school.github.io/module_beginner/Beginner_Unit6B_Good_morning_goodnight/" width="1600" height="900" frameborder="0" allowfullscreen></iframe>
+<iframe
+  src="https://wow-school.github.io/module_beginner/Beginner_Unit6B_Good_morning_goodnight/?v=2"
+  title="WOW SCHOOL · English File Beginner · Unit 6B · Good morning, goodnight"
+  frameborder="0"
+  scrolling="no"
+  allow="autoplay; fullscreen"
+  allowfullscreen
+  referrerpolicy="no-referrer"
+  style="display:block;width:100%;aspect-ratio:16/9;border:0;overflow:hidden;border-radius:20px;background:#eef4ff;">
+</iframe>
