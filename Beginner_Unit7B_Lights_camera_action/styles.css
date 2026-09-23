@@ -639,3 +639,40 @@ button{max-width:100%}
 @keyframes actionCaptureStable{0%{box-shadow:0 0 0 0 rgba(47,199,123,0);filter:brightness(1)}45%{box-shadow:0 0 0 6px rgba(47,199,123,.14),0 10px 20px rgba(43,70,122,.08);filter:brightness(1.08)}100%{box-shadow:0 0 0 0 rgba(47,199,123,0);filter:brightness(1)}}
 .filmShell .genreQuestion .posterOptions{overflow:hidden!important}
 .filmShell .posterCard.wrongFlash .posterFront{border-color:#ee8090;box-shadow:0 0 0 4px rgba(238,128,144,.10),0 8px 18px rgba(46,76,132,.08)}
+
+/* Holst / embedded viewport safety — the module itself is always 1600×900 and is
+   scaled as a whole by #fit. So internal exercise layouts should stay in their
+   desktop composition even when the host iframe reports a narrow CSS viewport.
+   These overrides prevent answer areas from collapsing into 1–2 columns or from
+   visually "sliding" between browser and Holst. */
+.filmShell .genreQuestion .posterOptions,
+.filmShell .pronounLens,
+.filmShell .actionCard .setStage{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+
+.filmShell .pronounLens{
+  overflow:hidden!important;
+  align-content:start;
+  grid-auto-rows:minmax(84px,auto);
+  margin-top:20px;
+  gap:12px;
+}
+
+.filmShell .actionCard .setStage{
+  grid-auto-rows:minmax(72px,1fr);
+  align-content:stretch;
+  overflow:hidden!important;
+  min-width:0;
+}
+
+.filmShell .actionCard .setTarget,
+.filmShell .pronounLens .lensBtn,
+.filmShell .posterOptions .posterCard{
+  min-width:0;
+}
+
+.filmShell .actionCard .statusWrap,
+.filmShell .genreQuestion .statusWrap{
+  margin-top:10px;
+}
