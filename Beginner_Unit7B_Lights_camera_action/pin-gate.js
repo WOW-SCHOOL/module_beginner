@@ -2,10 +2,16 @@
   const PIN = String(window.WOW_MODULE_PIN ?? '').trim();
   if (!PIN) return;
 
+  const IS_EMBEDDED = window.self !== window.top;
   const SESSION_KEY = 'wow_module_pin_access:' + location.pathname;
-  try {
-    if (sessionStorage.getItem(SESSION_KEY) === PIN) return;
-  } catch (_) {}
+
+  // In a normal browser tab, remember successful access for the current tab session.
+  // Inside Holst (iframe), always show the PIN screen whenever the module document opens.
+  if (!IS_EMBEDDED) {
+    try {
+      if (sessionStorage.getItem(SESSION_KEY) === PIN) return;
+    } catch (_) {}
+  }
 
   const style = document.createElement('style');
   style.textContent = `
@@ -53,7 +59,9 @@
   const error = gate.querySelector('#wowPinError');
 
   const unlock = () => {
-    try { sessionStorage.setItem(SESSION_KEY, PIN); } catch (_) {}
+    if (!IS_EMBEDDED) {
+      try { sessionStorage.setItem(SESSION_KEY, PIN); } catch (_) {}
+    }
     gate.classList.add('success');
     setTimeout(() => gate.remove(), 230);
   };
