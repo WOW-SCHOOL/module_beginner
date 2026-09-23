@@ -415,3 +415,120 @@ img{display:block;max-width:100%}
 .clockQuestion .statusWrap,.challengeQuestion .statusWrap{margin-top:8px}
 .clockQuestion .subprompt,.challengeQuestion .subprompt{max-width:100%;padding-right:4px}
 @media (max-width:1100px){.clockQuestion .clockWrap,.challengeQuestion .clockWrap{grid-template-columns:1fr}.clockQuestion .analogClock,.challengeQuestion .analogClock{width:230px;height:230px}}
+
+
+/* Episode 3 layout audit v3: fixed status/progress + no overlap */
+.questionCard{
+  display:flex!important;
+  flex-direction:column!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  padding:22px 26px 18px!important;
+}
+.questionCard>.kicker,.questionCard>.prompt,.questionCard>.subprompt{flex:0 0 auto;position:relative;z-index:3}
+.questionCard>.prompt{font-size:31px;line-height:1.08;margin-top:7px}
+.questionCard>.subprompt{font-size:14.5px;line-height:1.32;margin-top:7px}
+.questionCard>.statusWrap{
+  flex:0 0 auto!important;
+  margin-top:8px!important;
+  padding-top:7px!important;
+  position:relative!important;
+  z-index:20!important;
+  background:#fff!important;
+}
+.questionCard .feedbackBox{min-height:42px;padding:8px 13px}
+.questionCard .internalProgress{margin-top:8px}
+
+/* Every interactive body must shrink before the fixed status area. */
+.questionCard>.answers,
+.questionCard>.matchArea,
+.questionCard>.builderWrap,
+.questionCard>.plannerWrap,
+.questionCard>.clockWrap,
+.questionCard>.errorSentence,
+.questionCard>.driveLayout{
+  flex:1 1 auto!important;
+  min-height:0!important;
+}
+.questionCard>.answers{overflow:auto!important;margin-top:12px!important}
+
+/* Block 1 + 8: compact clock area so status/progress always stays visible. */
+.clockQuestion>.clockWrap,.challengeQuestion>.clockWrap{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  grid-template-columns:210px minmax(0,1fr)!important;
+  gap:14px!important;
+  align-items:center!important;
+  margin-top:8px!important;
+}
+.clockQuestion .analogClock,.challengeQuestion .analogClock{width:202px!important;height:202px!important;border-width:7px!important}
+.clockQuestion .analogClock::before,.challengeQuestion .analogClock::before{inset:14px!important}
+.clockQuestion .clockNum,.challengeQuestion .clockNum{font-size:16px!important}
+.clockQuestion .minuteHand,.challengeQuestion .minuteHand{height:84px!important}
+.clockQuestion .minuteHand i,.challengeQuestion .minuteHand i{height:80px!important;width:5px!important}
+.clockQuestion .hourHand,.challengeQuestion .hourHand{height:64px!important}
+.clockQuestion .hourHand i,.challengeQuestion .hourHand i{height:60px!important;width:7px!important}
+.clockQuestion .clockCenter,.challengeQuestion .clockCenter{width:19px!important;height:19px!important}
+.clockQuestion .clockSide,.challengeQuestion .clockSide{gap:8px!important}
+.clockQuestion .clockReadout,.challengeQuestion .clockReadout{font-size:29px!important;min-width:132px!important;padding:9px 14px!important;border-radius:15px!important}
+.clockQuestion .clockTip,.challengeQuestion .clockTip{font-size:13px!important;line-height:1.28!important}
+.clockQuestion>.builderActions,.challengeQuestion>.builderActions{flex:0 0 auto!important;margin-top:7px!important;padding-top:0!important;gap:8px!important}
+.clockQuestion>.builderActions .smallBtn,.challengeQuestion>.builderActions .smallBtn{padding:9px 14px!important;border-radius:14px!important}
+.challengeQuestion .supportBtn{height:36px!important;padding:0 12px!important}
+.challengeQuestion .transcriptBox{max-height:54px!important;overflow:auto!important;margin-top:4px!important;padding:7px 10px!important;font-size:13px!important}
+
+/* Block 2: all pairs stay inside their own area; labels never overlap instructions. */
+.matchQuestion>.matchArea{
+  overflow:hidden!important;
+  margin-top:9px!important;
+  grid-template-columns:minmax(0,1fr) 82px minmax(0,1fr)!important;
+  gap:8px!important;
+  align-items:stretch!important;
+}
+.matchQuestion .matchCol{gap:5px!important;grid-template-rows:repeat(8,minmax(0,1fr))!important;min-height:0!important}
+.matchQuestion .matchBtn{
+  min-height:0!important;
+  height:auto!important;
+  padding:2px 8px!important;
+  border-radius:12px!important;
+  font-size:12px!important;
+  line-height:1.08!important;
+  overflow-wrap:anywhere!important;
+  display:flex!important;
+  align-items:center!important;
+}
+.matchQuestion>.statusWrap{margin-top:7px!important}
+.matchQuestion .feedbackBox{min-height:39px!important}
+
+/* Blocks 3/5/6: answer area scrolls if a long phrase needs extra room; status is fixed below it. */
+.interviewQuestion>.answers,.sceneQuestion>.answers{overflow:auto!important}
+.interviewQuestion>.supportBtn{flex:0 0 auto!important;height:38px!important;margin-top:7px!important}
+.interviewQuestion>.transcriptBox{flex:0 0 auto!important;max-height:58px!important;overflow:auto!important;margin-top:6px!important;padding:7px 10px!important}
+
+/* Block 4: builder content can contract without pushing progress out. */
+.builderQuestion>.builderWrap{overflow:auto!important;margin-top:8px!important}
+.builderQuestion .builderCue{padding:10px 13px!important}
+.builderQuestion .builderResult{min-height:58px!important;margin:9px 0!important;padding:8px!important}
+.builderQuestion .tokenBank{gap:7px!important;overflow:auto!important}
+.builderQuestion .token{padding:8px 11px!important;font-size:15px!important;border-radius:12px!important}
+.builderQuestion .builderActions{padding-top:7px!important;margin-top:4px!important}
+
+/* Block 7: schedule stays in its own flexible viewport. */
+.plannerQuestion>.plannerWrap{overflow:auto!important;margin-top:8px!important;gap:8px!important}
+.plannerQuestion .plannerGrid{gap:7px!important}
+.plannerQuestion .planSlot{min-height:68px!important;padding:8px 10px!important;border-radius:14px!important}
+.plannerQuestion .slotTime{font-size:18px!important}
+.plannerQuestion .slotEvent{font-size:14px!important}
+.plannerQuestion .plannerBank{gap:7px!important;padding-top:3px!important}
+.plannerQuestion .sortChip{padding:7px 10px!important;font-size:13px!important}
+
+/* Visual side: never crop lesson images. */
+.visualSlot,.readingSlot,.heroSlot{overflow:hidden!important}
+.visualSlot img,.readingSlot img,.heroSlot img{object-fit:contain!important;object-position:center!important;max-width:100%!important;max-height:100%!important}
+
+@media (max-width:1100px){
+  .clockQuestion>.clockWrap,.challengeQuestion>.clockWrap{grid-template-columns:185px minmax(0,1fr)!important}
+  .clockQuestion .analogClock,.challengeQuestion .analogClock{width:178px!important;height:178px!important}
+  .matchQuestion>.matchArea{grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr)!important}
+}

@@ -3,7 +3,7 @@
 Interactive module built for `WOW-SCHOOL/module_beginner`.
 
 ## Public path
-`https://wow-school.github.io/module_beginner/Beginner_EPISODE3_What_time_is_it/?v=2`
+`https://wow-school.github.io/module_beginner/Beginner_EPISODE3_What_time_is_it/?v=4`
 
 ## Source basis
 The module is adapted from **English File Beginner, Practical English Episode 3: What time is it?**
