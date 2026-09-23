@@ -118,31 +118,31 @@ const data={
   listen2:{
     scripts:[
       {id:1,lines:[
-        {text:'A: What time do you usually get up?'},
-        {text:'B: At about seven.'},
-        {text:'A: Do you have breakfast at home?'},
-        {text:'B: Sometimes. I usually have coffee at home, but I sometimes have breakfast in a café.'},
-        {text:'A: How do you go to work?'},
-        {text:'B: I go by bus.'}
+        {speaker:'Tom',text:'What time do you usually get up?'},
+        {speaker:'Emma',text:'At about seven.'},
+        {speaker:'Tom',text:'Do you have breakfast at home?'},
+        {speaker:'Emma',text:'Sometimes. I usually have coffee at home, but I sometimes have breakfast in a café.'},
+        {speaker:'Tom',text:'How do you go to work?'},
+        {speaker:'Emma',text:'I go by bus.'}
       ]},
       {id:2,lines:[
-        {text:'A: What do you do after work?'},
-        {text:'B: I usually go home at six.'},
-        {text:'A: Do you go to the gym?'},
-        {text:'B: Sometimes, but I usually make dinner and watch TV.'},
-        {text:'A: What time do you go to bed?'},
-        {text:'B: At about eleven.'}
+        {speaker:'Sophie',text:'What do you do after work?'},
+        {speaker:'Leo',text:'I usually go home at six.'},
+        {speaker:'Sophie',text:'Do you go to the gym?'},
+        {speaker:'Leo',text:'Sometimes, but I usually make dinner and watch TV.'},
+        {speaker:'Sophie',text:'What time do you go to bed?'},
+        {speaker:'Leo',text:'At about eleven.'}
       ]}
     ],
     qs:[
-      {q:'What time does speaker B get up?',a:'At about seven',o:['At about six','At about seven','At about eight thirty'],script:1},
-      {q:'Does speaker B always have breakfast at home?',a:'No',o:['Yes','No','Only at the weekend'],script:1},
-      {q:'What does speaker B usually have at home?',a:'Coffee',o:['Coffee','Tea','Toast'],script:1},
-      {q:'How does speaker B go to work?',a:'By bus',o:['By car','By bus','On foot'],script:1},
-      {q:'What time does speaker B usually go home?',a:'At six',o:['At five','At six','At seven'],script:2},
-      {q:'Does speaker B always go to the gym?',a:'No, sometimes',o:['Yes, always','No, never','No, sometimes'],script:2},
-      {q:'What does speaker B usually do in the evening?',a:'Make dinner and watch TV',o:['Make dinner and watch TV','Go shopping','Read at work'],script:2},
-      {q:'What time does speaker B go to bed?',a:'At about eleven',o:['At about ten','At about eleven','At midnight'],script:2}
+      {q:'What time does Emma get up?',a:'At about seven',o:['At about six','At about seven','At about eight thirty'],script:1},
+      {q:'Does Emma always have breakfast at home?',a:'No',o:['Yes','No','Only at the weekend'],script:1},
+      {q:'What does Emma usually have at home?',a:'Coffee',o:['Coffee','Tea','Toast'],script:1},
+      {q:'How does Emma go to work?',a:'By bus',o:['By car','By bus','On foot'],script:1},
+      {q:'What time does Leo usually go home?',a:'At six',o:['At five','At six','At seven'],script:2},
+      {q:'Does Leo always go to the gym?',a:'No, sometimes',o:['Yes, always','No, never','No, sometimes'],script:2},
+      {q:'What does Leo usually do in the evening?',a:'Make dinner and watch TV',o:['Make dinner and watch TV','Go shopping','Read at work'],script:2},
+      {q:'What time does Leo go to bed?',a:'At about eleven',o:['At about ten','At about eleven','At midnight'],script:2}
     ]
   },
   error:[
@@ -238,7 +238,7 @@ function splitTTS(text,max=180){const clean=text.replace(/\s+/g,' ').trim();if(c
 function stopAudio(){playToken++;try{ttsAudio.pause();ttsAudio.removeAttribute('src');ttsAudio.load()}catch(e){}try{if(window.speechSynthesis)window.speechSynthesis.cancel()}catch(e){}currentAudio=null;currentUtterance=null}
 function playUrl(url,token){return new Promise((resolve,reject)=>{if(token!==playToken)return reject(new Error('cancelled'));const a=ttsAudio;currentAudio=a;let finished=false;const cleanup=()=>{a.onended=a.onerror=a.onabort=null;clearTimeout(timer)};const timer=setTimeout(()=>{if(finished)return;finished=true;cleanup();reject(new Error('timeout'))},18000);a.onended=()=>{if(finished)return;finished=true;cleanup();resolve()};a.onerror=()=>{if(finished)return;finished=true;cleanup();reject(new Error('audio error'))};a.onabort=()=>{if(finished)return;finished=true;cleanup();reject(new Error('aborted'))};a.src=url;a.currentTime=0;a.load();const p=a.play();if(p&&p.catch)p.catch(e=>{if(finished)return;finished=true;cleanup();reject(e)})})}
 async function playChunk(text,token){let err=null;for(const url of providerUrls(text)){try{await playUrl(url,token);return}catch(e){err=e}}throw err||new Error('audio unavailable')}
-async function playSequence(texts,btn,idle='▶ Прослушать'){stopAudio();const token=++playToken;btn?.classList.add('busy');if(btn)btn.textContent='■ Стоп';try{for(const t of texts){if(token!==playToken)return;await playChunk(t,token)}if(token===playToken){btn?.classList.remove('busy');if(btn)btn.textContent=idle}}catch(e){if(token===playToken){btn?.classList.remove('busy');btn?.classList.add('error');if(btn)btn.textContent='Аудио недоступно';setTimeout(()=>{btn?.classList.remove('error');if(btn)btn.textContent=idle},2200)}}}
+async function playSequence(texts,btn,idle='▶ Прослушать'){if(btn?.classList.contains('busy')){stopAudio();btn.classList.remove('busy');btn.classList.remove('error');btn.textContent=idle;return}stopAudio();const token=++playToken;btn?.classList.add('busy');if(btn)btn.textContent='■ Стоп';try{for(const t of texts){if(token!==playToken)return;await playChunk(t,token)}if(token===playToken){btn?.classList.remove('busy');if(btn)btn.textContent=idle}}catch(e){if(token===playToken){btn?.classList.remove('busy');btn?.classList.add('error');if(btn)btn.textContent='Аудио недоступно';setTimeout(()=>{btn?.classList.remove('error');if(btn)btn.textContent=idle},2200)}}}
 function playText(text,btn,idle='▶ Прослушать'){return playSequence(splitTTS(text),btn,idle)}
 function playScript(lines,btn,label='Диалог'){return playSequence(lines.flatMap(x=>splitTTS(x.text,110)),btn,`▶ ${label}`)}
 function audioBtn(id,label='Прослушать'){return `<button class="audioBtn" id="${id}">▶ ${label}</button><span class="audioMeta">British English · синтез речи</span>`}
@@ -342,7 +342,7 @@ function pron(){
 
 function listen2(){
   const sec='listen2',idx=state.idx[sec]||0,item=data.listen2.qs[idx],done=solved(sec,idx),script=data.listen2.scripts.find(s=>s.id===item.script),options=orderedOptions(sec,idx,item.o);
-  app.innerHTML=shell(`${title(7,'Mini Dialogues','listen to short everyday dialogues')}<div class="blockBody"><div class="visualCard">${visualWithHelpers(visualSlot('block7-listening.jpg','🎧','Mini Dialogues','Listen to short everyday dialogues','Daily routine listening scene'),[{title:'Открыть текст диалога',html:transcriptHtml(script.lines.map(x=>x.text))},{title:'Подсказка',html:listHint(['Сначала слушай вопрос, затем лови ключевые слова в ответе.','Обращай внимание на time words: at seven, at six, at about eleven.'])}])}</div><div class="questionCard"><div class="kicker">Dialogue ${script.id}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Диалог можно прослушивать несколько раз. Если трудно, открой скрытый текст.</div><div class="answers">${options.map(o=>`<button class="answer" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Сначала прослушай диалог')}</div>${miniProgress(sec,idx,data.listen2.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('listenAudio',`Диалог ${script.id}`)}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.listen2.qs.length-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
+  app.innerHTML=shell(`${title(7,'Mini Dialogues','listen to short everyday dialogues')}<div class="blockBody"><div class="visualCard">${visualWithHelpers(visualSlot('block7-listening.jpg','🎧','Mini Dialogues','Listen to short everyday dialogues','Daily routine listening scene'),[{title:'Открыть текст диалога',html:transcriptHtml(script.lines.map(x=>x.speaker?`${x.speaker}: ${x.text}`:x.text))},{title:'Подсказка',html:listHint(['Сначала слушай вопрос, затем лови ключевые слова в ответе.','Обращай внимание на time words: at seven, at six, at about eleven.'])}])}</div><div class="questionCard"><div class="kicker">Dialogue ${script.id}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Диалог можно прослушивать несколько раз. Если трудно, открой скрытый текст.</div><div class="answers">${options.map(o=>`<button class="answer" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Сначала прослушай диалог')}</div>${miniProgress(sec,idx,data.listen2.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('listenAudio',`Диалог ${script.id}`)}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.listen2.qs.length-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
   document.getElementById('listenAudio').onclick=function(){playScript(script.lines,this,`Диалог ${script.id}`)};
   document.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>{if(solved(sec,idx))return;const ok=b.dataset.value===item.a;recordAttempt(sec,idx,ok);if(ok){b.classList.add('correct');document.getElementById('fb').innerHTML=feedback('good','Верно!');document.querySelectorAll('[data-value]').forEach(x=>x.disabled=true);document.getElementById('next').disabled=false}else{b.classList.add('wrongFlash');document.getElementById('fb').innerHTML=feedback('bad','Пока нет. Прослушай ещё раз или открой текст.');setTimeout(()=>b.classList.remove('wrongFlash'),450)}});
   document.getElementById('next').onclick=()=>{if(idx<data.listen2.qs.length-1){state.idx[sec]=idx+1;save();render()}else{state.screen=8;save();render()}};
