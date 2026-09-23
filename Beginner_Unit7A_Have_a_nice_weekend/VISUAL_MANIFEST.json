@@ -1,0 +1,17 @@
+{
+  "module": "Beginner_Unit7A_Have_a_nice_weekend",
+  "base_canvas": "1600x900",
+  "display_rule": "object-fit: contain; never crop important content",
+  "safe_area": "10-12%",
+  "images": [
+    {"file":"preview-unit7a.jpg","size":"1600x900","ratio":"16:9","purpose":"OpenGraph + module preview cover","text_allowed":true},
+    {"file":"block1-vocabulary.jpg","size":"1440x1080","ratio":"4:3","purpose":"Weekend free-time warm-up","text_allowed":false},
+    {"file":"block2-question-builder.jpg","size":"1440x1080","ratio":"4:3","purpose":"Question Builder","text_allowed":false},
+    {"file":"block3-question-switch.jpg","size":"1440x1080","ratio":"4:3","purpose":"BE vs DO question choice","text_allowed":false},
+    {"file":"block4-listening.jpg","size":"1440x1080","ratio":"4:3","purpose":"Weekend Interview listening","text_allowed":false},
+    {"file":"block5-reading.jpg","size":"1080x1920","ratio":"9:16","purpose":"Weekend Reading portrait visual","text_allowed":false},
+    {"file":"block6-pronunciation.jpg","size":"1440x1080","ratio":"4:3","purpose":"Sound Lab pronunciation","text_allowed":false},
+    {"file":"block7-chat.jpg","size":"1440x1080","ratio":"4:3","purpose":"Weekend Chat simulator","text_allowed":false},
+    {"file":"block8-planner.jpg","size":"1440x1080","ratio":"4:3","purpose":"Weekend Planner signature interaction","text_allowed":false}
+  ]
+}
