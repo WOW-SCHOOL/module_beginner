@@ -3,7 +3,7 @@
 A full interactive module for the `module_beginner` repository.
 
 ## Blocks
-1. Airport Basics — very short and simple listening dialogue
+1. Travel Essentials — easy English → Russian travel vocabulary with single-word audio
 2. Airport Words — 12 audio-supported vocabulary tasks
 3. Travel Sort — 12 drag / tap-to-place cards in 3 columns
 4. Sentence Builder — 8 travel routine sentence-building tasks + model audio

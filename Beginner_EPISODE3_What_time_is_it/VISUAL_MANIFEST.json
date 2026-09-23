@@ -1,0 +1,14 @@
+{
+  "module": "Beginner_EPISODE3_What_time_is_it",
+  "preview": "assets/images/preview-episode3-time.jpg",
+  "images": [
+    "assets/images/block1-clock-setter.jpg",
+    "assets/images/block2-time-match.jpg",
+    "assets/images/block3-dialog.jpg",
+    "assets/images/block4-builder.jpg",
+    "assets/images/block5-scene.jpg",
+    "assets/images/block6-time-listening.jpg",
+    "assets/images/block7-daily-planner.jpg",
+    "assets/images/block8-clock-challenge.jpg"
+  ]
+}

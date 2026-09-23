@@ -325,56 +325,93 @@ img{display:block;max-width:100%}
 @media (max-width:900px){.sortColumns{grid-template-columns:1fr}.driveLayout{grid-template-columns:1fr}.readingVisual.portrait{grid-template-columns:38% 62%}}
 
 
-/* ===== Unit 5A · Block 8 only: open-card Breakfast Match ===== */
-.pairOnlyCard{height:100%;min-height:0;background:#fff;border:1px solid #dbe6f5;border-radius:28px;padding:18px;display:flex;flex-direction:column;box-shadow:0 16px 34px rgba(48,72,129,.08)}
-.pairOnlyIntro{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex:0 0 auto}
-.pairOnlyIntro .prompt{font-size:30px;line-height:1.05;margin-top:5px}
-.pairOnlyIntro .subprompt{font-size:14px;line-height:1.35;margin-top:7px;color:var(--muted);font-weight:780;max-width:980px}
-.pairLegend{display:flex;gap:8px;flex:0 0 auto;padding-top:5px}
-.pairLegend span{padding:8px 13px;border-radius:999px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:950;border:1px solid #dbe6f5}
-.legendEn{background:#eef7ff;color:#2b79cf}.legendRu{background:#f7efff;color:#8356c8}
-.pairOpenGrid{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(6,1fr);gap:9px;margin-top:14px}
-.pairOpenCard{min-width:0;min-height:0;border-radius:16px;border:1px solid #dbe6f5;padding:8px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 5px 12px rgba(43,70,122,.06);transition:border-color .14s,box-shadow .14s,background .14s}
-.pairOpenCard.en{background:linear-gradient(160deg,#f6fbff,#eaf5ff);color:#16346d}
-.pairOpenCard.ru{background:linear-gradient(160deg,#fff8ff,#f6efff);color:#5f3a94}
-.pairOpenCard:hover:not(:disabled){border-color:#78b5f3;box-shadow:0 0 0 3px rgba(84,163,247,.12),0 6px 14px rgba(43,70,122,.08)}
-.pairOpenCard.active{border-color:#4c98ef;box-shadow:0 0 0 3px rgba(84,163,247,.22),0 8px 16px rgba(43,70,122,.10)}
-.pairOpenCard.done{border-color:#50ce8a;background:linear-gradient(160deg,#edfff4,#ddfae9);color:#148749;cursor:default}
-.pairOpenCard small{display:block;font-size:8px;letter-spacing:.11em;font-weight:950;opacity:.62;margin-bottom:4px}
-.pairOpenCard strong{display:block;font-size:15px;line-height:1.08;font-weight:950;overflow-wrap:anywhere}
-.pairOnlyStatus{flex:0 0 auto;margin-top:10px}
-.pairOnlyStatus .feedbackBox{min-height:38px;padding:8px 13px}
-.pairOnlyStatus .internalProgress{margin-top:7px}
+/* Revise & Check 3&4 — Error Hunter + transcript support */
+.transcriptBox{margin-top:10px;border:1px dashed #cddbf0;border-radius:16px;background:#f8fbff;padding:10px 13px;font-size:14px;line-height:1.35;color:#476189;font-weight:750;display:none}
+.transcriptBox.show{display:block}
+.supportBtn{height:42px;padding:0 15px;border-radius:13px;border:1px solid #d5e3f5;background:#fff;color:#34578f;font-weight:900;cursor:pointer}
+.errorQuestion{overflow:hidden}
+.errorSteps{display:flex;gap:8px;margin:10px 0 8px;flex-wrap:wrap}
+.errorStep{padding:7px 11px;border-radius:999px;background:#edf4ff;color:#54709a;font-size:12px;font-weight:950;letter-spacing:.04em}
+.errorStep.active{background:linear-gradient(135deg,#e8fbff,#eee9ff);color:#2d79d4;box-shadow:inset 0 0 0 1px #b9daf9}
+.errorSentence{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;padding:18px;border-radius:22px;background:linear-gradient(145deg,#f9fbff,#f4f8ff);border:1px solid #dce7f5;min-height:120px}
+.errorToken{min-height:52px;padding:0 17px;border-radius:16px;border:1px solid #d9e4f3;background:#fff;color:#18356d;font-size:19px;font-weight:950;cursor:pointer;box-shadow:0 6px 12px rgba(43,70,122,.06)}
+.errorToken:hover{transform:translateY(-1px);border-color:#82b7f4}
+.errorToken.target{border-color:#ffb45b;background:#fff8e9;box-shadow:0 0 0 3px rgba(255,181,80,.18)}
+.repairChoices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.repairBtn{min-height:54px;border-radius:16px;border:1px solid #d8e4f4;background:#fff;color:#18366e;font-size:17px;font-weight:950;cursor:pointer}
+.repairBtn:hover{border-color:#6eaff1;background:#f4f9ff}
+.errorSolved{display:flex;flex-wrap:wrap;gap:9px;padding:15px;border-radius:20px;background:#edfff4;border:1px solid #8edfb4;margin-top:10px}
+.errorSolved span{padding:8px 12px;border-radius:12px;background:#fff;color:#17834c;font-weight:900}
+
+/* Keep progress visible in every review block. */
+.questionCard{min-height:0;overflow:hidden}
+.answers{flex:1 1 auto;min-height:0;overflow:auto;align-content:start;padding-right:4px}
+.statusWrap{flex:0 0 auto;margin-top:10px;padding-top:8px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.94) 28%,#fff 100%)}
+
+/* Block 5 reading: portrait selfie at left, text at right. */
+.readingVisual.portrait{grid-template-columns:280px minmax(0,1fr)!important;grid-template-rows:1fr!important;gap:14px!important}
+.readingVisual.portrait .readingArtFrame{min-width:0;min-height:0;height:100%}
+.readingVisual.portrait .readingSlot img{object-fit:contain!important;object-position:center!important;padding:6px}
+.readingVisual.portrait .readText{overflow:auto!important;font-size:15px;line-height:1.34;padding:14px 16px}
+
+/* Review-specific layout hardening */
+.sortColumns{grid-template-columns:repeat(4,1fr)!important;gap:8px!important}
+.sortCol{padding:9px!important}.sortCol h3{font-size:11px!important;letter-spacing:.07em!important}.sortChip{font-size:14px!important;padding:8px 10px!important}
+.interviewQuestion,.errorQuestion{display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important}
+.interviewQuestion .answers{flex:1 1 auto!important;min-height:0!important;overflow:auto!important}
+.interviewQuestion .transcriptBox{max-height:74px;overflow:auto;flex:0 0 auto}
+.interviewQuestion .statusWrap,.errorQuestion .statusWrap{margin-top:auto!important;flex:0 0 auto!important}
+.errorQuestion .errorSentence{flex:1 1 auto;min-height:96px;overflow:auto}
+@media (max-width:900px){.sortColumns{grid-template-columns:repeat(2,1fr)!important}}
+
+/* Episode 3 — time-focused custom blocks */
+.clockWrap{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:18px;align-items:center;margin-top:10px}
+.clockSide{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.clockReadoutLabel{font-size:12px;font-weight:900;letter-spacing:.08em;color:#6d88b1;text-transform:uppercase}
+.clockReadout{padding:12px 18px;border-radius:18px;background:linear-gradient(135deg,#eaf6ff,#f4efff);border:1px solid #cfe1f5;color:#14356e;font-size:34px;font-weight:950;min-width:150px;text-align:center;box-shadow:0 10px 24px rgba(48,96,158,.08)}
+.clockTip{font-size:14px;line-height:1.35;color:#58739d;font-weight:760}
+.analogClock{position:relative;width:290px;height:290px;border-radius:50%;border:8px solid #dfeafb;background:radial-gradient(circle at 30% 25%,#fff, #f4f8ff 65%, #ecf2fd 100%);box-shadow:inset 0 0 0 2px rgba(255,255,255,.85),0 22px 40px rgba(52,78,132,.12);margin:0 auto}
+.analogClock::before{content:'';position:absolute;inset:18px;border-radius:50%;border:2px dashed #d5e5f7}
+.clockNum{position:absolute;transform:translate(-50%,-50%);font-size:22px;font-weight:950;color:#27467f;pointer-events:none}
+.hand{position:absolute;left:50%;bottom:50%;transform-origin:50% 100%;touch-action:none;cursor:grab}
+.hand i{display:block;border-radius:999px;box-shadow:0 6px 16px rgba(18,34,72,.14)}
+.minuteHand{width:18px;height:122px;margin-left:0}
+.minuteHand i{width:6px;height:118px;margin:0 auto;background:linear-gradient(180deg,#2d78db,#174aa1)}
+.minuteHand::after,.hourHand::after{content:'';position:absolute;left:50%;top:8px;transform:translateX(-50%);width:18px;height:18px;border-radius:50%;background:rgba(54,128,233,.15)}
+.hourHand{width:24px;height:92px}
+.hourHand i{width:8px;height:88px;margin:0 auto;background:linear-gradient(180deg,#20bdbf,#137a97)}
+.hourHand::after{top:auto;bottom:6px;background:rgba(32,189,191,.14)}
+.clockCenter{position:absolute;left:50%;top:50%;width:22px;height:22px;border-radius:50%;transform:translate(-50%,-50%);background:#183b73;box-shadow:0 0 0 5px #f2f7ff,0 0 0 7px #bfd3ef}
+.matchArea{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr);gap:12px;align-items:start}
+.matchSvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.matchCol{display:grid;gap:10px;z-index:1}
+.matchCol.left{grid-column:1}.matchCol.right{grid-column:3}
+.matchBtn{min-height:58px;padding:10px 14px;border-radius:16px;border:1px solid #d7e4f4;background:#fff;color:#18366e;font-size:16px;font-weight:900;line-height:1.25;text-align:left;cursor:pointer;box-shadow:0 8px 16px rgba(48,78,129,.06)}
+.matchBtn.selected{border-color:#77b2f3;background:#f1f8ff;box-shadow:0 0 0 3px rgba(85,164,244,.14)}
+.matchBtn.done{border-color:#86ddb1;background:#ecfff4;color:#17854c}
+.matchBtn:hover{transform:translateY(-1px);border-color:#8bbef6}
+.matchPath{fill:none;stroke:#34a2ea;stroke-width:5;stroke-linecap:round;opacity:.95;stroke-dasharray:8 6;animation:dashFlow 3s linear infinite}
+@keyframes dashFlow{to{stroke-dashoffset:-28}}
+.plannerWrap{display:grid;gap:12px;margin-top:12px}
+.plannerGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.planSlot{min-height:92px;border-radius:18px;border:1px solid #d8e4f4;background:linear-gradient(145deg,#f9fcff,#f4f9ff);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;padding:12px 14px;text-align:left;cursor:pointer}
+.planSlot:hover{border-color:#8bbff7;transform:translateY(-1px)}
+.planSlot.filled{background:#edfff4;border-color:#8edeb3}
+.slotTime{font-size:21px;font-weight:950;color:#18356d}
+.slotEvent{font-size:16px;font-weight:900;color:#17854b}
+.slotPlaceholder{font-size:13px;font-weight:800;color:#91a4c6;text-transform:uppercase;letter-spacing:.05em}
+.plannerBank{display:flex;flex-wrap:wrap;gap:10px;padding-top:6px}
+@media (max-width:900px){.clockWrap{grid-template-columns:1fr}.plannerGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.matchArea{grid-template-columns:1fr;}.matchCol.left,.matchCol.right{grid-column:auto}.matchSvg{display:none}}
 
 
-.errorSteps{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 18px}
-.stepPill{padding:8px 14px;border-radius:999px;background:#eef4ff;border:2px solid #d9e6ff;color:#6880ad;font-weight:800;font-size:22px}
-.stepPill.active{background:#f6fbff;border-color:#9ec5ff;color:#2f66d0}
-.errorSentence{display:flex;flex-wrap:wrap;gap:12px;min-height:86px;padding:18px;border:2px solid #9fe0b3;border-radius:24px;background:#f3fff7}
-.errorToken.selected{outline:4px solid #9ec5ff;transform:none}
-.errorToken.correct{background:#dff8e7;border-color:#65d28b;color:#107c44}
-.fixOptions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-.smallAnswer{padding:14px 18px;min-width:120px}
-
-
-/* Unit 5B v2 — Error Hunter stable layout */
-.errorQuestion{display:flex!important;flex-direction:column;min-height:0;overflow:hidden}
-.errorQuestion .prompt{flex:0 0 auto}
-.errorQuestion .subprompt{flex:0 0 auto;margin-bottom:12px}
-.errorWork{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:16px;overflow:hidden}
-.errorSentence{flex:0 0 auto;min-height:92px;display:flex;flex-wrap:wrap;gap:10px;align-content:center;padding:18px 20px;border:2px solid #d7e6f6;border-radius:22px;background:linear-gradient(180deg,#f9fcff,#f4f8ff)}
-.errorSentence.solved{border-color:#65d28b;background:#effff5}
-.errorWord{border:1px solid #d4e3f8;background:#fff;color:#17366d;border-radius:15px;padding:12px 16px;font-size:18px;font-weight:950;cursor:pointer;box-shadow:0 4px 10px rgba(43,70,122,.06);transition:.14s}
-.errorWord:hover:not(:disabled){border-color:#6aaaf0;background:#f2f8ff}
-.errorWord.selected{border-color:#2f91f2;background:#eaf5ff;box-shadow:0 0 0 3px rgba(47,145,242,.16)}
-.errorWord.correct{border-color:#4fce89;background:#eafff1;color:#148749}
-.replacementArea{flex:1 1 auto;min-height:150px;border:1px solid #e1eaf6;border-radius:20px;background:#fbfdff;padding:18px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.replacementArea.show{justify-content:flex-start}
-.replaceHint{font-size:16px;color:#7b8dac;font-weight:800}
-.replaceLabel{font-size:16px;color:#5c7096;font-weight:800;margin-bottom:13px}
-.fixOptions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0}
-.fixChoice{min-height:58px;border-radius:17px;border:1px solid #d9e5f5;background:linear-gradient(180deg,#fff,#f3f8ff);color:#17336b;font-size:18px;font-weight:950;cursor:pointer;padding:10px 14px;transition:.14s}
-.fixChoice:hover{border-color:#76b1f4;background:#eef7ff}
-.fixChoice.wrongFlash{border-color:#ee8090;background:#fff0f2;color:#bd4052;animation:shake .22s linear}
-#errorModel:disabled{opacity:.38;cursor:not-allowed;box-shadow:none}
-.errorQuestion .statusWrap{flex:0 0 auto;margin-top:12px}
+/* Episode 3 fixes: clock blocks */
+.clockQuestion,.challengeQuestion{display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important}
+.clockQuestion .clockWrap,.challengeQuestion .clockWrap{grid-template-columns:minmax(0,260px) minmax(0,1fr);align-items:start;gap:16px;margin-top:14px}
+.clockQuestion .analogClock,.challengeQuestion .analogClock{width:250px;height:250px}
+.clockQuestion .clockNum,.challengeQuestion .clockNum{font-size:18px}
+.clockQuestion .minuteHand,.challengeQuestion .minuteHand{height:106px}.clockQuestion .minuteHand i,.challengeQuestion .minuteHand i{height:102px}
+.clockQuestion .hourHand,.challengeQuestion .hourHand{height:80px}.clockQuestion .hourHand i,.challengeQuestion .hourHand i{height:76px}
+.clockQuestion .builderActions,.challengeQuestion .builderActions{margin-top:14px;padding-top:0}
+.clockQuestion .statusWrap,.challengeQuestion .statusWrap{margin-top:8px}
+.clockQuestion .subprompt,.challengeQuestion .subprompt{max-width:100%;padding-right:4px}
+@media (max-width:1100px){.clockQuestion .clockWrap,.challengeQuestion .clockWrap{grid-template-columns:1fr}.clockQuestion .analogClock,.challengeQuestion .analogClock{width:230px;height:230px}}

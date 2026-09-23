@@ -3,9 +3,9 @@ function fit(){const s=Math.min(innerWidth/BASE_W,innerHeight/BASE_H);document.g
 addEventListener('resize',fit);fit();
 
 const app=document.getElementById('app');
-const STORAGE_KEY='wow_beginner_unit5b_long_flight_v1';
+const STORAGE_KEY='wow_beginner_unit5b_long_flight_v2';
 const SECTIONS=['listen1','vocab','sort','grammar','reading','pron','listen2','error'];
-const LABELS={listen1:'Airport Listening',vocab:'Airport Words',sort:'Travel Sort',grammar:'Sentence Builder',reading:'Reading Mission',pron:'Pronunciation',listen2:'Listening Mission',error:'Error Hunter'};
+const LABELS={listen1:'Travel Essentials',vocab:'Airport Words',sort:'Travel Sort',grammar:'Sentence Builder',reading:'Reading Mission',pron:'Pronunciation',listen2:'Listening Mission',error:'Error Hunter'};
 
 const showroomScript=[
  {text:'Excuse me. Is this seat free?'},
@@ -20,14 +20,14 @@ const showroomScript=[
 
 const data={
  listen1:[
-  {q:'Where are the speakers?',a:'On the plane',o:['On the plane','At home','In a hotel']},
-  {q:'Where is the flight going?',a:'Dubai',o:['Dubai','London','Tokyo']},
-  {q:'Is it a short flight?',a:'No',o:['Yes','No','We do not know']},
-  {q:'Does the passenger usually sleep on long flights?',a:'No',o:['Yes','No','Sometimes']},
-  {q:'What does the passenger do on long flights?',a:'Read and watch films',o:['Read and watch films','Work and cook','Run and swim']},
-  {q:'What does the passenger drink a lot of?',a:'Water',o:['Coffee','Water','Juice']},
-  {q:'Which travel item is mentioned?',a:'Passport',o:['Passport','Umbrella','Keys']},
-  {q:'What food does the passenger have?',a:'A sandwich',o:['A sandwich','Soup','Salad']}
+  {q:'What does “passport” mean?',audio:'passport',a:'паспорт',o:['паспорт','чемодан','наушники']},
+  {q:'What does “boarding pass” mean?',audio:'boarding pass',a:'посадочный талон',o:['посадочный талон','место у окна','выход на посадку']},
+  {q:'What does “suitcase” mean?',audio:'suitcase',a:'чемодан',o:['чемодан','билет','ремень безопасности']},
+  {q:'What does “gate” mean at an airport?',audio:'gate',a:'выход на посадку',o:['выход на посадку','багаж','самолёт']},
+  {q:'What does “headphones” mean?',audio:'headphones',a:'наушники',o:['наушники','паспорт','книга']},
+  {q:'What does “window seat” mean?',audio:'window seat',a:'место у окна',o:['место у окна','место у прохода','стойка регистрации']},
+  {q:'What does “seat belt” mean?',audio:'seat belt',a:'ремень безопасности',o:['ремень безопасности','посадочный талон','чемодан']},
+  {q:'What does “sandwich” mean?',audio:'sandwich',a:'сэндвич',o:['сэндвич','вода','кофе']}
  ],
  vocab:[
   {q:'Listen. Which word do you hear?',audio:'passport',a:'passport',o:['passport','ticket','tablet']},
@@ -44,9 +44,10 @@ const data={
   {q:'Listen. Which word do you hear?',audio:'ticket',a:'ticket',o:['ticket','passport','blanket']}
  ],
  sort:[
-  {w:'passport',c:'DOCUMENTS'},{w:'ticket',c:'DOCUMENTS'},{w:'boarding pass',c:'DOCUMENTS'},{w:'visa',c:'DOCUMENTS'},
-  {w:'gate',c:'AIRPORT PLACES'},{w:'check-in desk',c:'AIRPORT PLACES'},{w:'security',c:'AIRPORT PLACES'},{w:'baggage claim',c:'AIRPORT PLACES'},
-  {w:'headphones',c:'ON THE PLANE'},{w:'seat belt',c:'ON THE PLANE'},{w:'blanket',c:'ON THE PLANE'},{w:'window seat',c:'ON THE PLANE'}
+  {w:'boarding pass',c:'DOCUMENTS'},{w:'headphones',c:'ON THE PLANE'},{w:'gate',c:'AIRPORT PLACES'},
+  {w:'passport',c:'DOCUMENTS'},{w:'seat belt',c:'ON THE PLANE'},{w:'security',c:'AIRPORT PLACES'},
+  {w:'visa',c:'DOCUMENTS'},{w:'blanket',c:'ON THE PLANE'},{w:'check-in desk',c:'AIRPORT PLACES'},
+  {w:'ticket',c:'DOCUMENTS'},{w:'window seat',c:'ON THE PLANE'},{w:'baggage claim',c:'AIRPORT PLACES'}
  ],
  grammar:[
   {cue:'Собери предложение: Я всегда беру паспорт.',tokens:['I','always','take','my','passport.'],audio:'I always take my passport.'},
@@ -168,17 +169,14 @@ function commonQuestionScreen(sec,blockNum,heading,sub,visualHTML,item,total,aud
 }
 
 function start(){
- app.innerHTML=shell(`<div class="hero"><div><div class="heroKicker">Beginner · Unit 5B · English File</div><h1><span>A very long flight</span></h1><p>8 интерактивных блоков: very short airport listening, airport and plane vocabulary, Travel Sort со столбцами, обязательный sentence builder, reading + audio, pronunciation /aɪ/ and /eɪ/, later listening mission и новый экспериментальный блок Error Hunter.</p><div class="heroBtns"><button class="btn primary" id="start">Начать →</button><button class="btn secondary" id="reset">Сбросить прогресс</button></div></div><div class="heroVisual">${heroSlot()}</div></div>`);
+ app.innerHTML=shell(`<div class="hero"><div><div class="heroKicker">Beginner · Unit 5B · English File</div><h1><span>A very long flight</span></h1><p>Аэропорт, багаж, посадка и английский для долгого перелёта. Начнём с простых слов и постепенно перейдём к предложениям, чтению и коротким диалогам.</p><div class="heroBtns"><button class="btn primary" id="start">Начать →</button><button class="btn secondary" id="reset">Сбросить прогресс</button></div></div><div class="heroVisual">${heroSlot()}</div></div>`);
  document.getElementById('start').onclick=()=>{state.screen=1;save();render()};
  document.getElementById('reset').onclick=()=>{if(confirm('Сбросить весь прогресс?')){state=fresh();save();render()}};
 }
 
 function listen1(){
- const sec='listen1',idx=state.idx[sec]||0,item=data.listen1[idx],done=solved(sec,idx),options=orderedOptions(sec,idx,item.o);
- app.innerHTML=shell(`${title(1,'Airport Basics','short and simple dialogue · before a long flight')}<div class="blockBody"><div class="visualCard">${visualSlot('block1-listening.jpg','🎧','Airport Basics','A short and easy airport / plane dialogue','Airport or plane scene')}</div><div class="questionCard"><div class="kicker">Airport basics</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Диалог короткий и простой. Его можно слушать несколько раз.</div><div class="answers">${options.map(o=>`<button class="answer" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Сначала прослушай диалог')}</div>${miniProgress(sec,idx,data.listen1.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('dialogue1','Диалог')}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.listen1.length-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
- document.getElementById('dialogue1').onclick=function(){if(this.classList.contains('busy')){stopAudio();this.classList.remove('busy');this.textContent='▶ Диалог'}else playScript(showroomScript,this,'Диалог')};
- document.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>{if(solved(sec,idx))return;const ok=b.dataset.value===item.a;recordAttempt(sec,idx,ok);if(ok){b.classList.add('correct');document.getElementById('fb').innerHTML=feedback('good','Верно!');document.querySelectorAll('[data-value]').forEach(x=>x.disabled=true);document.getElementById('next').disabled=false}else{b.classList.add('wrongFlash');document.getElementById('fb').innerHTML=feedback('bad','Пока нет. Прослушай ещё раз.');setTimeout(()=>b.classList.remove('wrongFlash'),450)}});
- document.getElementById('next').onclick=()=>{if(idx<data.listen1.length-1){state.idx[sec]=idx+1;save();render()}else{state.screen=2;save();render()}};
+ const sec='listen1',idx=state.idx[sec]||0,item=data.listen1[idx];
+ commonQuestionScreen(sec,1,'Travel Essentials','easy travel words · English → Russian',visualSlot('block1-listening.jpg','🧳','Travel Essentials','Start with simple travel words','Travel essentials: suitcase, passport, headphones and more'),item,data.listen1.length,item.audio,()=>{state.screen=2;save();render()},'Слово');
 }
 
 function vocab(){const sec='vocab',idx=state.idx[sec]||0,item=data.vocab[idx];commonQuestionScreen(sec,2,'Airport Words','passport · boarding pass · gate · suitcase · seat belt',visualSlot('block2-vocabulary.jpg','🧳','Airport Words','Listen and choose the correct travel word','Travel and airport objects'),item,data.vocab.length,item.audio,()=>{state.screen=3;save();render()},'Слово')}
@@ -222,7 +220,7 @@ function pron(){const sec='pron',idx=state.idx[sec]||0,item=data.pron[idx];commo
 
 function listen2(){
  const sec='listen2',idx=state.idx[sec]||0,item=data.listen2.qs[idx],done=solved(sec,idx),script=data.listen2.scripts.find(s=>s.id===item.script),options=orderedOptions(sec,idx,item.o);
- app.innerHTML=shell(`${title(7,'Listening Mission','short airport and plane dialogues')}<div class="blockBody"><div class="visualCard">${visualSlot('block7-listening.jpg','🎧','Listening Mission','Listen for travel details, seat choice, food and drink','Airport or plane listening scene')}</div><div class="questionCard"><div class="kicker">Dialogue ${script.id}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Диалог можно прослушивать несколько раз.</div><div class="answers">${options.map(o=>`<button class="answer" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Сначала прослушай диалог')}</div>${miniProgress(sec,idx,data.listen2.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('listenAudio',`Диалог ${script.id}`)}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.listen2.qs.length-1?'Экспериментальный блок →':'Следующее задание →'}</button></div>`);
+ app.innerHTML=shell(`${title(7,'Listening Mission','short airport and plane dialogues')}<div class="blockBody"><div class="visualCard">${visualSlot('block7-listening.jpg','🎧','Listening Mission','Listen for travel details, seat choice, food and drink','Airport or plane listening scene')}</div><div class="questionCard"><div class="kicker">Dialogue ${script.id}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Диалог можно прослушивать несколько раз.</div><div class="answers">${options.map(o=>`<button class="answer" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Сначала прослушай диалог')}</div>${miniProgress(sec,idx,data.listen2.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('listenAudio',`Диалог ${script.id}`)}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.listen2.qs.length-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
  document.getElementById('listenAudio').onclick=function(){playScript(script.lines,this,`Диалог ${script.id}`)};
  document.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>{if(solved(sec,idx))return;const ok=b.dataset.value===item.a;recordAttempt(sec,idx,ok);if(ok){b.classList.add('correct');document.getElementById('fb').innerHTML=feedback('good','Верно!');document.querySelectorAll('[data-value]').forEach(x=>x.disabled=true);document.getElementById('next').disabled=false}else{b.classList.add('wrongFlash');document.getElementById('fb').innerHTML=feedback('bad','Пока нет. Прослушай ещё раз.');setTimeout(()=>b.classList.remove('wrongFlash'),450)}});
  document.getElementById('next').onclick=()=>{if(idx<data.listen2.qs.length-1){state.idx[sec]=idx+1;save();render()}else{state.screen=8;save();render()}};
@@ -236,14 +234,13 @@ function error(){
  const done=solved(sec,idx);
  if(!state.errorState)state.errorState={selected:null,message:'Найди слово с ошибкой.',fixed:false};
  const es=state.errorState;
- const corrected=item.tokens.map((t,i)=>done&&i===item.err?item.fix:t);
- const steps=`<div class="errorSteps"><span class="stepPill ${es.selected===null&&!done?'active':''}">1 · Найди ошибку</span><span class="stepPill ${es.selected!==null&&!done?'active':''}">2 · Исправь</span><span class="stepPill ${done?'active':''}">3 · Готово</span></div>`;
- app.innerHTML=shell(`${title(8,'Error Hunter','NEW · find the mistake → fix it → hear the correct model')}<div class="blockBody"><div class="visualCard">${visualSlot('block8-experimental.jpg','🕵️','Error Hunter','Find the wrong word and fix the sentence','Learners checking sentences before a flight')}</div><div class="questionCard"><div class="kicker">Error Hunter</div><div class="prompt">Fix the sentence.</div>${steps}<div class="builderWrap"><div class="builderCue">Сначала нажми на слово с ошибкой, затем выбери правильную замену.</div><div class="errorSentence">${corrected.map((t,i)=>`<button class="token errorToken ${done&&i===item.err?'correct':''} ${es.selected===i&&!done?'selected':''}" data-token="${i}" ${done?'disabled':''}>${esc(t)}</button>`).join('')}</div><div class="fixOptions">${item.options.map((o)=>`<button class="answer smallAnswer" data-fix="${esc(o)}" ${(es.selected===null||done)?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="builderActions"><button class="smallBtn" id="clear">Сбросить</button></div></div><div class="statusWrap"><div id="fb">${done?feedback('good','Исправлено!'):feedback('neutral',es.message||'Найди слово с ошибкой.')}</div>${miniProgress(sec,idx,total)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('model','Модель')}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===total-1?'Результаты →':'Следующее задание →'}</button></div>`);
- document.querySelectorAll('[data-token]').forEach(b=>b.onclick=()=>{if(done)return; const i=+b.dataset.token; es.selected=i; es.message='Теперь выбери правильный вариант.'; save(); error();});
- document.querySelectorAll('[data-fix]').forEach(b=>b.onclick=()=>{if(done||es.selected===null)return; const chosen=b.dataset.fix; if(es.selected!==item.err){ recordAttempt(sec,idx,false); es.message='Ошибка не здесь. Попробуй другое слово.'; es.selected=null; save(); error(); return; } const ok=chosen===item.fix; recordAttempt(sec,idx,ok); if(ok){ es.message='Исправлено!'; es.fixed=true; save(); error(); } else { es.message='Не тот вариант. Попробуй ещё раз.'; save(); error(); }});
- document.getElementById('clear').onclick=()=>{state.errorState={selected:null,message:'Найди слово с ошибкой.',fixed:false}; save(); error();};
- document.getElementById('model').onclick=function(){playText(item.audio,this,'▶ Модель')};
- document.getElementById('next').onclick=()=>{state.errorState={selected:null,message:'Найди слово с ошибкой.',fixed:false}; if(idx<total-1){state.idx[sec]=idx+1; save(); render();} else {state.screen=9; save(); render();}};
+ const words=item.tokens.map((t,i)=>done&&i===item.err?item.fix:t);
+ const optionsVisible=!done&&es.selected===item.err;
+ app.innerHTML=shell(`${title(8,'Error Hunter','find the mistake → fix it → hear the correct model')}<div class="blockBody"><div class="visualCard">${visualSlot('block8-experimental.jpg','🕵️','Error Hunter','Find the wrong word and fix the sentence','Learners checking travel sentences')}</div><div class="questionCard errorQuestion"><div class="kicker">Error Hunter</div><div class="prompt">Fix the sentence.</div><div class="subprompt">Нажми на слово с ошибкой. После этого выбери правильную замену.</div><div class="errorWork"><div class="errorSentence ${done?'solved':''}">${words.map((t,i)=>`<button class="errorWord ${done&&i===item.err?'correct':''} ${es.selected===i&&!done?'selected':''}" data-token="${i}" ${done?'disabled':''}>${esc(t)}</button>`).join('')}</div><div class="replacementArea ${optionsVisible?'show':''}">${done?'<div class="replaceHint doneHint">Готово. Правильное предложение можно прослушать ещё раз.</div>':optionsVisible?`<div class="replaceLabel">На что заменить <b>${esc(item.tokens[item.err])}</b>?</div><div class="fixOptions">${item.options.map(o=>`<button class="fixChoice" data-fix="${esc(o)}">${esc(o)}</button>`).join('')}</div>`:'<div class="replaceHint">Выбери слово с ошибкой — варианты замены появятся здесь.</div>'}</div></div><div class="statusWrap"><div id="fb">${done?feedback('good','Исправлено! Правильное предложение уже озвучено.'):feedback('neutral',es.message||'Найди слово с ошибкой.')}</div>${miniProgress(sec,idx,total)}</div></div></div><div class="footerActions"><div class="leftActions"><button class="audioBtn" id="errorModel" ${done?'':'disabled'}>▶ Модель</button><span class="audioMeta">British English · синтез речи</span></div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===total-1?'Результаты →':'Следующее задание →'}</button></div>`);
+ document.querySelectorAll('[data-token]').forEach(b=>b.onclick=()=>{if(done)return; const i=+b.dataset.token; if(i!==item.err){recordAttempt(sec,idx,false);es.selected=null;es.message='Это слово верное. Найди другое.';save();error();return;} es.selected=i;es.message='Верно, ошибка найдена. Теперь выбери правильную замену.';save();error();});
+ document.querySelectorAll('[data-fix]').forEach(b=>b.onclick=()=>{if(done||es.selected!==item.err)return; const chosen=b.dataset.fix; const ok=chosen===item.fix; recordAttempt(sec,idx,ok); if(ok){es.message='Исправлено!';es.fixed=true;save();error();setTimeout(()=>{const btn=document.getElementById('errorModel');playText(item.audio,btn,'▶ Модель')},120);}else{es.message='Не тот вариант. Попробуй ещё раз.';save();document.getElementById('fb').innerHTML=feedback('bad',es.message);b.classList.add('wrongFlash');setTimeout(()=>b.classList.remove('wrongFlash'),450);}});
+ const model=document.getElementById('errorModel'); if(model)model.onclick=function(){if(!done)return;playText(item.audio,this,'▶ Модель')};
+ document.getElementById('next').onclick=()=>{state.errorState={selected:null,message:'Найди слово с ошибкой.',fixed:false};if(idx<total-1){state.idx[sec]=idx+1;save();render()}else{state.screen=9;save();render()}};
 }
 
 function results(){
