@@ -655,3 +655,94 @@ img{display:block;max-width:100%}
 .snapshotQuestion .profileOption b{font-size:14.5px!important}
 .snapshotQuestion .profileOption .profileCopy>span{font-size:10px!important}
 .snapshotQuestion .snapshotCheck{min-height:33px!important;padding:7px 15px!important;font-size:13.5px!important}
+
+/* ===== User-requested final refinements: Block 3 + Block 8 only ===== */
+/* Block 3: restore the original horizontal three-card layout in embeds too. */
+@media(max-width:900px){
+  .routineBuckets{grid-template-columns:repeat(3,1fr)!important}
+  .routineBucket{min-height:145px!important}
+}
+
+/* Block 8: compact profile choices; all controls stay visible without scrolling. */
+.snapshotQuestion{padding:22px 26px 18px!important}
+.snapshotQuestion>.snapshotMain{
+  gap:5px!important;
+  margin-top:4px!important;
+}
+.snapshotQuestion .clueStack{gap:4px!important}
+.snapshotQuestion .clueCard{
+  min-height:37px!important;
+  padding:4px 8px!important;
+  grid-template-columns:24px minmax(0,1fr) 27px!important;
+  gap:7px!important;
+}
+.snapshotQuestion .clueCard>span{width:22px!important;height:22px!important;font-size:12px!important}
+.snapshotQuestion .clueCard b{font-size:13.5px!important;line-height:1.08!important}
+.snapshotQuestion .clueAudio{width:26px!important;height:26px!important}
+.snapshotQuestion .snapshotTools{min-height:28px!important}
+.snapshotQuestion .revealBtn{min-height:28px!important;padding:5px 10px!important;font-size:12.5px!important}
+.snapshotQuestion .profileOptions{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:8px!important;
+  margin:1px 0 0!important;
+}
+.snapshotQuestion .profileOption{
+  min-height:45px!important;
+  height:45px!important;
+  padding:0 11px!important;
+  border-radius:13px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:6px!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+}
+.snapshotQuestion .profileOption b{
+  flex:0 0 auto!important;
+  margin:0!important;
+  font-size:16px!important;
+  line-height:1!important;
+}
+.snapshotQuestion .profileOption .profileMeta{
+  min-width:0!important;
+  display:block!important;
+  font-size:12.5px!important;
+  line-height:1!important;
+  color:#6d80a4!important;
+  font-weight:800!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+.snapshotQuestion .profileOption .profileMeta:before{content:'· ';color:#9aabd0}
+.snapshotQuestion .profileOption.selected .profileMeta{color:#327995!important}
+.snapshotQuestion .snapshotActions{
+  min-height:35px!important;
+  margin-top:0!important;
+  display:flex!important;
+  align-items:center!important;
+}
+.snapshotQuestion .snapshotCheck{
+  min-height:35px!important;
+  height:35px!important;
+  padding:0 16px!important;
+  font-size:13.5px!important;
+  border-radius:12px!important;
+}
+.snapshotQuestion>.statusWrap{
+  margin-top:4px!important;
+  padding-top:5px!important;
+}
+.snapshotQuestion .feedbackBox{min-height:36px!important;padding:7px 11px!important;font-size:13px!important}
+.snapshotQuestion .internalProgress{margin-top:5px!important}
+@media(max-width:900px){
+  .snapshotQuestion .profileOptions{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .snapshotQuestion .profileOption{
+    min-height:45px!important;height:45px!important;
+    display:flex!important;grid-template-columns:none!important;text-align:left!important
+  }
+  .snapshotQuestion .profileAvatar{display:none!important}
+}
