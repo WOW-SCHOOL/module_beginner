@@ -12,3 +12,10 @@ These rules are mandatory for all future Beginner modules.
 8. **One new experimental block per module.** The last learning block should introduce a mechanic not used before, while still practising the unit language.
 9. **Repository structure:** every Beginner unit lives as its own folder in `WOW-SCHOOL/module_beginner`.
 10. **Visual workflow:** first build and test the module without photos, then generate images to exact filenames / ratios, then merge images into the finished archive.
+
+## Iron rule: no clipped text
+- No word, answer, status, button label, or instruction may be visually cropped in any block.
+- Prefer wrapping and a small responsive font reduction before allowing overflow or clipping.
+- Right-side task panels must keep all answer text readable at the fixed 1600×900 module size.
+- Replacement choices in Error Hunter must always show the full replacement word/phrase.
+- Before release, visually inspect every block and the longest-content state of each interactive mechanic.

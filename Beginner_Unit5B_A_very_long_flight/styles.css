@@ -378,3 +378,31 @@ img{display:block;max-width:100%}
 .fixChoice.wrongFlash{border-color:#ee8090;background:#fff0f2;color:#bd4052;animation:shake .22s linear}
 #errorModel:disabled{opacity:.38;cursor:not-allowed;box-shadow:none}
 .errorQuestion .statusWrap{flex:0 0 auto;margin-top:12px}
+
+
+/* WOW SCHOOL universal text-safety rule — never crop task text */
+.questionCard, .questionCard *{min-width:0;box-sizing:border-box}
+.prompt,.subprompt,.answer,.token,.errorWord,.fixChoice,.sortToken,.pairOpenCard,.replaceHint,.replaceLabel,.feedbackBox,.builderCue,.nextBtn,.audioBtn,.smallBtn{
+  overflow-wrap:anywhere;
+  word-break:normal;
+  hyphens:auto;
+}
+.answer,.fixChoice,.errorWord,.token,.sortToken,.pairOpenCard{
+  white-space:normal;
+  height:auto;
+  line-height:1.16;
+}
+.answer{min-height:52px;padding:10px 18px;font-size:clamp(15px,1.06vw,17px)}
+.token,.errorWord{font-size:clamp(14px,1.04vw,17px);padding:10px 13px}
+.fixChoice{min-height:56px;padding:10px 12px;font-size:clamp(14px,1.04vw,17px);display:flex;align-items:center;justify-content:center;text-align:center}
+.fixOptions{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.replacementArea{min-height:0;overflow:auto}
+.replaceHint,.replaceLabel{line-height:1.25}
+.errorSentence{max-height:150px;overflow:auto}
+.statusWrap,.feedbackBox{min-width:0}
+.feedbackBox{white-space:normal;line-height:1.2}
+.nextBtn,.audioBtn,.smallBtn{white-space:normal;line-height:1.12}
+
+/* Compact only when a right-side task has unusually long content. */
+.questionCard .answers:has(.answer:nth-child(5)),
+.questionCard .fixOptions:has(.fixChoice:nth-child(3)){gap:8px}
