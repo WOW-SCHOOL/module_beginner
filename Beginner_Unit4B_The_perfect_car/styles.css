@@ -350,3 +350,80 @@ button:focus-visible,.helperDetails summary:focus-visible{outline:4px solid rgba
 @keyframes wowSuccessPulse{0%{transform:scale(.985)}60%{transform:scale(1.012)}100%{transform:scale(1)}}
 @keyframes wowScreenIn{from{opacity:.72;transform:translateY(5px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.content,.answer.correct,.option.good,.wordChip.good,.memoryCard.matched{animation:none!important}.helperDetails summary,.helperDetails summary:after{transition:none!important}}
+
+/* ===== Unit 4B targeted repair · Garage Sort + Test Drive ===== */
+/* No shake / scale feedback: keep the whole 1600×900 module visually stable. */
+.answer.wrongFlash{animation:none!important;transform:none!important}
+.answer.correct,.option.good,.wordChip.good,.memoryCard.matched{animation:none!important;transform:none!important}
+.content{animation:none!important}
+.answer:hover,.sortChip:hover,.token:hover,.rollBtn:hover,.smallBtn:hover{transform:none!important}
+
+/* Block 3 — a real vertical sorting workspace. */
+.garageSortQuestion{display:flex!important;flex-direction:column!important;overflow:hidden!important}
+.garageSortQuestion .prompt{font-size:31px;margin-top:5px}
+.garageSortQuestion .subprompt{font-size:14px;margin-top:5px}
+.garageSortQuestion .sortWrap{display:grid!important;grid-template-rows:auto auto minmax(0,1fr)!important;gap:9px!important;height:auto!important;flex:1 1 auto!important;min-height:0!important;margin-top:10px}
+.sortBankHead{display:flex;align-items:center;justify-content:space-between;padding:0 3px;color:#315f9f;font-size:11px;font-weight:950;letter-spacing:.11em}
+.sortBankHead span{letter-spacing:0;color:#7b8eae;font-size:12px}
+.garageSortQuestion .sortBank{min-height:76px!important;max-height:92px!important;overflow:auto!important;padding:9px 10px!important;gap:7px!important;border-radius:16px!important;align-content:flex-start!important}
+.garageSortQuestion .sortChip{padding:7px 11px!important;border-radius:13px!important;font-size:14px!important;line-height:1!important;min-height:34px!important;display:inline-flex;align-items:center;justify-content:center}
+.garageSortQuestion .sortChip.selected{background:#eef7ff!important;border-color:#4f9dec!important;box-shadow:0 0 0 3px rgba(47,145,242,.14)!important}
+.garageSortQuestion .sortColumns{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:minmax(0,1fr)!important;gap:9px!important;min-height:0!important;margin-top:0!important}
+.garageSortQuestion .sortCol{height:100%!important;min-height:0!important;padding:10px!important;border-radius:18px!important;border:1.5px dashed #bdd3ee!important;overflow:hidden!important;transition:border-color .12s,background .12s,box-shadow .12s}
+.garageSortQuestion .sortCol.awaiting{border-color:#8dbcf1!important;background:linear-gradient(180deg,#fbfdff,#eef7ff)!important;cursor:pointer}
+.garageSortQuestion .sortCol.hot{border-color:#2f91f2!important;background:#eef7ff!important;box-shadow:inset 0 0 0 2px rgba(47,145,242,.12)!important}
+.sortColHead{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:7px;align-items:start;padding-bottom:8px;border-bottom:1px solid #e3ebf6}
+.sortColIcon{width:32px;height:32px;display:grid;place-items:center;border-radius:11px;background:#fff;border:1px solid #e1eaf6;font-size:17px}
+.garageSortQuestion .sortCol h3{font-size:12px!important;line-height:1.05!important;margin:2px 0 2px!important;letter-spacing:.07em!important;color:#2e70bd!important}
+.sortColHead small{display:block;color:#8a9ab5;font-size:9.5px;line-height:1.15;font-weight:800}
+.sortColHead b{min-width:28px;height:24px;border-radius:999px;background:#edf4ff;color:#54749f;font-size:10px;display:grid;place-items:center}
+.garageSortQuestion .sortDrop{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;gap:6px!important;overflow:auto!important;padding-top:8px!important;align-content:stretch!important;min-height:0!important}
+.garageSortQuestion .sortDrop .sortChip.good{width:100%!important;flex:0 0 auto!important;background:#ebfff3!important;border-color:#83dcb0!important;color:#14854c!important;cursor:default!important}
+.dropPlaceholder{min-height:66px;flex:1;display:grid;place-items:center;text-align:center;border-radius:13px;border:1px dashed #d6e3f2;color:#9aabc4;font-size:11px;font-weight:850;padding:8px}
+.sortCol.awaiting .dropPlaceholder{color:#397fce;border-color:#9fc6f1;background:rgba(255,255,255,.72)}
+.sortComplete{width:100%;height:54px;display:grid;place-items:center;color:#17894e;font-weight:950}
+.garageSortQuestion>.statusWrap{margin-top:8px!important;padding-top:7px!important;flex:0 0 auto!important}
+.garageSortQuestion .feedbackBox{min-height:38px!important;padding:7px 11px!important}
+.garageSortQuestion .internalProgress{margin-top:7px!important}
+
+/* Block 8 — full game board, separated controls, no overlaps. */
+.driveGame{flex:1;min-height:0;display:grid;grid-template-columns:43% 57%;gap:16px;margin-top:10px}
+.driveBoard,.driveChallenge{min-height:0;height:100%;overflow:hidden}
+.driveBoard{padding:14px!important;border-radius:24px!important;background:linear-gradient(145deg,#edf7ff,#f6f2ff)!important;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto!important;gap:11px!important}
+.driveBoardHead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.driveBoardHead strong{display:block;margin-top:2px;color:#17366f;font-size:18px;line-height:1.1}
+.driveEyebrow{display:block;color:#2f8cf2;font-size:10px;font-weight:1000;letter-spacing:.13em;text-transform:uppercase}
+.routeProgress{padding:7px 10px;border-radius:999px;background:#fff;border:1px solid #dce7f5;color:#687da1;font-size:10px;font-weight:900;white-space:nowrap}
+.driveBoard .road{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:repeat(4,minmax(0,1fr))!important;gap:7px!important;min-height:0!important;overflow:visible!important}
+.driveBoard .roadCell{min-width:0!important;min-height:0!important;border-radius:14px!important;font-size:12px!important;position:relative!important;background:rgba(255,255,255,.94)!important;box-shadow:0 5px 12px rgba(40,74,130,.055)!important}
+.driveBoard .roadCell.start{background:#eef9ff!important;color:#2089cc!important}
+.driveBoard .roadCell.finish{background:#eafff3!important;color:#168a50!important}
+.driveBoard .roadCell.current{border-color:#6d9ff5!important;box-shadow:0 0 0 3px rgba(86,137,239,.15),0 8px 18px rgba(40,74,130,.08)!important}
+.roadNumber{font-size:10px;font-weight:950;letter-spacing:.04em}
+.driveBoard .carToken{font-size:25px!important;position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;animation:none!important;filter:drop-shadow(0 3px 4px rgba(0,0,0,.15))}
+.dicePanel{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:11px;align-items:center;padding:10px;border-radius:18px;background:rgba(255,255,255,.86);border:1px solid #dfe8f5}
+.diceFace{width:62px;height:58px;border-radius:15px;background:linear-gradient(145deg,#8055ef,#3995f2);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(80,87,190,.17)}
+.diceFace span{font-size:31px;line-height:.8}.diceFace small{font-size:8px;font-weight:950;letter-spacing:.08em;margin-top:5px}
+.diceCopy strong{display:block;color:#17366f;font-size:13px}.diceCopy span{display:block;margin-top:2px;color:#7b8ca9;font-size:10px;font-weight:750}
+.driveGame .rollBtn{padding:10px 13px!important;border-radius:14px!important;font-size:12px!important;white-space:nowrap!important}
+.driveChallenge{padding:15px 17px!important;border-radius:24px!important;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto!important;gap:10px!important;background:#fff!important}
+.checkpointTop{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding-bottom:8px;border-bottom:1px solid #edf2f8}
+.checkpointTitle{margin-top:5px;color:#10275f;font-size:22px;font-weight:1000;line-height:1.12;letter-spacing:-.3px}
+.checkpointFlag{width:44px;height:44px;border-radius:15px;background:linear-gradient(145deg,#f1f7ff,#f5efff);display:grid;place-items:center;font-size:23px;flex:0 0 auto}
+.sentenceStage{min-height:0;display:grid;grid-template-rows:auto minmax(62px,auto) auto minmax(0,1fr) auto;gap:7px}
+.stageLabel{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#3c70b4;font-size:10px;font-weight:1000;letter-spacing:.1em}
+.stageLabel small{color:#9aa8bf;font-size:9px;letter-spacing:0;font-weight:750}
+.tokensLabel{margin-top:2px}
+.driveAnswer{min-height:62px!important;max-height:84px!important;overflow:auto!important;border-radius:16px!important;border:1.5px solid #cbdff4!important;background:linear-gradient(180deg,#fff,#f8fbff)!important;display:flex!important;gap:7px!important;align-items:center!important;align-content:center!important;flex-wrap:wrap!important;padding:10px!important;margin:0!important}
+.answerPlaceholder{color:#96a8c3;font-size:12px;font-weight:800}
+.driveTokens{min-height:0!important;overflow:auto!important;display:flex!important;align-content:flex-start!important;flex-wrap:wrap!important;gap:7px!important;padding:7px!important;border-radius:16px;background:#f6f9ff;border:1px solid #e0e9f6}
+.driveChallenge .token{padding:8px 11px!important;border-radius:12px!important;font-size:14px!important;line-height:1!important;min-height:34px!important}
+.driveChallenge .token.answerToken{background:#eef7ff!important;border-color:#8ebff0!important}
+.driveActions{display:flex;justify-content:flex-end;gap:8px;padding-top:1px}
+.driveActions .smallBtn{padding:9px 13px!important;border-radius:13px!important;font-size:12px!important}
+.driveActions .smallBtn:disabled{opacity:.4;cursor:not-allowed}
+.driveStatus{min-height:0}
+.driveStatus .feedbackBox{min-height:38px!important;padding:7px 11px!important}
+.driveStatus .internalProgress{margin-top:7px!important}
+.driveFinish{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-radius:20px;background:linear-gradient(145deg,#effff6,#f5f2ff);border:1px solid #dceadf}
+.driveFinish>span{font-size:46px}.driveFinish strong{font-size:24px;color:#168a50;margin-top:7px}.driveFinish p{margin:6px 0 0;color:#7183a1;font-weight:750;font-size:13px}

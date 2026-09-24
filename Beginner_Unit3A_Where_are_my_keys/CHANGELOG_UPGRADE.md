@@ -29,3 +29,14 @@
 ### Safe visual polish
 
 Только локальный Level B: состояния существующих интерактивных элементов, клавиатурный focus, короткая реакция на правильный ответ, мягкий entrance и аккуратное раскрытие новых helpers. Structural redesign не выполнялся.
+
+## Local fix · 2026-09-24
+- corrected `preview.png` so the module card shows the branded intro preview instead of a mismatched image;
+- forced the module to open from the intro / welcome slide on load;
+- removed the success-pulse / screen-in animations that caused slight shaking / flicker after a correct answer;
+- kept existing content, visuals, and task logic unchanged.
+
+## Targeted repair · preview / welcome / stability
+- Module now always opens on the welcome slide, while saved answers remain stored.
+- Added a new unique preview filename (`preview-unit3a-v2.png`) and updated OG/Twitter/oEmbed references to bypass cached wrong thumbnails.
+- Removed shake/scale feedback and transform-based interaction movement that could make the whole module look like it was trembling after an answer.

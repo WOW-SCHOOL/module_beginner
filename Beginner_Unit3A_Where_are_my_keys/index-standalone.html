@@ -15,14 +15,14 @@
   <meta property="og:site_name" content="WOW SCHOOL" />
   <meta property="og:title" content="WOW SCHOOL · Beginner · Unit 3A · Where are my keys?" />
   <meta property="og:description" content="Interactive review module: small things, singular and plural nouns, a/an, plural endings, reading and listening." />
-  <meta property="og:image" content="https://wow-school.github.io/module_beginner/Beginner_Unit3A_Where_are_my_keys/preview.png" />
-  <meta property="og:image:secure_url" content="https://wow-school.github.io/module_beginner/Beginner_Unit3A_Where_are_my_keys/preview.png" />
+  <meta property="og:image" content="https://wow-school.github.io/module_beginner/Beginner_Unit3A_Where_are_my_keys/preview-unit3a-v2.png?v=2" />
+  <meta property="og:image:secure_url" content="https://wow-school.github.io/module_beginner/Beginner_Unit3A_Where_are_my_keys/preview-unit3a-v2.png?v=2" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1600" />
   <meta property="og:image:height" content="900" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="WOW SCHOOL · Beginner · Unit 3A · Where are my keys?" />
-  <meta name="twitter:image" content="https://wow-school.github.io/module_beginner/Beginner_Unit3A_Where_are_my_keys/preview.png" />
+  <meta name="twitter:image" content="https://wow-school.github.io/module_beginner/Beginner_Unit3A_Where_are_my_keys/preview-unit3a-v2.png?v=2" />
   <link rel="alternate" type="application/json+oembed" href="https://wow-school.github.io/module_beginner/Beginner_Unit3A_Where_are_my_keys/oembed.json" />
 
   <title>WOW SCHOOL · Beginner · Unit 3A · Where are my keys?</title>
@@ -203,6 +203,14 @@ button:focus-visible,.helperDetails summary:focus-visible{outline:4px solid rgba
 @keyframes wowSuccessPulse{0%{transform:scale(.985)}60%{transform:scale(1.012)}100%{transform:scale(1)}}
 @keyframes wowScreenIn{from{opacity:.72;transform:translateY(5px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.content,.answer.correct,.option.good,.wordChip.good,.memoryCard.matched{animation:none!important}.helperDetails summary,.helperDetails summary:after{transition:none!important}}
+
+/* Unit 3A stability repair — no shake / scale / full-module flicker. */
+.answer,.option,.wordChip,.memoryCard,.audioBtn,.nextBtn,.ghostBtn,.btn{transform:none!important}
+.answer:hover:not(:disabled),.option:hover:not(:disabled),.wordChip:hover:not(:disabled),.memoryCard:hover:not(:disabled),.audioBtn:hover:not(:disabled),.nextBtn:hover:not(:disabled),.ghostBtn:hover:not(:disabled),.btn:hover:not(:disabled){transform:none!important}
+.answer:active:not(:disabled),.option:active:not(:disabled),.wordChip:active:not(:disabled),.memoryCard:active:not(:disabled),.audioBtn:active:not(:disabled),.nextBtn:active:not(:disabled),.ghostBtn:active:not(:disabled),.btn:active:not(:disabled){transform:none!important}
+.answer.wrongFlash,.answer.correct,.option.good,.wordChip.good,.memoryCard.matched{animation:none!important;transform:none!important}
+.content,.shell,.app,#fit{animation:none!important}
+
 </style>
 </head>
 <body>
@@ -411,6 +419,8 @@ const MAX={vocab:data.vocab.length,grammar:data.grammar.length,sounds:data.sound
 const fresh=()=>({screen:0,idx:{vocab:0,grammar:0,bag:0,reading:0,listening:0},answers:{vocab:{},grammar:{},sounds:{},bag:{},reading:{},memory:{},listening:{}},selectedSort:null,sortOrder:null,memoryOrder:null,memoryOpen:[],memoryMoves:0});
 let state=fresh();
 try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY));if(s&&s.answers)state={...fresh(),...s,idx:{...fresh().idx,...(s.idx||{})},answers:{...fresh().answers,...s.answers}}}catch(e){}
+// Always open on the welcome slide; keep saved answers/progress in the background.
+state.screen=0;
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
 function esc(x){return String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function solved(sec,i){return !!state.answers[sec]?.[i]?.solved}

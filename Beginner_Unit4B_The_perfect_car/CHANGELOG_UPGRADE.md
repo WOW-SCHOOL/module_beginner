@@ -29,3 +29,11 @@
 ### Safe visual polish
 
 Только локальный Level B: состояния существующих интерактивных элементов, клавиатурный focus, короткая реакция на правильный ответ, мягкий entrance и аккуратное раскрытие новых helpers. Structural redesign не выполнялся.
+
+## Targeted repair · Garage Sort + Test Drive
+- Block 3 rebuilt as a readable vertical sorting workspace with three tall category columns.
+- Word cards now start in a deliberately mixed order instead of grouped by category.
+- Selected-card and drop-target states made explicit; wrong category keeps the card selected for another try.
+- Block 8 rebuilt as a full two-panel game: route + dice on the left, checkpoint sentence builder on the right.
+- Added explicit Clear / Check controls; removed auto-check jump and overlapping compact layout.
+- Removed shake/scale feedback from answer states so the 1600×900 module remains visually stable.
