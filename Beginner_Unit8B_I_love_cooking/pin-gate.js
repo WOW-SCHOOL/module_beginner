@@ -3,9 +3,16 @@
   if (!PIN) return;
 
   const SESSION_KEY = 'wow_module_pin_access:' + location.pathname;
-  try {
-    if (sessionStorage.getItem(SESSION_KEY) === PIN) return;
-  } catch (_) {}
+  // In a normal browser tab, remember access for the current tab session.
+  // Inside Holst / any iframe, always show the PIN gate when the module is loaded.
+  let IS_EMBEDDED = true;
+  try { IS_EMBEDDED = window.self !== window.top; } catch (_) { IS_EMBEDDED = true; }
+
+  if (!IS_EMBEDDED) {
+    try {
+      if (sessionStorage.getItem(SESSION_KEY) === PIN) return;
+    } catch (_) {}
+  }
 
   const style = document.createElement('style');
   style.textContent = `
@@ -53,7 +60,11 @@
   const error = gate.querySelector('#wowPinError');
 
   const unlock = () => {
-    try { sessionStorage.setItem(SESSION_KEY, PIN); } catch (_) {}
+    // Preserve the old behaviour in a normal browser tab.
+    // Do not persist iframe access, so Holst cannot silently bypass the PIN gate.
+    if (!IS_EMBEDDED) {
+      try { sessionStorage.setItem(SESSION_KEY, PIN); } catch (_) {}
+    }
     gate.classList.add('success');
     setTimeout(() => gate.remove(), 230);
   };
