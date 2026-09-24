@@ -28,3 +28,10 @@ The initial archive is intentionally prepared **without final lesson photography
 
 ## Base canvas
 1600×900, scaled proportionally with `fit`.
+
+## Upgrade v4 retrofit
+
+- Подключён текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` → `pin-gate.js` → `app.js`), PIN `1020`.
+- Добавлены favicon WS и отдельный безопасный слой `upgrade-v4.js`.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS не переписывались.
+- 8 blocks; native hint/transcript and QA shortcuts preserved.

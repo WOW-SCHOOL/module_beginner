@@ -37,3 +37,10 @@ To change it, edit only `PIN_CODE.js`.
 
 ## GitHub Pages folder
 `Beginner_Episode4_Whats_the_date`
+
+## Upgrade v4 retrofit
+
+- Подключён текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` → `pin-gate.js` → `app.js`), PIN `1020`.
+- Добавлены favicon WS и отдельный безопасный слой `upgrade-v4.js`.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS не переписывались.
+- 8 blocks; current native helpers/transcript/QA preserved.

@@ -37,3 +37,10 @@ This archive is ready **without final generated images**. Place final images int
 
 ## Audio
 The module uses short British-English synthesis for stable playback. Listening and reading are split into short chunks.
+
+## Upgrade v4 retrofit
+
+- Подключён текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` → `pin-gate.js` → `app.js`), PIN `1020`.
+- Добавлены favicon WS и отдельный безопасный слой `upgrade-v4.js`.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS не переписывались.
+- 7 blocks; family transcript added from existing script lines.

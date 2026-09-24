@@ -22,3 +22,10 @@ A full interactive module for the `module_beginner` repository.
 Upload the folder `Beginner_Unit4B_The_perfect_car/` to the root of `WOW-SCHOOL/module_beginner`.
 Expected URL:
 `https://wow-school.github.io/module_beginner/Beginner_Unit4B_The_perfect_car/`
+
+## Upgrade v4 retrofit
+
+- Подключён текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` → `pin-gate.js` → `app.js`), PIN `1020`.
+- Добавлены favicon WS и отдельный безопасный слой `upgrade-v4.js`.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS не переписывались.
+- 8 blocks; final listening transcript added from existing scripts.

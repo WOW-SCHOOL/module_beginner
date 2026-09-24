@@ -47,3 +47,10 @@ This build intentionally contains **no lesson photographs**. Abstract in-module 
 
 ## Final visuals
 All generated Unit 3A visuals are inserted into the start screen and lesson blocks. Images use rounded containers and safe fit rules.
+
+## Upgrade v4 retrofit
+
+- Подключён текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` → `pin-gate.js` → `app.js`), PIN `1020`.
+- Добавлены favicon WS и отдельный безопасный слой `upgrade-v4.js`.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS не переписывались.
+- 7 blocks; transcript added from existing data.listening.scripts.

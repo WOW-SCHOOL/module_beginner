@@ -24,3 +24,10 @@ This module deliberately avoids beginning with a long unseen listening. Listenin
 
 ## Images
 The archive is ready without final photography. Generate images using `IMAGE_PROMPTS.md`, then place them in `assets/images/` using the exact filenames in `VISUAL_MANIFEST.json`.
+
+## Upgrade v4 retrofit
+
+- Подключён текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` → `pin-gate.js` → `app.js`), PIN `1020`.
+- Добавлены favicon WS и отдельный безопасный слой `upgrade-v4.js`.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS не переписывались.
+- 8 blocks; existing interview transcript preserved.

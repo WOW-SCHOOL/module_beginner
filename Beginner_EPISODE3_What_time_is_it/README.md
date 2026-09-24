@@ -28,3 +28,10 @@ The main experiment in this module is **visual work with the clock face itself**
 
 ## Images
 This archive is ready **without final generated images**. Generate visuals using `IMAGE_PROMPTS.md`, then place them into `assets/images/` according to `VISUAL_MANIFEST.json`.
+
+## Upgrade v4 retrofit
+
+- Подключён текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` → `pin-gate.js` → `app.js`), PIN `1020`.
+- Добавлены favicon WS и отдельный безопасный слой `upgrade-v4.js`.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS не переписывались.
+- 8 blocks; existing Rob transcript preserved.

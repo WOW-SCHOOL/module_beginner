@@ -32,3 +32,10 @@
 
 Ожидаемый URL:
 `https://wow-school.github.io/module_beginner/Beginner_Unit6A_A_school_reunion/`
+
+## Upgrade v4 retrofit
+
+- Подключён текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` → `pin-gate.js` → `app.js`), PIN `1020`.
+- Добавлены favicon WS и отдельный безопасный слой `upgrade-v4.js`.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS не переписывались.
+- 8 blocks; existing hints/transcript/QA preserved.

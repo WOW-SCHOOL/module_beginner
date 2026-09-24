@@ -55,3 +55,9 @@ window.WOW_MODULE_PIN = "5678";
 
 Больше ничего в коде менять не нужно. После изменения файла загрузите обновлённый `PIN_CODE.js` в GitHub вместе с модулем. Доступ запоминается только на текущую сессию вкладки; после закрытия вкладки PIN потребуется снова.
 
+## Upgrade v4 retrofit
+
+- Подключён текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` → `pin-gate.js` → `app.js`), PIN `1020`.
+- Добавлены favicon WS и отдельный безопасный слой `upgrade-v4.js`.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS не переписывались.
+- 8 blocks; existing hints/transcript/QA/PIN logic preserved but gate files refreshed.
