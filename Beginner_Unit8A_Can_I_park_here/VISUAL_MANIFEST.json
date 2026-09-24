@@ -1,0 +1,14 @@
+{
+  "preview": "assets/images/preview-unit8a.jpg",
+  "blocks": [
+    "assets/images/block1-lexicon.jpg",
+    "assets/images/block2-signs.jpg",
+    "assets/images/block3-barrier.jpg",
+    "assets/images/block4-builder.jpg",
+    "assets/images/block5-sound.jpg",
+    "assets/images/block6-places.jpg",
+    "assets/images/block7-driving.jpg",
+    "assets/images/block8-citymap.jpg"
+  ],
+  "favicon": "assets/ws-favicon.png"
+}
