@@ -3,7 +3,7 @@ function fit(){const s=Math.min(innerWidth/BASE_W,innerHeight/BASE_H);document.g
 addEventListener('resize',fit);fit();
 
 const app=document.getElementById('app');
-const STORAGE_KEY='wow_beginner_episode3_time_v1';
+const STORAGE_KEY='wow_beginner_episode3_time_v2';
 const SECTIONS=['clock','match','dialog','builder','scene','pron','planner','challenge'];
 const LABELS={
   clock:'Clock Setter',
@@ -43,7 +43,7 @@ const data={
     {script:['Rob: Excuse me. What time is it?','Woman: It\'s a quarter to eight. What time\'s your train?','Rob: At seven forty-seven.','Woman: You need to hurry! You only have two minutes.','Rob: Thanks. Oh no!'],q:'What time is Rob\'s train?',a:'7:47',o:['7:47','7:15','8:00']},
     {script:['Rob: Excuse me. What time is it?','Woman: It\'s a quarter to eight.','Woman: You need to hurry! You only have two minutes.'],q:'How many minutes does Rob have?',a:'Two minutes',o:['Two minutes','Ten minutes','An hour']},
     {script:['Rob: Hello. I\'m Rob Walker. I\'m sorry I\'m late.','Man: You\'re an hour late. It\'s half past ten.','Rob: I know. I\'m really sorry.'],q:'Is Rob late or early?',a:'Late',o:['Late','Early','On time']},
-    {script:['Rob: Hello. I\'m Rob Walker. I\'m sorry I\'m late.','Man: You\'re an hour late. It\'s half past ten.'],q:'What time is the meeting scene?',a:'Half past ten',o:['Half past ten','Quarter past ten','Ten o\'clock']}
+    {script:['Rob: Hello. I\'m Rob Walker. I\'m sorry I\'m late.','Man: You\'re an hour late. It\'s half past ten.'],q:'What time is it in the meeting scene?',a:'Half past ten',o:['Half past ten','A quarter past ten','Ten o\'clock']}
   ],
   builder:[
     {cue:'Собери: Который час?',tokens:['What','time','is','it?'],audio:'What time is it?'},
@@ -67,20 +67,20 @@ const data={
     ],
     qs:[
       {q:'Who is late?',a:'Amy',o:['Amy','Jenny','Rob']},
-      {q:'What time is the show?',a:'At eight o\'clock',o:['At eight o\'clock','At seven o\'clock','At quarter to eight']},
-      {q:'What time is it now before the show?',a:'Twenty to eight',o:['Twenty to eight','Quarter past eight','Half past seven']},
+      {q:'What time is the show?',a:'At eight o\'clock',o:['At eight o\'clock','At seven o\'clock','At a quarter to eight']},
+      {q:'What time is it now?',a:'Twenty to eight',o:['Twenty to eight','A quarter past eight','Half past seven']},
       {q:'How does Amy feel after the show?',a:'Tired',o:['Tired','Angry','Cold']},
-      {q:'What else is Amy after the show?',a:'Hungry',o:['Hungry','Thirsty','Hot']},
-      {q:'Where do Amy and Jenny go?',a:'To an Italian restaurant',o:['To an Italian restaurant','To the station','Home']}
+      {q:'How else does Amy feel after the show?',a:'Hungry',o:['Hungry','Thirsty','Hot']},
+      {q:'Where do Amy and Jenny decide to go?',a:'To an Italian restaurant',o:['To an Italian restaurant','To the station','Home']}
     ]
   },
   pron:[
-    {q:'Listen. Which time do you hear?',audio:'It\'s twenty to nine.',a:'It\'s twenty to nine.',o:["It\'s twenty to nine.","It\'s twenty past nine.","It\'s quarter to nine."]},
-    {q:'Listen. Which time do you hear?',audio:'It\'s quarter past seven.',a:'It\'s quarter past seven.',o:["It\'s quarter to seven.","It\'s quarter past seven.","It\'s half past seven."]},
+    {q:'Listen. Which time do you hear?',audio:'It\'s twenty to nine.',a:'It\'s twenty to nine.',o:["It\'s twenty to nine.","It\'s twenty past nine.","It\'s a quarter to nine."]},
+    {q:'Listen. Which time do you hear?',audio:'It\'s a quarter past seven.',a:'It\'s a quarter past seven.',o:["It\'s a quarter to seven.","It\'s a quarter past seven.","It\'s half past seven."]},
     {q:'Listen. Which time do you hear?',audio:'It\'s five past two.',a:'It\'s five past two.',o:["It\'s five to two.","It\'s five past two.","It\'s ten past two."]},
     {q:'Listen. Which time do you hear?',audio:'It\'s twelve o\'clock.',a:'It\'s twelve o\'clock.',o:["It\'s twelve o\'clock.","It\'s two o\'clock.","It\'s half past twelve."]},
     {q:'Listen. Which time do you hear?',audio:'It\'s half past eight.',a:'It\'s half past eight.',o:["It\'s eight o\'clock.","It\'s half past eight.","It\'s a quarter past eight."]},
-    {q:'Listen. Which time do you hear?',audio:'It\'s quarter past eleven.',a:'It\'s quarter past eleven.',o:["It\'s quarter to eleven.","It\'s quarter past eleven.","It\'s half past eleven."]},
+    {q:'Listen. Which time do you hear?',audio:'It\'s a quarter past eleven.',a:'It\'s a quarter past eleven.',o:["It\'s a quarter to eleven.","It\'s a quarter past eleven.","It\'s half past eleven."]},
     {q:'Listen. Which phrase do you hear?',audio:'What time is it?',a:'What time is it?',o:['What time is it?','What time\'s your train?','What time\'s breakfast?']},
     {q:'Listen. Which phrase do you hear?',audio:'Sorry, I\'m late.',a:'Sorry, I\'m late.',o:['Sorry, I\'m late.','Sorry, I\'m tired.','Sorry, I\'m hungry.']}
   ],
@@ -93,10 +93,10 @@ const data={
     {event:'English class',time:'6:15'}
   ],
   challenge:[
-    {audio:'It\'s eleven o\'clock.',support:'It\'s eleven o\'clock.',minutes:330},
+    {audio:'It\'s eleven o\'clock.',support:'It\'s eleven o\'clock.',minutes:660},
     {audio:'It\'s a quarter to eight.',support:'It\'s a quarter to eight.',minutes:465},
     {audio:'It\'s half past ten.',support:'It\'s half past ten.',minutes:630},
-    {audio:'It\'s quarter past seven.',support:'It\'s a quarter past seven.',minutes:435},
+    {audio:'It\'s a quarter past seven.',support:'It\'s a quarter past seven.',minutes:435},
     {audio:'It\'s twenty to nine.',support:'It\'s twenty to nine.',minutes:520},
     {audio:'It\'s five past two.',support:'It\'s five past two.',minutes:125}
   ]
@@ -159,7 +159,7 @@ function playUrl(url,token){return new Promise((resolve,reject)=>{if(token!==pla
 async function playChunk(text,token){let err=null;for(const url of providerUrls(text)){try{await playUrl(url,token);return}catch(e){err=e}}throw err||new Error('audio unavailable')}
 async function playSequence(texts,btn,idle='▶ Прослушать'){stopAudio();const token=++playToken;btn?.classList.add('busy');if(btn)btn.textContent='■ Стоп';try{for(const t of texts){if(token!==playToken)return;await playChunk(t,token)}if(token===playToken){btn?.classList.remove('busy');if(btn)btn.textContent=idle}}catch(e){if(token===playToken){btn?.classList.remove('busy');btn?.classList.add('error');if(btn)btn.textContent='Аудио недоступно';setTimeout(()=>{btn?.classList.remove('error');if(btn)btn.textContent=idle},2200)}}}
 function playText(text,btn,idle='▶ Прослушать'){return playSequence(splitTTS(text),btn,idle)}
-function playScript(lines,btn,label='Диалог'){return playSequence(lines.flatMap(x=>splitTTS(x,110)),btn,`▶ ${label}`)}
+function playScript(lines,btn,label='Диалог'){const clean=lines.map(x=>String(x).replace(/^[^:]{1,32}:\s*/,''));return playSequence(clean.flatMap(x=>splitTTS(x,110)),btn,`▶ ${label}`)}
 function audioBtn(id,label='Прослушать'){return `<button class="audioBtn" id="${id}">▶ ${label}</button><span class="audioMeta">British English · синтез речи</span>`}
 
 function slotFallback(icon,titleTxt,caption){return `<div class="slotFallback"><div><div class="slotIcon">${icon}</div><strong>${esc(titleTxt)}</strong><span>${esc(caption)}</span><small>изображение добавим отдельным этапом</small></div></div>`}
@@ -176,12 +176,12 @@ function commonQuestionScreen(sec,blockNum,heading,sub,visualHTML,item,total,aud
 }
 
 function start(){
-  app.innerHTML=shell(`<div class="hero"><div><div class="heroKicker">Beginner · English File · Practical English</div><h1><span>Episode 3: What time is it?</span></h1><p>8 интерактивных блоков с акцентом на время: ученик двигает стрелки часов, соединяет English ↔ Russian, читает короткие диалоги, собирает фразы, работает с расписанием и тренирует понимание времени на слух.</p><div class="heroBtns"><button class="btn primary" id="start">Начать →</button><button class="btn secondary" id="reset">Сбросить прогресс</button></div></div><div class="heroVisual">${heroSlot()}</div></div>`);
+  app.innerHTML=shell(`<div class="hero"><div><div class="heroKicker">Beginner · English File · Practical English</div><h1><span>Episode 3: What time is it?</span></h1><p>8 интерактивных блоков с акцентом на время: двигай стрелки часов, соединяй English ↔ Russian, слушай короткие диалоги, собирай фразы, работай с расписанием и тренируй понимание времени на слух.</p><div class="heroBtns"><button class="btn primary" id="start">Начать →</button><button class="btn secondary" id="reset">Сбросить прогресс</button></div></div><div class="heroVisual">${heroSlot()}</div></div>`);
   document.getElementById('start').onclick=()=>{state.screen=1;save();render()};
   document.getElementById('reset').onclick=()=>{localStorage.removeItem(STORAGE_KEY);state=fresh();render()};
 }
 
-function shuffleTokens(arr,seed){const out=arr.map((t,i)=>({t,i}));for(let i=out.length-1;i>0;i--){const j=(seed*7+i*3)%(i+1);[out[i],out[j]]=[out[j],out[i]]}return out}
+function shuffleTokens(arr,seed){const out=arr.map((t,i)=>({t,i}));for(let i=out.length-1;i>0;i--){const j=(seed*7+i*3)%(i+1);[out[i],out[j]]=[out[j],out[i]]}if(out.length>1&&out.every((x,i)=>x.i===i)){out.push(out.shift())}return out}
 function angleDelta(a,b){let d=Math.abs(((a-b+540)%360)-180);return d}
 function targetAngles(minutes){const mins=((minutes%60)+60)%60;const hour=Math.floor(minutes/60)%12;return {m:mins*6,h:hour*30+mins*0.5}}
 function getClockPose(sec,idx){if(!state.clockHands[sec])state.clockHands[sec]={};if(!state.clockHands[sec][idx])state.clockHands[sec][idx]={h:0,m:0};return state.clockHands[sec][idx]}
@@ -222,8 +222,8 @@ const matchRightOrder=[5,0,6,1,7,2,4,3];
 function pairMatch(){
   const sec='match',total=data.match.length,doneCount=Object.values(state.answers.match||{}).filter(x=>x.solved).length;
   const msg=state.flash.match|| (doneCount===total?feedback('good','Все пары найдены!'):feedback('neutral','Нажми на English слева и на соответствующий перевод справа.'));
-  app.innerHTML=shell(`${title(2,'Time Match','English left · Russian right · connect the pair')}<div class="blockBody"><div class="visualCard">${visualSlot('block2-time-match.jpg','🔗','Time Match','Connect English phrases to Russian translations','Pair matching scene')}</div><div class="questionCard matchQuestion"><div class="kicker">TIME MATCH</div><div class="prompt">Find all 8 pairs.</div><div class="subprompt">English — слева, Russian — справа. После правильной пары появляется соединение.</div><div class="matchArea" id="matchArea"><svg class="matchSvg" id="matchSvg"></svg><div class="matchCol left">${data.match.map((p,i)=>`<button class="matchBtn ${state.matchSelected?.side==='left'&&state.matchSelected.index===i?'selected':''} ${solved(sec,i)?'done':''}" id="matchL${i}" data-side="left" data-index="${i}" ${solved(sec,i)?'disabled':''}>${esc(p.en)}</button>`).join('')}</div><div class="matchCol right">${matchRightOrder.map(i=>`<button class="matchBtn ${state.matchSelected?.side==='right'&&state.matchSelected.index===i?'selected':''} ${solved(sec,i)?'done':''}" id="matchR${i}" data-side="right" data-index="${i}" ${solved(sec,i)?'disabled':''}>${esc(data.match[i].ru)}</button>`).join('')}</div></div><div class="statusWrap"><div id="fb">${msg}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solved(sec,i)?'done':i===doneCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${doneCount} из ${total}</div></div></div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('allPairs','Все фразы')}</div><button class="nextBtn" id="next" ${doneCount===total?'':'disabled'}>Следующий блок →</button></div>`);
-  document.getElementById('allPairs').onclick=function(){playSequence(data.match.flatMap(x=>[x.en,x.ru]),this,'▶ Все фразы')};
+  app.innerHTML=shell(`${title(2,'Time Match','English on the left · Russian on the right · connect the pair')}<div class="blockBody"><div class="visualCard">${visualSlot('block2-time-match.jpg','🔗','Time Match','Connect English phrases to Russian translations','Pair matching scene')}</div><div class="questionCard matchQuestion"><div class="kicker">TIME MATCH</div><div class="prompt">Find all 8 pairs.</div><div class="subprompt">English — слева, Russian — справа. После правильной пары появляется соединение.</div><div class="matchArea" id="matchArea"><svg class="matchSvg" id="matchSvg"></svg><div class="matchCol left">${data.match.map((p,i)=>`<button class="matchBtn ${state.matchSelected?.side==='left'&&state.matchSelected.index===i?'selected':''} ${solved(sec,i)?'done':''}" id="matchL${i}" data-side="left" data-index="${i}" ${solved(sec,i)?'disabled':''}>${esc(p.en)}</button>`).join('')}</div><div class="matchCol right">${matchRightOrder.map(i=>`<button class="matchBtn ${state.matchSelected?.side==='right'&&state.matchSelected.index===i?'selected':''} ${solved(sec,i)?'done':''}" id="matchR${i}" data-side="right" data-index="${i}" ${solved(sec,i)?'disabled':''}>${esc(data.match[i].ru)}</button>`).join('')}</div></div><div class="statusWrap"><div id="fb">${msg}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${solved(sec,i)?'done':i===doneCount?'current':''}"></i>`).join('')}</div><div class="counter">Найдено пар ${doneCount} из ${total}</div></div></div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('allPairs','Все фразы')}</div><button class="nextBtn" id="next" ${doneCount===total?'':'disabled'}>Следующий блок →</button></div>`);
+  document.getElementById('allPairs').onclick=function(){playSequence(data.match.map(x=>x.en),this,'▶ Все фразы')};
   document.querySelectorAll('.matchBtn').forEach(btn=>btn.onclick=()=>handleMatch(btn.dataset.side,+btn.dataset.index));
   drawMatchLines();
   document.getElementById('next').onclick=()=>{state.flash.match=null;state.screen=3;save();render()};
@@ -279,7 +279,7 @@ function plannerBlock(){
   const remaining=data.planner.map((x,i)=>({...x,i})).filter(x=>state.plannerPlaced[x.i]===undefined);
   const slots=data.planner.map((x,i)=>`<button class="planSlot ${state.plannerPlaced[i]!==undefined?'filled':''}" data-slot="${i}"><span class="slotTime">${esc(x.time)}</span>${state.plannerPlaced[i]!==undefined?`<span class="slotEvent">${esc(data.planner[state.plannerPlaced[i]].event)}</span>`:'<span class="slotPlaceholder">choose event</span>'}</button>`).join('');
   app.innerHTML=shell(`${title(7,'Daily Planner','put the activities into the correct time slots')}<div class="blockBody"><div class="visualCard">${visualSlot('block7-daily-planner.jpg','📅','Daily Planner','A simple day with times and everyday activities','Daily planner table')}</div><div class="questionCard plannerQuestion"><div class="kicker">Daily Planner</div><div class="prompt">Complete the schedule.</div><div class="subprompt">Сначала выбери событие внизу, затем нажми время сверху.</div><div class="plannerWrap"><div class="plannerGrid">${slots}</div><div class="plannerBank">${remaining.map(x=>`<button class="sortChip ${state.plannerSelected===x.i?'selected':''}" data-chip="${x.i}">${esc(x.event)}</button>`).join('')}</div></div><div class="statusWrap"><div id="fb">${msg}</div><div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${state.plannerPlaced[i]!==undefined?'done':i===doneCount?'current':''}"></i>`).join('')}</div><div class="counter">Заполнено ${doneCount} из ${total}</div></div></div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('eventsAudio','Все события')}</div><button class="nextBtn" id="next" ${doneCount===total?'':'disabled'}>Следующий блок →</button></div>`);
-  document.getElementById('eventsAudio').onclick=function(){playSequence(data.planner.flatMap(x=>[x.event,`at ${x.time}`]),this,'▶ Все события')};
+  document.getElementById('eventsAudio').onclick=function(){const lines=['get up at seven thirty','breakfast at eight o\'clock','train at seven forty-seven','meeting at half past ten','lunch at one o\'clock','English class at a quarter past six'];playSequence(lines,this,'▶ Все события')};
   document.querySelectorAll('[data-chip]').forEach(el=>el.onclick=()=>{state.plannerSelected=+el.dataset.chip;state.flash.planner=null;save();plannerBlock()});
   document.querySelectorAll('[data-slot]').forEach(el=>el.onclick=()=>{const slot=+el.dataset.slot;if(state.plannerSelected===null||state.plannerSelected===undefined)return;const chosen=state.plannerSelected;if(chosen===slot){recordAttempt(sec,slot,true);state.plannerPlaced[slot]=chosen;state.flash.planner=feedback('good','Верно!');}else{recordAttempt(sec,chosen,false);state.flash.planner=feedback('bad','Это не то время. Попробуй ещё раз.');}state.plannerSelected=null;save();plannerBlock()});
   document.getElementById('next').onclick=()=>{state.flash.planner=null;state.screen=8;save();render()};
@@ -298,7 +298,7 @@ function challengeBlock(){
 
 function results(){
   const totalMax=SECTIONS.reduce((n,k)=>n+MAX[k],0),total=SECTIONS.reduce((n,k)=>n+score(k),0),pct=Math.round(total/totalMax*100),sorted=[...SECTIONS].sort((a,b)=>score(b)/MAX[b]-score(a)/MAX[a]),best=sorted[0],weak=sorted.at(-1);
-  app.innerHTML=shell(`<div class="titlebar"><div class="titlewrap"><h1>Your <span class="n">Results</span></h1><p>Beginner · Episode 3 · What time is it?</p></div><div class="progressBox"><strong>Готово</strong><div class="track"><i style="width:100%"></i></div></div></div><div class="results"><div class="ring" style="--pct:${pct}"><strong>${pct}%</strong><span>с первого раза</span></div><div><div class="resultList">${SECTIONS.map(k=>{const p=Math.round(score(k)/MAX[k]*100);return `<div class="resrow"><label>${LABELS[k]}</label><div class="resbar"><i style="width:${p}%"></i></div><b>${score(k)}/${MAX[k]}</b></div>`}).join('')}</div><div class="coach"><div><strong>Сильнее всего</strong><p>${LABELS[best]} — лучший результат с первой попытки.</p></div><div><strong>Что повторить</strong><p>${LABELS[weak]} — этот блок стоит пройти ещё раз.</p></div></div><div class="coach"><div><strong>Финальный блок</strong><p>Clock Challenge проверяет, умеет ли ученик услышать фразу о времени и сразу выставить её на интерактивных часах.</p></div></div><div class="heroBtns" style="margin-top:16px"><button class="btn primary" id="retry">Пройти ещё раз</button><button class="btn secondary" id="home">На главную</button></div></div></div>`);
+  app.innerHTML=shell(`<div class="titlebar"><div class="titlewrap"><h1>Your <span class="n">Results</span></h1><p>Beginner · Episode 3 · What time is it?</p></div><div class="progressBox"><strong>Готово</strong><div class="track"><i style="width:100%"></i></div></div></div><div class="results"><div class="ring" style="--pct:${pct}"><strong>${pct}%</strong><span>с первого раза</span></div><div><div class="resultList">${SECTIONS.map(k=>{const p=Math.round(score(k)/MAX[k]*100);return `<div class="resrow"><label>${LABELS[k]}</label><div class="resbar"><i style="width:${p}%"></i></div><b>${score(k)}/${MAX[k]}</b></div>`}).join('')}</div><div class="coach"><div><strong>Сильнее всего</strong><p>${LABELS[best]} — лучший результат с первой попытки.</p></div><div><strong>Что повторить</strong><p>${LABELS[weak]} — этот блок стоит пройти ещё раз.</p></div></div><div class="coach"><div><strong>Финальный блок</strong><p>Clock Challenge проверяет, насколько уверенно ты понимаешь фразу о времени на слух и выставляешь её на интерактивных часах.</p></div></div><div class="heroBtns" style="margin-top:16px"><button class="btn primary" id="retry">Пройти ещё раз</button><button class="btn secondary" id="home">На главную</button></div></div></div>`);
   document.getElementById('retry').onclick=()=>{state=fresh();state.screen=1;save();render()};document.getElementById('home').onclick=()=>{state.screen=0;save();render()};
 }
 

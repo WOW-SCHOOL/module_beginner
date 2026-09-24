@@ -29,3 +29,18 @@
 ### Safe visual polish
 
 Только локальный Level B: состояния существующих интерактивных элементов, клавиатурный focus, короткая реакция на правильный ответ, мягкий entrance и аккуратное раскрытие новых helpers. Structural redesign не выполнялся.
+
+
+## Full QA correction · v5
+
+- Исправлен критический answer-key bug в Clock Challenge: `It's eleven o'clock.` теперь проверяется как **11:00 / 660 minutes**, а не как 5:30.
+- Проверены все значения времени в Clock Setter и Clock Challenge.
+- Приведены к единому учебному варианту формулировки `a quarter past / a quarter to` в listening/options/support.
+- Исправлены неестественные/неточные вопросы в Rob's Story и reading comprehension.
+- Time Match TTS теперь читает только English, а не русский перевод голосом en-GB.
+- Имена говорящих больше не произносятся в TTS диалогов.
+- Planner audio переписан в естественные английские фразы.
+- Sentence Builder shuffle теперь гарантированно не оставляет карточки в исходном порядке.
+- Убраны shake/success-pulse/screen-entry animations, которые могли давать эффект дрожания или мерцания.
+- Сброшен storage key на `v2`, чтобы некорректные результаты старой версии не переносились в исправленную.
+- Выполнено 97 автоматических consistency-checks: **97 passed / 0 failed**.

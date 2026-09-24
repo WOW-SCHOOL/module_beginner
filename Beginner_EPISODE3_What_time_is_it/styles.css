@@ -46,7 +46,7 @@ img{display:block;max-width:100%}
 .answers{display:grid;gap:10px;margin-top:18px}
 .answer{min-height:54px;border-radius:18px;border:1px solid #d9e5f5;background:linear-gradient(180deg,#fbfdff,#f2f7ff);color:#17336b;font-size:18px;font-weight:900;text-align:left;padding:0 18px;cursor:pointer;box-shadow:inset 0 1px 0 #fff;transition:.14s}
 .answer:hover{transform:translateY(-1px);border-color:#7ab5ff}
-.answer.wrongFlash{border-color:#ee8090;background:#fff0f2;color:#bd4052;animation:shake .22s linear}
+.answer.wrongFlash{border-color:#ee8090;background:#fff0f2;color:#bd4052;animation:none!important;transform:none!important}
 .answer.correct{border-color:#50ce8a;background:#eafff1;color:#148749}
 .answer:disabled{cursor:default}
 .statusWrap{margin-top:auto;padding-top:14px}
@@ -559,11 +559,11 @@ img{display:block;max-width:100%}
 .transcriptLine span{color:#5c6e91;font-weight:720}
 .answer:hover:not(:disabled),.option:hover:not(:disabled){box-shadow:0 8px 17px rgba(45,108,184,.09),inset 0 1px 0 #fff}
 .answer:active:not(:disabled),.option:active:not(:disabled){transform:translateY(0) scale(.995)}
-.answer.correct,.option.good,.wordChip.good,.memoryCard.matched{animation:wowSuccessPulse .30s ease-out}
+.answer.correct,.option.good,.wordChip.good,.memoryCard.matched{animation:none!important;transform:none!important}
 .audioBtn:hover:not(:disabled),.nextBtn:hover:not(:disabled),.ghostBtn:hover:not(:disabled),.btn:hover:not(:disabled),.wordChip:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.015)}
 .audioBtn:active:not(:disabled),.nextBtn:active:not(:disabled),.ghostBtn:active:not(:disabled),.btn:active:not(:disabled),.wordChip:active:not(:disabled){transform:translateY(0) scale(.992)}
 button:focus-visible,.helperDetails summary:focus-visible{outline:4px solid rgba(45,141,247,.22);outline-offset:2px}
-.content{animation:wowScreenIn .20s ease-out}
+.content{animation:none!important;transform:none!important}
 @keyframes wowSuccessPulse{0%{transform:scale(.985)}60%{transform:scale(1.012)}100%{transform:scale(1)}}
 @keyframes wowScreenIn{from{opacity:.72;transform:translateY(5px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.content,.answer.correct,.option.good,.wordChip.good,.memoryCard.matched{animation:none!important}.helperDetails summary,.helperDetails summary:after{transition:none!important}}
