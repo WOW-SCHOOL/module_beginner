@@ -1,0 +1,18 @@
+{
+  "module": "Beginner_Unit8B_I_love_cooking",
+  "base_canvas": "1600x900",
+  "display_rule": "object-fit: contain; never crop important content",
+  "safe_area": "10-12%",
+  "favicon": "assets/images/favicon.png",
+  "images": [
+    {"file":"preview-unit8b.jpg","size":"1600x900","ratio":"16:9","purpose":"OpenGraph + module preview cover","text_allowed":true},
+    {"file":"block1-activity-pantry.jpg","size":"1440x1080","ratio":"4:3","purpose":"Activity Pantry vocabulary","text_allowed":false},
+    {"file":"block2-preference-recipe.jpg","size":"1440x1080","ratio":"4:3","purpose":"Preference Recipe grammar","text_allowed":false},
+    {"file":"block3-ing-kitchen.jpg","size":"1440x1080","ratio":"4:3","purpose":"-ing Kitchen spelling mechanic","text_allowed":false},
+    {"file":"block4-table-talk.jpg","size":"1440x1080","ratio":"4:3","purpose":"Table Talk speaking / functional phrases","text_allowed":false},
+    {"file":"block5-sentence-builder.jpg","size":"1440x1080","ratio":"4:3","purpose":"Sentence Builder","text_allowed":false},
+    {"file":"block6-sound-kitchen.jpg","size":"1440x1080","ratio":"4:3","purpose":"Sound Kitchen pronunciation","text_allowed":false},
+    {"file":"block7-reading.jpg","size":"1080x1920","ratio":"9:16","purpose":"Alone or Together reading portrait visual","text_allowed":false},
+    {"file":"block8-hobby-mixer.jpg","size":"1440x1080","ratio":"4:3","purpose":"Hobby Mixer signature interaction","text_allowed":false}
+  ]
+}

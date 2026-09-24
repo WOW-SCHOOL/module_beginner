@@ -1,0 +1,10 @@
+<iframe
+  src="https://wow-school.github.io/module_beginner/Beginner_Unit8B_I_love_cooking/"
+  width="1600"
+  height="900"
+  style="width:100%;aspect-ratio:16/9;border:0;display:block;"
+  allow="autoplay"
+  loading="lazy"
+  referrerpolicy="no-referrer"
+  title="WOW SCHOOL · Beginner · Unit 8B · I love cooking">
+</iframe>
