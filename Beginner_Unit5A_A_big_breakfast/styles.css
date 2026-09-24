@@ -347,21 +347,22 @@ img{display:block;max-width:100%}
 .pairOnlyStatus .internalProgress{margin-top:7px}
 
 /* WOW SCHOOL v4 retrofit: safe local polish only. Original layout and palette are preserved. */
-.visualColumn{height:100%;min-height:0;display:flex;flex-direction:column;gap:10px}
-.visualColumn>.visualCard{height:auto!important;flex:1 1 auto;min-height:0}
-.visualHelpers{flex:0 0 auto;display:grid;gap:8px}
-.leftPanel>.visualHelpers{margin-top:10px}
-.helperDetails{border-radius:17px;background:rgba(255,255,255,.92);border:1px solid #e0e9f6;box-shadow:0 9px 20px rgba(43,70,122,.07);overflow:hidden}
-.helperDetails summary{list-style:none;min-height:46px;padding:0 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;color:#24467e;font-size:14px;font-weight:950;transition:.16s}
+.visualColumn{height:100%;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:10px;overflow:hidden}
+.visualColumn>.visualCard{height:100%!important;min-height:0;overflow:hidden}
+.visualHelpers{min-height:0;display:grid;gap:8px;align-content:end}
+.helperDetails{min-width:0;border-radius:17px;background:rgba(255,255,255,.96);border:1px solid #dfe9f6;box-shadow:0 9px 20px rgba(43,70,122,.07);overflow:hidden}
+.helperDetails summary{list-style:none;min-height:44px;padding:0 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;color:#24467e;font-size:14px;font-weight:950;transition:.16s;background:rgba(255,255,255,.94)}
 .helperDetails summary::-webkit-details-marker{display:none}
-.helperDetails summary:after{content:"+";width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#eef5ff;color:#378fe9;font-size:18px;line-height:1;transition:transform .16s,background .16s}
+.helperDetails summary::marker{content:""}
+.helperDetails summary:after{content:"+";flex:0 0 auto;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#eef5ff;color:#378fe9;font-size:18px;line-height:1;transition:transform .16s,background .16s}
 .helperDetails[open] summary:after{transform:rotate(45deg);background:#e6f7f6;color:#169b96}
 .helperDetails summary:hover{background:#f7fbff}
-.helperBody{max-height:128px;overflow:auto;padding:0 15px 14px;color:#5a6f95;font-size:14px;line-height:1.45;font-weight:750}
-.transcript{display:grid;gap:8px;padding-top:2px}
-.transcriptLine{display:grid;grid-template-columns:110px 1fr;gap:9px;align-items:start}
-.transcriptLine strong{color:#17366f;font-size:13px;overflow-wrap:anywhere}
-.transcriptLine span{color:#5c6e91;font-weight:720}
+.helperBody{max-height:96px;overflow:auto;padding:0 15px 13px;color:#5a6f95;font-size:14px;line-height:1.42;font-weight:750;scrollbar-width:thin}
+.helperDetails[open] .helperBody{border-top:1px solid rgba(223,233,246,.72);padding-top:10px}
+.transcript{display:grid;gap:7px}
+.transcriptLine{display:grid;grid-template-columns:92px minmax(0,1fr);gap:9px;align-items:start}
+.transcriptLine strong{color:#17366f;font-size:12.5px;line-height:1.35;overflow-wrap:anywhere}
+.transcriptLine span{color:#5c6e91;font-weight:720;line-height:1.4;overflow-wrap:anywhere}
 .answer:hover:not(:disabled),.option:hover:not(:disabled){box-shadow:0 8px 17px rgba(45,108,184,.09),inset 0 1px 0 #fff}
 .answer:active:not(:disabled),.option:active:not(:disabled){transform:translateY(0) scale(.995)}
 .answer.correct,.option.good,.wordChip.good,.memoryCard.matched{animation:wowSuccessPulse .30s ease-out}

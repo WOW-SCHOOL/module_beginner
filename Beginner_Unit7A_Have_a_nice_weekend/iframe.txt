@@ -1,5 +1,5 @@
 <iframe
-  src="https://wow-school.github.io/module_beginner/Beginner_Unit7A_Have_a_nice_weekend/?v=1"
+  src="https://wow-school.github.io/module_beginner/Beginner_Unit7A_Have_a_nice_weekend"
   title="WOW SCHOOL · English File Beginner · Unit 7A · Have a nice weekend!"
   frameborder="0"
   scrolling="no"

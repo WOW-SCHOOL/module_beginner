@@ -1,5 +1,5 @@
 <iframe
-  src="https://wow-school.github.io/module_beginner/Beginner_Unit3B_Souvenirs/?v=1"
+  src="https://wow-school.github.io/module_beginner/Beginner_Unit3B_Souvenirs"
   title="WOW SCHOOL · Beginner · Unit 3B · Souvenirs"
   frameborder="0"
   scrolling="no"

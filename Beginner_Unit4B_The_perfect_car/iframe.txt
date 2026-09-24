@@ -1,5 +1,5 @@
 <iframe
-  src="https://wow-school.github.io/module_beginner/Beginner_Unit4B_The_perfect_car/?v=1"
+  src="https://wow-school.github.io/module_beginner/Beginner_Unit4B_The_perfect_car"
   title="WOW SCHOOL · Beginner · Unit 4B · The perfect car"
   frameborder="0"
   scrolling="no"

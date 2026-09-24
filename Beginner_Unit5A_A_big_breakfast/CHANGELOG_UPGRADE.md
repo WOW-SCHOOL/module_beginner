@@ -29,3 +29,11 @@
 ### Safe visual polish
 
 Только локальный Level B: состояния существующих интерактивных элементов, клавиатурный focus, короткая реакция на правильный ответ, мягкий entrance и аккуратное раскрытие новых helpers. Structural redesign не выполнялся.
+
+
+## Исправление размещения helpers · Unit 5A
+- Подсказки и transcript больше не вставляются после render поверх готового layout.
+- Helpers встроены в левую `visualColumn` непосредственно в `app.js`, как в ранее обновлённых модулях.
+- Раскрытая подсказка имеет ограниченную внутреннюю высоту и собственный scroll; она не пересекает аудиокнопку и footer.
+- Для Listening Mission transcript остаётся привязанным к текущему Dialogue 1 / 2.
+- Добавлен cache-busting для `styles.css`, `app.js` и `upgrade-v4.js`, чтобы iframe / GitHub Pages не смешивал старый CSS с новым JS.
