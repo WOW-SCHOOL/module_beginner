@@ -1,0 +1,17 @@
+{
+  "module": "English File Beginner · Revise & Check 7&8",
+  "canvas": "1600x900",
+  "theme": "review-checkpoint",
+  "images": [
+    {"file":"preview-revise78.jpg","role":"preview","size":"1600x900","ratio":"16:9"},
+    {"file":"block1-question-lab.jpg","role":"block1","size":"1440x1080","ratio":"4:3"},
+    {"file":"block2-weekend-board.jpg","role":"block2","size":"1440x1080","ratio":"4:3"},
+    {"file":"block3-directors-cut.jpg","role":"block3","size":"1440x1080","ratio":"4:3"},
+    {"file":"block4-permission-gate.jpg","role":"block4","size":"1440x1080","ratio":"4:3"},
+    {"file":"block5-sentence-builder.jpg","role":"block5","size":"1440x1080","ratio":"4:3"},
+    {"file":"block6-sound-check.jpg","role":"block6","size":"1440x1080","ratio":"4:3"},
+    {"file":"block7-reading.jpg","role":"block7","size":"1080x1920","ratio":"9:16"},
+    {"file":"block8-skill-passport.jpg","role":"block8","size":"1440x1080","ratio":"4:3"}
+  ],
+  "favicon": "assets/images/favicon.png"
+}
