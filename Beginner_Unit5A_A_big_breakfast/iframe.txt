@@ -1,5 +1,5 @@
 <iframe
-  src="https://wow-school.github.io/module_beginner/Beginner_Unit5A_A_big_breakfast/?v=4"
+  src="https://wow-school.github.io/module_beginner/Beginner_Unit5A_A_big_breakfast"
   title="WOW SCHOOL · Beginner · Unit 5A · A big breakfast?"
   frameborder="0"
   scrolling="no"
