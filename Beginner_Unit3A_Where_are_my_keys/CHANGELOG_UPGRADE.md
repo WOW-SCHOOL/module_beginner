@@ -40,3 +40,8 @@
 - Module now always opens on the welcome slide, while saved answers remain stored.
 - Added a new unique preview filename (`preview-unit3a-v2.png`) and updated OG/Twitter/oEmbed references to bypass cached wrong thumbnails.
 - Removed shake/scale feedback and transform-based interaction movement that could make the whole module look like it was trembling after an answer.
+
+## Final preview correction
+- Replaced the module social/embed preview with the approved branded Unit 3A cover.
+- Updated Open Graph, Twitter card, and oEmbed thumbnail references to `preview-unit3a-final.png?v=4`.
+- `preview.png` now contains the same approved artwork for compatibility with platforms that still request the legacy filename.

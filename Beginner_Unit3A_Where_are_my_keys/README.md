@@ -20,6 +20,7 @@ module_beginner/
 │   ├── app.js
 │   ├── styles.css
 │   ├── preview.png
+│   ├── preview-unit3a-final.png
 │   ├── oembed.json
 │   ├── iframe.txt
 │   ├── VISUAL_PLAN.md
